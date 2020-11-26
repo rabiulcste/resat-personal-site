@@ -14,7 +14,7 @@ You can use the following custom layouts with this theme:
 ---------
 ## Compress
 This layout automatically compresses the html output of all pages.      
-Thanks to [https://github.com/penibelst/jekyll-compress-html](html_minify)
+<!--Thanks to [https://github.com/penibelst/jekyll-compress-html](html_minify)-->
 
 ---------
 ## About Page

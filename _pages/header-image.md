@@ -2,8 +2,8 @@
 layout: page
 title: header-image
 permalink: "/documentation/header-image/"
-header: /images/logo-flip.png
----   
+header: /images/logo.jpg
+------------------------
 # Site-wide Header Image
 You can set the header image site-wide by adding the following code to your `_config.yml`
 ```

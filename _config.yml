@@ -1,16 +1,16 @@
 # Site settings
-title: Starving Artist Jekyll Theme
-email: ctarwater@chrisanthropic.com
-author: Chrisanthropic
+title: Resat Amin
+email: oriana.unborn@gmail.com
+author: resat
 
-keywords: jekyll, jekyll theme, portfolio theme, artist theme
-description: Witty description here.
+keywords: resat, bracu, resat amin, law
+description: resat amin personal webpage
 
 # Only use this if you are serving your site via Github Pages
 github:
-  url: "https://chrisanthropic.github.io/starving-artist-jekyll-theme"
+  url: "https://resatamin.netlify.app"
 
-header: images/logo.png
+header: images/logo.jpg
 
 # Formspree contact Form
 contact_form: "https://formspree.io/ctarwater@chrisanthropic.com"

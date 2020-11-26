@@ -8,6 +8,13 @@ dl, dd, ol, ul, figure {
     padding: 0;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
@@ -24,7 +31,8 @@ ul, ol, dl, figure,
  * Images
  */
 img {
-    max-width: 100%;
+    width: 300px;
+    padding: 10px;
     vertical-align: middle;
 }
 
@@ -74,7 +82,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+    font-weight: 700;
 }
 
 
