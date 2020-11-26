@@ -8,7 +8,7 @@ description: resat amin personal webpage
 
 # Only use this if you are serving your site via Github Pages
 github:
-  url: "https://resatamin.netlify.app"
+#  url: "https://resatamin.netlify.app"
 
 header: images/logo.jpg
 
