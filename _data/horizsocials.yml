@@ -1,11 +1,8 @@
 - title: "feed"
   href: "https://chrisanthropic.github.io/starving-artist-jekyll-theme/atom.xml"
 
-- title: "googleplus"
-  href: "#"
-
 - title: "facebook"
-  href: "#"
+  href: "https://www.facebook.com/anario.apri.9"
   
 - title: "tumblr"
   href: "#"
@@ -14,4 +11,4 @@
   href: "https://twitter.com/AminResat"
 
 - title: "linkedin"
-  href: "https://www.linkedin.com/in/ctarwater"
+  href: "#"
