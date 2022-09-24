@@ -3,7 +3,7 @@
 //    height:unquote("calc( 100vh - #{$navbar-height} )");
     height: 100vh;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
     width: 100%;
     backface-visibility: hidden;

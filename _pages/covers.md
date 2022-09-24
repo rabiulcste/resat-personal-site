@@ -1,27 +1,43 @@
 ---
-layout: gallery
-title: research
-permalink: "/research/"
+layout: default
+title: portfolio
+permalink: "/portfolio/"
 ---
 
-## Violence
-Violence has continued in Afghanistan despite peace talks that began in September. Twin explosions in the central Afghan city of Bamiyan on Tuesday killed at least 14 people, injuring 45 or more, media reports said.
-According to a press release from UNAMA, donors pledged at least US$ 3.3 billion for the first year of the upcoming four year period, "with annual commitments expected to stay at the same level year-on-year.". But the money was not free, Ms. Lyons said: donors expected it would be well spent and the Government would be held accountable for how it was distributed, with an expectation that the country would hold on to the gains made in the past and keep strengthening institutions of governance and the protection of human rights.
-Finnish Minister of Foreign Affairs Pekka Haavisto, whose Government co-hosted the event together with Afghanistan and the United Nations, said 66 governments and more than 30 international organisations had taken part in the conference, mostly online, because of COVID-19.
-“All eyes in Afghanistan are towards Geneva”, said Afghan Deputy Minister of Finance Abdul Habib Zadran. “They are expecting a lot from the international community.”
+## Interests
+Gender and Society, Human Rights Law, Cyber Laws, and Social Movements, Criminal Law.
 
 
-## Refugee
-Violence has continued in Afghanistan despite peace talks that began in September. Twin explosions in the central Afghan city of Bamiyan on Tuesday killed at least 14 people, injuring 45 or more, media reports said.
-According to a press release from UNAMA, donors pledged at least US$ 3.3 billion for the first year of the upcoming four year period, "with annual commitments expected to stay at the same level year-on-year.". But the money was not free, Ms. Lyons said: donors expected it would be well spent and the Government would be held accountable for how it was distributed, with an expectation that the country would hold on to the gains made in the past and keep strengthening institutions of governance and the protection of human rights.
-Finnish Minister of Foreign Affairs Pekka Haavisto, whose Government co-hosted the event together with Afghanistan and the United Nations, said 66 governments and more than 30 international organisations had taken part in the conference, mostly online, because of COVID-19.
-“All eyes in Afghanistan are towards Geneva”, said Afghan Deputy Minister of Finance Abdul Habib Zadran. “They are expecting a lot from the international community.”
+## Research
+- Ethnography on ‘Life’ before and after enforcement of Cyber Security Laws and Policies   (2021) 
+- Why might non-elite women be disinterested in participating in the movement?  (2021)
+- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021) 
+- A comparative analysis on the engagement of urban middle-class people in social movements:  Political Hegemony (2020)
+
+##  Experience
+- **BRAC James P Grant School of Public Health**, Transcriber  (03/2022 -- 06/2022)
+    - Contributed as a translator (Bangla to English) in Digital ethnography project
+    - Transcriber of WFP LCP  Urban Women project
+
+- **Project Nirbhik, Content Development Dep**, Sub-executive (08/2020 --)
+    - “Project Nirbhik” promotes the mission to minimize vulnerability within the existing social groups under the division of SDGs
+    - Worked on transcribing, translating, content developing, and voice artist in several contents on gender violence. Video samples - [video1](https://www.facebook.com/ProjectNirbhik/videos/651351388915757) [video2](https://www.facebook.com/ProjectNirbhik/videos/383503669526230) [video3](https://www.facebook.com/ProjectNirbhik/videos/349425922757433)
+      
+
+<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F651351388915757%2F&show_text=false&width=476&t=0" width="380" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+
+<iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F349425922757433%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+
+- **Crido (Crisis Documentation Center)**, Legal Co-researcher, (05/2020 -- 08/2020)
+    - Research and Archive management [website](https://cridobd.com/)
+    - Contributed to constitution preparation including legal terms and conditions as one of the legal advisors
 
 
-
-## Feminism
-Violence has continued in Afghanistan despite peace talks that began in September. Twin explosions in the central Afghan city of Bamiyan on Tuesday killed at least 14 people, injuring 45 or more, media reports said.
-According to a press release from UNAMA, donors pledged at least US$ 3.3 billion for the first year of the upcoming four year period, "with annual commitments expected to stay at the same level year-on-year.". But the money was not free, Ms. Lyons said: donors expected it would be well spent and the Government would be held accountable for how it was distributed, with an expectation that the country would hold on to the gains made in the past and keep strengthening institutions of governance and the protection of human rights.
-Finnish Minister of Foreign Affairs Pekka Haavisto, whose Government co-hosted the event together with Afghanistan and the United Nations, said 66 governments and more than 30 international organisations had taken part in the conference, mostly online, because of COVID-19.
-“All eyes in Afghanistan are towards Geneva”, said Afghan Deputy Minister of Finance Abdul Habib Zadran. “They are expecting a lot from the international community.”
-
+## Skills
+- Socio-Legal Analysis
+- Conducting Field Studies
+- Data Collection and Analysis
+- Script Writing and creative writing
+- Transcribing and Translating
+- Classical Musical Instrument playing(esraj)
+- Tools: Office Word, Excel, PowerPoint, Data Viz
