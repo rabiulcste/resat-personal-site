@@ -8,6 +8,11 @@ permalink: "/portfolio/"
 Gender and Society, Human Rights Law, Cyber Laws, and Social Movements, Criminal Law.
 
 
+## Education
+Major in LLB (Hons), School of Law  2017 -- 2021 <br/>
+Minor in Anthropology, Dept. of Economics and Social Science <br/>
+BRAC University 
+
 ## Research
 - Ethnography on ‘Life’ before and after enforcement of Cyber Security Laws and Policies   (2021) 
 - Why might non-elite women be disinterested in participating in the movement?  (2021)
@@ -30,8 +35,18 @@ Gender and Society, Human Rights Law, Cyber Laws, and Social Movements, Criminal
 
 - **Crido (Crisis Documentation Center)**, Legal Co-researcher, (05/2020 -- 08/2020)
     - Research and Archive management [website](https://cridobd.com/)
-    - Contributed to constitution preparation including legal terms and conditions as one of the legal advisors
+    - Contributed to constitution preparation including legal terms and conditions as one of the legal advisor
 
+##  Awards and Achievements
+- 2021 Winner of the Silver Lining Bangla Writing Competition under Brac University Community Service Club.
+- 2020 Participation and completion of the British South Asian Youth Summit - Combating Violence Against Women and Girls Workshop.
+- 2020 Graduated from the Certificate Course on Refugee Laws and International Protection of Refugees and other Persons of Concern under UNHCR
+- 2017 Completion of the SCRIPT WRITING \& FILM STUDIES, BRAC University
+- 2017 Completion of 28th Recitation Course under Boikuntho Abritti Academy
+- 2014 Runner-up of the 9th inter-college Astro-Olympiad in Narayanganj     
+- 2014 Honourable Mention at 9th National Astro-Olympiad
+- 2012 Champion of the 7th Inter-School Astro-Olympiad in Dhaka Division
+- 2012 Runners Up in BTV Intra School Parliament Debate competition
 
 ## Skills
 - Socio-Legal Analysis
