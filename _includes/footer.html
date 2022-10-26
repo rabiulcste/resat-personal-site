@@ -1,0 +1,25 @@
+    {% if site.footer_fixed %}
+    <footer class="fixed-bottom">
+      <div class="container medium-12 columns">
+        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.title }} {{ site.footer_text }}
+        {%- if site.impressum_path -%}
+        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
+        {%- endif -%}
+        {%- if site.last_updated -%}
+        Last updated: {{ "now" | date: '%B %d, %Y' }}.
+        {%- endif %}
+      </div>
+    </footer>
+    {%- else -%}
+    <footer class="sticky-bottom medium-12 columns">
+      <div class="container">
+        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.title }} {{ site.footer_text }}
+        {%- if site.impressum_path -%}
+        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
+        {%- endif -%}
+        {%- if site.last_updated -%}
+        Last updated: {{ "now" | date: '%B %d, %Y' }}.
+        {%- endif %}
+      </div>
+    </footer>
+    {%- endif %}
