@@ -41,7 +41,7 @@ BRAC University
 - 2021 Winner of the Silver Lining Bangla Writing Competition under Brac University Community Service Club.
 - 2020 Participation and completion of the British South Asian Youth Summit - Combating Violence Against Women and Girls Workshop.
 - 2020 Graduated from the Certificate Course on Refugee Laws and International Protection of Refugees and other Persons of Concern under UNHCR
-- 2017 Completion of the SCRIPT WRITING \& FILM STUDIES, BRAC University
+- 2017 Completion of the SCRIPT WRITING & FILM STUDIES, BRAC University
 - 2017 Completion of 28th Recitation Course under Boikuntho Abritti Academy
 - 2014 Runner-up of the 9th inter-college Astro-Olympiad in Narayanganj     
 - 2014 Honourable Mention at 9th National Astro-Olympiad
