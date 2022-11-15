@@ -2,7 +2,7 @@
 name: "gallery"
 arts:
 # Column 1
-- image: "images/galleries/work/resat_batighar.jpg"
+- image: "images/galleries/work/resat_batighar.jpeg"
   order: "1"
   title: "Hosting Book Signing Event at Batighar, Dhaka"
   artist: 
