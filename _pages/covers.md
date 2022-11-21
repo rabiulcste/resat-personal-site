@@ -20,11 +20,11 @@ BRAC University
 - A comparative analysis on the engagement of urban middle-class people in social movements:  Political Hegemony (2020)
 
 ##  Experience
-- **BRAC James P Grant School of Public Health**, Transcriber  (03/2022 -- 06/2022)
+- [BRAC James P Grant School of Public Health](https://bracjpgsph.org/), Transcriber  (03/2022 -- 06/2022)
     - Contributed as a translator (Bangla to English) in Digital ethnography project
     - Transcriber of WFP LCP  Urban Women project
 
-- **Project Nirbhik, Content Development Dep**, Sub-executive (08/2020 --)
+- [Project Nirbhik](https://www.facebook.com/ProjectNirbhik), Content Development Dep, Sub-executive (08/2020 --)
     - “Project Nirbhik” promotes the mission to minimize vulnerability within the existing social groups under the division of SDGs
     - Worked on transcribing, translating, content developing, and voice artist in several contents on gender violence. Video samples - [video1](https://www.facebook.com/ProjectNirbhik/videos/651351388915757) [video2](https://www.facebook.com/ProjectNirbhik/videos/383503669526230) [video3](https://www.facebook.com/ProjectNirbhik/videos/349425922757433)
       
@@ -33,8 +33,8 @@ BRAC University
 
 <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F349425922757433%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
 
-- **Crido (Crisis Documentation Center)**, Legal Co-researcher, (05/2020 -- 08/2020)
-    - Research and Archive management [website](https://cridobd.com/)
+- [Crido (Crisis Documentation Center)](https://cridobd.com), Legal Co-researcher, (05/2020 -- 08/2020)
+    - Research and Archive management
     - Contributed to constitution preparation including legal terms and conditions as one of the legal advisor
 
 ##  Awards and Achievements
