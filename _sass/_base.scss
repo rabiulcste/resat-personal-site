@@ -355,3 +355,31 @@ width: 480px;
        grid-template-columns: repeat(3, 1fr);
     }
   }
+
+  
+.paper {
+    // box-shadow: inset 7.5px 0px #FFC300 !important;
+    // position: fixed;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 700;
+    font-family: Optima, sans-serif;
+
+    background-color: #27474E;
+    height: 8rem;
+    // width: 40rem;
+    padding: 10px 50px;
+    margin: 20px 0;
+    outline: none;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.27) 0.05em,
+        transparent 0.05em
+      ),
+      radial-gradient(circle at 25px 35px, transparent 10px, white 3px);
+    background-size: 100% 3.5em;
+    // -webkit-box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
+    // -moz-box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
+    // box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
+    z-index: 1;
+    overflow-x: hidden;
+}
