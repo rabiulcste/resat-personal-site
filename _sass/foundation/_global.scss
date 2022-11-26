@@ -60,7 +60,7 @@ $body-font-color: $black !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: 'Helvetica Neue', "SolaimanLipi", Helvetica, Roboto, Arial, sans-serif !default;
+$body-font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, 'Helvetica Neue', "SolaimanLipi", Roboto, Arial, sans-serif !default;
 
 /// Set to `true` to enable antialiased type, using the `-webkit-font-smoothing` and `-moz-osx-font-smoothing` CSS properties.
 /// @type Boolean
