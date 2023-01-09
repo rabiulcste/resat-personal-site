@@ -1,7 +1,7 @@
 # coding: utf-8
 
 Gem::Specification.new do |spec|
-  spec.name          = "starving-artist-jekyll-theme"
+  spec.name          = "resat-personal-site-theme"
   spec.version       = "0.2.7"
   spec.authors       = ["chrisanthropic"]
   spec.email         = ["ctarwater@gmail.com"]

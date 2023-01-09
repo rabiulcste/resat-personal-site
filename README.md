@@ -18,11 +18,11 @@ Jekyll requires Ruby so make sure Ruby is installed before you begin.
   - Browse to [http://localhost:4000](http://localhost:4000)
 - Download Starving Artist Theme
   - Replace the line `gem "minima"` with this:
-    - `gem "starving-artist-jekyll-theme"`
+    - `gem "resat-personal-site-theme"`
   - Run `bundle install`
 - Tell Jekyll to use Starving Artist Theme
   - Open `_config.yml` and change the line `theme: minima` to this:
-    - `theme: starving-artist-jekyll-theme`
+    - `theme: resat-personal-site-theme`
 - Import the Starving Artist CSS
   - Open your `css/style.css` and change the line `@import "minima;"` to this:
     - `@import "starving-artist";`
