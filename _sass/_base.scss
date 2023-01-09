@@ -110,7 +110,7 @@ a {
 }
 
 .body-4 {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, 'Helvetica Neue', "SolaimanLipi", Roboto, Arial, sans-serif;
+    font-family: "Crimson Text", Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, 'Helvetica Neue', "SolaimanLipi", Roboto, Arial, sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 1.5;
@@ -357,29 +357,30 @@ width: 480px;
   }
 
   
-.paper {
-    // box-shadow: inset 7.5px 0px #FFC300 !important;
-    // position: fixed;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 700;
-    font-family: Optima, sans-serif;
 
-    background-color: #36454F;
-    height: 9rem;
-    // width: 40rem;
-    padding: 10px 50px;
-    margin: 20px 0;
-    outline: none;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.27) 0.05em,
-        transparent 0.05em
-      ),
-      radial-gradient(circle at 25px 35px, transparent 10px, white 3px);
-    background-size: 100% 3.5em;
-    // -webkit-box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
-    // -moz-box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
-    // box-shadow: 9px 4px 7px -10px rgba(66, 66, 66, 1);
-    z-index: 1;
-    overflow-x: hidden;
+.x-text-content-text-subheadline {
+    margin-top: 0em;
+    font-family: "Crimson Text",serif;
+    font-size: calc(0.63em + 0.2vw);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0;
+    letter-spacing: 0.25em;
+    margin-right: calc(0.25em * -1);
+    text-transform: uppercase;
+    color: #DE3163;
+    transition-timing-function: cubic-bezier(0.400,0.000,0.200,1.000);
+}
+
+.x-anchor-text-primary {
+    font-family: inherit;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: inherit;
+    line-height: 1;
+    letter-spacing: 0.15em;
+    margin-right: calc(0.15em * -1);
+    text-transform: uppercase;
+    color: #DE3163;
+    transition-timing-function: cubic-bezier(0.400,0.000,0.200,1.000);
 }

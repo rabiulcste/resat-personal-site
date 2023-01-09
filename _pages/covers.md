@@ -1,58 +1,50 @@
 ---
 layout: default
-title: portfolio
-permalink: "/portfolio/"
+title: projects
+permalink: "/projects/"
 ---
 
-## Interests
-Gender and Society, Human Rights Law, Cyber Laws, and Social Movements, Criminal Law.
+## Projects
 
+### Digital Secuirity Act
 
-## Education
-Major in LLB (Hons), School of Law  2017 -- 2021 <br/>
-Minor in Anthropology, Dept. of Economics and Social Science <br/>
-BRAC University 
+This research project examines the challenges posed by cyber security laws and policies in Bangladesh in relation to human rights laws. It explores the legal frameworks in Bangladesh which regulate cyber security and their impacts on the protection of human rights. The research also looks at the effectiveness of these laws and policies in protecting the digital rights of individuals. It provides insights into the various issues that arise when cyber security laws and policies conflict with human rights laws, as well as possible solutions to help address these challenges. The findings of the research could be used to help inform future policy-making decisions in Bangladesh.
 
-## Research
-- Ethnography on ‘Life’ before and after enforcement of Cyber Security Laws and Policies   (2021) 
-- Why might non-elite women be disinterested in participating in the movement?  (2021)
-- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021) 
-- A comparative analysis on the engagement of urban middle-class people in social movements:  Political Hegemony (2020)
+Selected work based on this project:
 
-##  Experience
-- [BRAC James P Grant School of Public Health](https://bracjpgsph.org/), Transcriber  (03/2022 -- 06/2022)
-    - Contributed as a translator (Bangla to English) in Digital ethnography project
-    - Transcriber of WFP LCP  Urban Women project
+- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021)
 
-- [Project Nirbhik](https://www.facebook.com/ProjectNirbhik), Content Development Dep, Sub-executive (08/2020 --)
-    - “Project Nirbhik” promotes the mission to minimize vulnerability within the existing social groups under the division of SDGs
-    - Worked on transcribing, translating, content developing, and voice artist in several contents on gender violence. Video samples - [video1](https://www.facebook.com/ProjectNirbhik/videos/651351388915757) [video2](https://www.facebook.com/ProjectNirbhik/videos/383503669526230) [video3](https://www.facebook.com/ProjectNirbhik/videos/349425922757433)
-      
+### Social Movements and Class struggles
+
+This project aims to analyze and compare the engagement of urban middle-class people in social movements. By studying the dynamics of political hegemony, it seeks to understand how this class of people interact with and shape the movements. It will examine the various forms of engagement, such as protest, participation, and the mobilization of resources, as well as the motivations, ambitions, and goals of these people. Additionally, it will consider the role of the media, social networks, and other digital platforms in influencing the behavior of middle-class people. Ultimately, this project aims to provide valuable insight into the role of the middle-class in social movements and the possible implications for politics and society.
+
+Seltected work based on this project:
+
+- Ethnography on ‘Life’ before and after enforcement of Cyber Security Laws and Policies (2021)
+- Why might non-elite women be disinterested in participating in the movement? (2021)
+- A comparative analysis on the engagement of urban middle-class people in social movements: Political Hegemony (2020)
 
 <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F651351388915757%2F&show_text=false&width=476&t=0" width="380" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
 
 <iframe src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F349425922757433%2F&show_text=false&width=560&t=0" width="560" height="314" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
 
-- [Crido (Crisis Documentation Center)](https://cridobd.com), Legal Co-researcher, (05/2020 -- 08/2020)
-    - Research and Archive management
-    - Contributed to constitution preparation including legal terms and conditions as one of the legal advisor
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@resat_priya/video/7068996889735204122" data-video-id="7068996889735204122" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@resat_priya" href="https://www.tiktok.com/@resat_priya?refer=embed">@resat_priya</a> FEMINISM 101 <a title="gender_equality" target="_blank" href="https://www.tiktok.com/tag/gender_equality?refer=embed">#gender_equality</a> <a title="feminism" target="_blank" href="https://www.tiktok.com/tag/feminism?refer=embed">#feminism</a> <a title="equal_rights" target="_blank" href="https://www.tiktok.com/tag/equal_rights?refer=embed">#equal_rights</a> <a target="_blank" title="♬ original sound - Resat_Priya" href="https://www.tiktok.com/music/original-sound-7068996939173464858?refer=embed">♬ original sound - Resat_Priya</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
-##  Awards and Achievements
-- 2021 Winner of the Silver Lining Bangla Writing Competition under Brac University Community Service Club.
-- 2020 Participation and completion of the British South Asian Youth Summit - Combating Violence Against Women and Girls Workshop.
-- 2020 Graduated from the Certificate Course on Refugee Laws and International Protection of Refugees and other Persons of Concern under UNHCR
-- 2017 Completion of the SCRIPT WRITING & FILM STUDIES, BRAC University
-- 2017 Completion of 28th Recitation Course under Boikuntho Abritti Academy
-- 2014 Runner-up of the 9th inter-college Astro-Olympiad in Narayanganj     
-- 2014 Honourable Mention at 9th National Astro-Olympiad
-- 2012 Champion of the 7th Inter-School Astro-Olympiad in Dhaka Division
-- 2012 Runners Up in BTV Intra School Parliament Debate competition
 
-## Skills
-- Socio-Legal Analysis
-- Conducting Field Studies
-- Data Collection and Analysis
-- Script Writing and creative writing
-- Transcribing and Translating
-- Classical Musical Instrument playing(esraj)
-- Tools: Office Word, Excel, PowerPoint, Data Viz
+<iframe
+src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F536960813850054%2F&show_text=false&width=476&t=0"
+        width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+        allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        allowFullScreen="true"></iframe>
+
+<iframe
+    src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F504250997121036%2F&show_text=false&width=267&t=0"
+    width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+    allowFullScreen="true"></iframe>
+
+<iframe
+    src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Froyboxproductions%2Fvideos%2F225219102435754%2F&show_text=false&width=560&t=0"
+    width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+    allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+    allowFullScreen="true"></iframe>

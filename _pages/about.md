@@ -4,19 +4,19 @@ title: about
 logo: "images/author.jpg"
 permalink: "/about/"
 ---
-## বায়ো
-আমি রেসাত। বেড়ে উঠা ঢাকায়। কাজ করছি [কথা](https://www.facebook.com/cholokothaboli)'য় একজন পিয়ার এডুকেটর হিশেবে। আন্ডারগ্র্যাড পড়েছি [ব্র্যাক বিশ্ববিদ্যালয়ের](https://www.bracu.ac.bd/academics/institutes-and-schools/school-law) আইন বিভাগে। পাশাপাশি নৃবিজ্ঞানে মাইনর। ডিজিটাল এন্থ্রোপলজি, আইন ও সমাজ, জেন্ডার নিয়ে কাজ করতে চাই।
+## About Me
+I have completed my undergrad from School of Law,[BRAC University](https://www.bracu.ac.bd/academics/institutes-and-schools/school-law).
 
-ভালো লাগে আবিষ্কার করতে নতুন মানুষ, ঢাকার কফির দোকান। অলিগলিতে নানান ফ্লেভারের চা আর পুরানো বইয়ের ঘ্রাণ প্রিয়।
+I was born and raised in Dhaka, Bangladesh, a city of over 16 million people. I have always enjoyed playing [instruments](https://www.facebook.com/watch/?v=536960813850054) and cooking, and love learning new things. I am always up for [conversations](https://www.facebook.com/bracuanthropologyforum/posts/pfbid0zAcMzfMFs4Yy9EvE3EUSqTGH9e4ZuHVrf61sUsM84fLVUSD2jXpQT1Z1xYxkKHpl) about books-to-read, society, feminism and politics. I enjoy meeting new people and exploring new coffeeshops in Dhaka.
 
-## লেখালেখি
-সোশ্যাল এক্টিভিস্ট হিসেবে টুকটাক লিখেছি। আগ্রহ হিউম্যান রাইটস ল এবং পলিটিকেল ডমিনেশন সম্পর্কে জানার। সম্প্রতি কিছু গবেষণা কেন্দ্রিক কাজে নিজেকে তৈরি করতে চাই। অনুসন্ধ্যান করছি আইন ও এন্থ্রোপলজির সংযোগে নতুন চিন্তার, যা নাগরিক সুশাসন ও মানুষের বাঁচার অধিকার সুনিশ্চিত করতে পারে।
+## Activism and Online Presence
+I am vocal in online mediums and occassionally write about digital secuirity act, human rights and pressing gender concerns in Bangladesh.
 
-## আইন, মানবিকতা এবং থটস
-- ডিজিটাল এন্থ্রোপলজি
-- হিউম্যান রাইটস
-- ইকুইটি এন্ড জাস্টিস
-- জেন্ডার ও সোসাইটি
+## Interests
+- Digital Anthropology
+- Digital Secuirity Act
+- Human Rights
+- Gender and Society
 
-## যোগাযোগ
+## Contact
 resat.amin at gmail.com
