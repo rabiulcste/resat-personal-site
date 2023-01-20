@@ -32,5 +32,5 @@ end
 
 desc "release the gem"
 task :releasegem do
-  system "JEKYLL_ENV=production bundle exec gem push starving-artist-jekyll-theme-*.gem"
+  system "JEKYLL_ENV=production bundle exec gem push resat-personal-site-theme-*.gem"
 end

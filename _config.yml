@@ -26,7 +26,7 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-theme: resat-personal-site-theme
+# theme: resat-personal-site-theme
   
 # Plugins
 gems:
