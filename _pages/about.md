@@ -13,9 +13,10 @@ I was born and raised in Dhaka, Bangladesh, a city of over 16 million people. I 
 I am vocal in online mediums and occassionally write about digital secuirity act, human rights and pressing gender concerns in Bangladesh.
 
 ## Interests
-- Digital Anthropology
 - Digital Secuirity Act
-- Human Rights
+- Human Rights Law
+- Digital Anthropology
+- Social Justice and Inequality
 - Gender and Society
 
 ## Contact

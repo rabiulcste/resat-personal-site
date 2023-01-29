@@ -2,40 +2,56 @@
 name: "gallery"
 arts:
 # Column 1
-- image: "images/galleries/work/resat_batighar.jpeg"
+- image: "images/galleries/work/kotha_meetup.jpg"
   order: "1"
-  title: "Hosting Book Signing Event at Batighar, Dhaka"
+  title: "Peer meetup at Kotha, Dhanmondi office."
   artist: 
   description: 
-  
+    
 - image: "images/galleries/work/alap.jpeg"
   order: "2"
-  title: "Don't you know that you're toxic? - Talk at BRACU"
+  title: "Don't you know that you're toxic? - Panel discussion at BRAC University, Bangladesh"
   artist: 
   description: 
 
-- image: "images/galleries/work/bookshelf_artsy_me.jpeg"
+- image: "images/galleries/work/resat_batighar.jpeg"
   order: "3"
-  title: "A random photograph in my study room"
+  title: "Snap from hosting book signing event at Batighar, Dhaka"
   artist: 
   description: 
+
+
 
 # Column 2
-- image: "images/galleries/work/art_drawing_home.jpeg"
+- image: "images/galleries/work/debate_competition_btv.jpg"
   order: "4"
+  title: "Debate competition at Bangladesh Television, year 2012"
+  artist: 
+  description: 
+
+- image: "images/galleries/work/art_drawing_home.jpeg"
+  order: "5"
   title: "Trying to draw something, after a long while"
   artist: 
   description: 
 
 - image: "images/galleries/work/green_space_artsy.jpeg"
-  order: "5"
-  title: "Close to dear earth!"
+  order: "6"
+  title: "Close to dear earth! Photo taken at Chittagong University, Bangladesh."
   artist: 
   description: 
 
+# Column 3
 - image: "images/galleries/work/instrument_esraj_home.jpeg"
-  order: "6"
-  title: "Esraj"
+  order: "7"
+  title: "This Esraj was a gift from a dearest friend"
+  artist: 
+  description: 
+
+
+- image: "images/galleries/work/bookshelf_artsy_me.jpeg"
+  order: "8"
+  title: "A random photograph in my study room"
   artist: 
   description: 
 

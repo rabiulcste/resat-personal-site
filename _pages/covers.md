@@ -6,13 +6,13 @@ permalink: "/projects/"
 
 ## Projects
 
-### Digital Secuirity Act
+### Challenges of Digital Secuirity Act 2018
 
 This research project examines the challenges posed by cyber security laws and policies in Bangladesh in relation to human rights laws. It explores the legal frameworks in Bangladesh which regulate cyber security and their impacts on the protection of human rights. The research also looks at the effectiveness of these laws and policies in protecting the digital rights of individuals. It provides insights into the various issues that arise when cyber security laws and policies conflict with human rights laws, as well as possible solutions to help address these challenges. The findings of the research could be used to help inform future policy-making decisions in Bangladesh.
 
 Selected work based on this project:
 
-- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021)
+- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021) [pdf](https://drive.google.com/file/d/1SNoEAfzUTo9kUPutWOMmA1UszwH3ebco/view?usp=sharing)
 
 ### Social Movements and Class struggles
 
