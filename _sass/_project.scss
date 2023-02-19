@@ -1,0 +1,48 @@
+/* Set max-width to prevent text overflow */
+.projects {
+    max-width: 800px;
+    // margin: 0 auto;
+  }
+  
+  /* Style the section headings */
+  .projects h2, .projects h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 40px;
+  }
+  
+  /* Add a border to the section headings */
+  .projects h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  /* Add a box shadow to the project cards */
+  .project-card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    padding: 20px;
+  }
+  
+  /* Style the project titles */
+  .project-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the project descriptions */
+  .project-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  /* Add a hover effect to the project cards */
+  .project-card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+  }  
