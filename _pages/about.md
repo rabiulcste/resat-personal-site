@@ -5,19 +5,16 @@ logo: "images/author.jpg"
 permalink: "/about/"
 ---
 ## About Me
-I am a recent graduate of the School of Law at [BRAC University](https://www.bracu.ac.bd/academics/institutes-and-schools/school-law)in Dhaka, Bangladesh. With a minor in anthropology, I have developed a passion for understanding the complexities of human society and the legal systems that govern them.
+I am Resat, a second-year sociology graduate student at [Florida Atlantic University](https://www.fau.edu/artsandletters/sociology/). As an aspiring sociologist in the information age, I have a keen interest in studying the impact of [AI-generated identity](https://arxiv.org/abs/2403.07924), [biases](https://nyupress.org/9781479837243/algorithms-of-oppression/), and [digital oppression](https://global.oup.com/academic/product/predict-and-surveil-9780190684099) within the realm of digital media. 
 
-I was born and raised in Dhaka, Bangladesh, a city of over 16 million people. I have always enjoyed playing [instruments](https://www.facebook.com/watch/?v=536960813850054) and cooking, and love learning new things. I am always up for [conversations](https://www.facebook.com/bracuanthropologyforum/posts/pfbid0zAcMzfMFs4Yy9EvE3EUSqTGH9e4ZuHVrf61sUsM84fLVUSD2jXpQT1Z1xYxkKHpl) about books-to-read, society, feminism and politics. I enjoy meeting new people and exploring new coffeeshops in Dhaka.
+I am from Dhaka, Bangladesh, a country of 18 million people. I grew up reading about the history of oppression in my country, from British colonization to the liberation war against Pakistan. This history instilled in me a strong sense of freedom, justice, and equality. Growing up, I developed a passion for social justice, seeking to establish equality for all and advocating for the rights of minorities.
 
-## Activism and Online Presence
-I am passionate about promoting social justice and equality in Bangladesh, and I use online platforms to voice my opinions and raise awareness about pressing gender concerns, human rights issues, and the Digital Security Act. As an advocate for digital security and privacy, I believe that it is essential to ensure the protection of fundamental human rights in the digital world. I am an occasional writer and researcher on these topics, and I actively participate in online discussions and forums.
+Driven by this passion, I pursued my undergraduate major in law with the belief that I could change the world and stand up against all forms of oppression. However, during law school, my interest shifted toward understanding the intersection between law, society, humans, and institutions. I pursued a minor in anthropology, which led me to question “how” some processes work within institutions and some not, and ultimately, the social science question  "why."  
 
-## Interests
-- Digital Secuirity Act
-- Human Rights Law
-- Digital Anthropology
-- Social Justice and Inequality
-- Gender and Society
+I am open to collaborating on research related to digital media, AI, gender, human sexuality, technology, and human rights  Additionally, I am open to engaging in conversations with new people and learning new things. 
+
+I am a socialist feminist who loves discussing contemporary social issues, music, books, cooking, black coffee, and playing instruments when I feel emotionally overwhelmed. I run 6 kilometers at a 7-minute-per-kilometer pace each day, and I dream of participating in my first marathon in 2025. I enjoy reading books during lonely train journeys and often imagine myself as a character in a movie set in Europe, with people watching me. Within a few seconds, my concerns about surveillance start to give me a hard time about this careless and romanticizing attitude toward being monitored. 
+
 
 ## Contact
 resat.amin at gmail.com
