@@ -5,16 +5,22 @@ logo: "images/author.jpg"
 permalink: "/about/"
 ---
 ## About Me
-I am Resat, a second-year sociology graduate student at [Florida Atlantic University](https://www.fau.edu/artsandletters/sociology/). As an aspiring sociologist in the information age, I have a keen interest in studying the impact of [AI-generated identity](https://arxiv.org/abs/2403.07924), [biases](https://nyupress.org/9781479837243/algorithms-of-oppression/), and [digital oppression](https://global.oup.com/academic/product/predict-and-surveil-9780190684099) within the realm of digital media. 
 
-I am from Dhaka, Bangladesh, a country of 18 million people. I grew up reading about the history of oppression in my country, from British colonization to the liberation war against Pakistan. This history instilled in me a strong sense of freedom, justice, and equality. Growing up, I developed a passion for social justice, seeking to establish equality for all and advocating for the rights of minorities.
+I am Resat, a second-year sociology graduate student at [Florida Atlantic University](https://www.fau.edu/artsandletters/sociology/). My research focuses on the intersection of society and emerging technologies, particularly how digital platforms shape public discourse, mediate power dynamics, and perpetuate social inequalities. I am broadly interested in the impact of [AI](https://arxiv.org/abs/2403.07924) on society, algorithmic [biases](https://nyupress.org/9781479837243/algorithms-of-oppression/), and [digital oppression](https://global.oup.com/academic/product/predict-and-surveil-9780190684099) within digital media.
 
-Driven by this passion, I pursued my undergraduate major in law with the belief that I could change the world and stand up against all forms of oppression. However, during law school, my interest shifted toward understanding the intersection between law, society, humans, and institutions. I pursued a minor in anthropology, which led me to question “how” some processes work within institutions and some not, and ultimately, the social science question  "why."  
+Originally from Dhaka, Bangladesh, my early exposure to histories of colonization, feminist movements, and liberation shaped my commitment to social justice and equality. Growing up alongside the rise of social media platforms, I witnessed firsthand their transformative power in amplifying marginalized voices and organizing social movements. This early fascination with digital spaces, combined with my interest in structural inequalities, led me to pursue law initially, before discovering my true passion lay in understanding the sociological dynamics between institutions, technology, and gender-based inequalities. My feminist perspective particularly informs my approach to examining how digital technologies intersect with systems of power and oppression.
 
-I am open to collaborating on research related to digital media, AI, gender, human sexuality, technology, and human rights  Additionally, I am open to engaging in conversations with new people and learning new things. 
-
-I am a socialist feminist who loves discussing contemporary social issues, music, books, cooking, black coffee, and playing instruments when I feel emotionally overwhelmed. I run 6 kilometers at a 7-minute-per-kilometer pace each day, and I dream of participating in my first marathon in 2025. I enjoy reading books during lonely train journeys and often imagine myself as a character in a movie set in Europe, with people watching me. Within a few seconds, my concerns about surveillance start to give me a hard time about this careless and romanticizing attitude toward being monitored. 
+As a founding member of [Kendrobimukhi](https://www.facebook.com/kendrobimukhi/) and a peer educator with [Kotha](https://www.facebook.com/cholokothaboli), I leveraged digital platforms to promote gender equity and social justice. My work includes creating accessible content through projects like Feminism101 on TikTok, making complex social issues more approachable for broader audiences.
 
 
-## Contact
+I identify as a socialist feminist and find joy in discussing contemporary social issues, music, books, and cooking. An avid runner training for my first marathon in 2025, I try to maintain a daily 6-kilometer routine. When not engaged in academic work, you might find me reading on train journeys or playing instruments to decompress.
+
+### Research Interests & Collaboration
+
+I welcome collaborations in:
+- Impact of Emerging Technologies on Society
+- Social Media and Gender
+- Social Justice and Institutional Power Dynamics
+
+### Contact
 resat.amin at gmail.com
