@@ -4,33 +4,13 @@ title: projects
 permalink: "/projects/"
 ---
 
-# Projects
-
-## Challenges of Digital Secuirity Act 2018
-
-This research project examines the challenges posed by cyber security laws and policies in Bangladesh in relation to human rights laws. It explores the legal frameworks in Bangladesh which regulate cyber security and their impacts on the protection of human rights. The research also looks at the effectiveness of these laws and policies in protecting the digital rights of individuals. It provides insights into the various issues that arise when cyber security laws and policies conflict with human rights laws, as well as possible solutions to help address these challenges. The findings of the research could be used to help inform future policy-making decisions in Bangladesh.
-
-Selected work based on this project:
-
-- Challenges of Cyber Security Laws and policies regarding Human Rights Laws (2021) [download pdf](https://drive.google.com/file/d/1SNoEAfzUTo9kUPutWOMmA1UszwH3ebco/view?usp=sharing)
-- How uncomfortable a prison for women inmates in Bangladesh
+## Social Media as a Battleground: A Qualitative Analysis of the Representation and Resistance of Feminist Activism in Bangladesh.
+Existing research highlights the online harassment of women and celebrities, but few studies explore how digital discourse shapes feminist activism in the Global South. This study analyzes 600 Facebook comments to investigate the anti-feminist backlash against feminist activists in Bangladesh, expressed through trolling, hate speech, stereotypes, and misinformation. The analysis reveals how feminist activists are often portrayed as "morally corrupt," "unattractive," and "unfeminine," with these negative traits linked to perceptions of feminism as a foreign, Western-driven ideology. Such representations reinforce patriarchal norms, marginalize women, and silence feminist voices. Unlike previous research that focused on television celebrities and social media influencers' harassment on social media, this study examines the broader societal implications of these portrayals on perceptions of gender roles. It also identifies four key strategies feminist activists use to counter these stereotypes: satire and humorous reappropriation, exposing hypocrisy, calling out personal attacks, and challenging right-wing associations. The study critiques both anti-feminist and feminist responses for failing to address structural economic inequalities exacerbated by neoliberal practices. It concludes by advocating for more impactful feminist activism that reclaims its radical roots, separates itself from neoliberal influences, and prioritizes economic justice.
 
 
-## Prison in Bangladesh
-This project aims to explore the challenges facing the prison system in Bangladesh and propose potential solutions to improve the conditions for prisoners, particularly women inmates. By examining the factors that contribute to the high prison population in Bangladesh, it seeks to understand how the criminal justice system can be reformed to promote fairness and justice. It will analyze the uncomfortable conditions faced by women inmates and consider the impact on their physical and mental well-being. Additionally, it will examine the role of advocacy and public awareness in influencing policy change and improving the conditions of prisoners. Ultimately, this project aims to raise awareness about the issues facing the prison system in Bangladesh and contribute to positive change in the criminal justice system.
 
-- How to Decrease the Prison Population in Bangladesh? [download pdf](https://drive.google.com/file/d/1_9Q83QEOHVRWCpz7_Ze0sgNP1OfxJdt6/view?usp=share_link)
-- How uncomfortable a prison for women inmates in Bangladesh
-
-## Social Movements and Class struggles
-
-This project aims to analyze and compare the engagement of urban middle-class people in social movements. By studying the dynamics of political hegemony, it seeks to understand how this class of people interact with and shape the movements. It will examine the various forms of engagement, such as protest, participation, and the mobilization of resources, as well as the motivations, ambitions, and goals of these people. Additionally, it will consider the role of the media, social networks, and other digital platforms in influencing the behavior of middle-class people. Ultimately, this project aims to provide valuable insight into the role of the middle-class in social movements and the possible implications for politics and society.
-
-Seltected work based on this project:
-
-- Ethnography on ‘Life’ before and after enforcement of Cyber Security Laws and Policies (2021)
-- Why might non-elite women be disinterested in participating in the movement? (2021)
-- A comparative analysis on the engagement of urban middle-class people in social movements: Political Hegemony (2020)
+## Why does the state need a god? A case study on Bangladesh in the context of protecting religious sentiment in Social Media.
+The relationship between religion, politics, and the Digital Security Act 2018 (DSA) in Bangladesh has sparked significant debate, with the DSA widely criticized for enabling authoritarian control. However, the underlying legal framework, rooted in colonial-era British laws, remains largely unexamined. This study challenges the view that the DSA represents a solely contemporary issue, arguing instead that it reflects the long-term impact of colonial legal systems designed to implement divide-and-rule policies. By analyzing 25 cases through the pattern of legal intervention, this research demonstrates that, beyond religion, the use of secularization and pre-existing oppressive legal structures also serves as tools for authoritarian governance. This study underscores the importance of examining these historical continuities to understand how laws are weaponized to maintain control and create societal divides.
 
 
 ## Video materials

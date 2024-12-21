@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body>
-    {% if page.topbar == true  %}
-        <nav class="navbar">
-            {% include horiznav.html %}
-        </nav>
-    {% else %}
-        <nav class="hide-for-large navbar">
-            {% include horiznav.html %}
-        </nav>
-    {% endif %}
+  <body class="page-{{ page.layout }}">
     <main class="wrap">
-      {% include header.html %}
-      <div class="content_container body-4 columns">
-          {{ content }}
+      <div class="content_container">
+        {% if page.profile_photo %}
+        <div class="profile-photo">
+          <img src="{{ site.github.url }}/{{ page.profile_photo }}" alt="Profile Photo">
+        </div>
+        {% endif %}
+        
+        {% if site.data.socials %}
+        <div class="social-links">
+          {% include socials.html %}
+        </div>
+        {% endif %}
+        
+        {{ content }}
       </div>
-      {% if page.sidebar != null  %}
-        <aside class="small-12 large-2 columns sidebar page-content recent-posts">
-          {% include {{ page.sidebar | append: '.html' | prepend: '/asides/'}} %}
-        </aside>
-      {% endif %}
+      
+      <nav class="menu">
+        {% include navigation.html %}
+      </nav>
     </main>
-    {% include footer.html %}
   </body>
 </html>

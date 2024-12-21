@@ -1,5 +1,6 @@
-- title: "gallery"
-  href: "/gallery/"
+
+- title: "about"
+  href: "/about/"
 
 - title: "projects"
   href: "/projects/"
@@ -7,8 +8,8 @@
 - title: "blog"
   href: "/blog/"
 
-- title: "about"
-  href: "/about/"
-
+- title: "gallery"
+  href: "/gallery/"
+  
 - title: "resume"
   href: "assets/pdf/resat_amin_research_cv.pdf"

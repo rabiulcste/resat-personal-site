@@ -1,64 +1,57 @@
 /**
  * Vertical Menu
  */
-// .menu {
-//     margin: 0;
-//     list-style-type: none;
-//     width: 100%;
-//     display: block;
-//     text-align: right;
-// }
-
 .menu {
 	margin: 0;
+	padding: 0;
 	list-style-type: none;
-	width: 100%;
-	display: block;
-	text-align: right;
-	// position: absolute;
+	width: 300px;
+	height: 100vh;
+	position: fixed;
+	right: 0;
 	top: 0;
-	z-index: 999;
-  }  
-
-
-// .menu > li {
-//     font-size: 1.5em !important;
-//     text-transform: uppercase;
-// }
-.menu > li {
-	font-size: 1.5em !important;
-	text-transform: uppercase;
-	width: 100%;
-  }
-
-.menu > li > a {
-    line-height: 1;
-    padding: 0.7rem 1rem;
-    display: block;
+	background: #1a365d;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	z-index: 9999;
 }
 
-.menu > li > a:hover {
-    color: $navbar-hover-color;
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+.menu > li {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+.menu > li > a {
+	display: block;
+	padding: 1rem 3rem;
+	color: #ffffff;
+	font-family: var(--font-primary);
+	font-size: 1.25rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	transition: all 0.3s ease;
+	
+	&:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
 }
 
 .menu .active > a {
-    background: $navbar-active-color;
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-} 
+	background: rgba(255, 255, 255, 0.15);
+	color: #ffffff;
+}
 
 .menu>li.dropdown {
-    -moz-transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
+	-moz-transform: scale(1.0);
+	-webkit-transform: scale(1.0);
+	transform: scale(1.0);
 }
 
 .menu>.dropdown a {
-    color: $header-link-color;
+	color: $header-link-color;
 }
 
 
@@ -70,10 +63,10 @@
     margin-left: 100%;
     margin-top: -20%;
 	opacity: 0;
-	background: $navbar-color;
+	background: darken($primary-color, 5%);
+	border-radius: 4px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 	cursor: pointer;
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
 	-webkit-transition: opacity .22s ease-in;
 	-ms-transition: opacity .22s ease-in;
 	-moz-transition: opacity .22s ease-in;
@@ -119,29 +112,70 @@
 .menu .dropdown ul li a {
 	/* Layout */
 	display: block;
-	padding: 10px 0px 10px 0px;
+	padding: 12px 20px;
 	width: 200px;
     text-align: center;
-    border-bottom: 1px solid lighten($navbar-color, 10%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
 	/* Typography */
-	font-family: $navbar-font-family;
-	font-size: ($navbar-font-size * .92);
+	font-family: var(--font-primary);
+	font-size: 0.9rem;
 	text-decoration: none;
-	color: #fefefe;
+	color: $complimentary-color;
 	font-weight: 400;
 	
 	/* Background & effects */
-	background: $navbar-color;
+	background: transparent;
 	-webkit-transition: color .2s ease-in, border-left-color .2s ease-in;;
 	-ms-transition: color .2s ease-in, border-left-color .2s ease-in;;
 	-moz-transition: color .2s ease-in, border-left-color .2s ease-in;;
 	-o-transition: color .2s ease-in, border-left-color .2s ease-in;;
 	transition: color .2s ease-in, border-left-color .2s ease-in;;
+
+	&:hover {
+		background: rgba(66, 153, 225, 0.15);
+		color: $secondary-color;
+	}
 }
 
 // Change the link color on hover
 .menu .dropdown ul li:hover>a {
 	color: $navbar-hover-color;
     background: lighten($navbar-color, 10%);
+}
+
+// Hide all other navigation elements
+.navbar, 
+.top-bar,
+.title-bar {
+  display: none !important;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu > li {
+    text-align: center;
+  }
+
+  .menu > li > a {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
 }

@@ -1,59 +1,20 @@
-<!DOCTYPE html>
-<html>
-  {% include head.html %}
-  <body>
-    {% if page.topbar == true  %}
-        <nav class="navbar">
-            {% include horiznav.html %}
-        </nav>
-    {% else %}
-        <nav class="hide-for-large navbar">
-            {% include horiznav.html %}
-        </nav>
+---
+layout: default
+---
+<div class="content_container">
+  <div class="projects">
+    {% if page.title %}
+    <h1 class="page-title">{{ page.title | capitalize }}</h1>
     {% endif %}
-    <main class="wrap">
-      {% include header.html %}
-
-      <div class="content_container body-4 projects wraptainer">
-        {% assign markdown_content = content | markdownify %}
-        {{ markdown_content }}
-      </div>
-
-      {% if page.sidebar != null  %}
-        <aside class="small-12 large-2 columns sidebar page-content recent-posts">
-          {% include {{ page.sidebar | append: '.html' | prepend: '/asides/'}} %}
-        </aside>
-      {% endif %}
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
-    <script>
-    // Convert Markdown content to HTML
-    var converter = new showdown.Converter();
-    var htmlContent = converter.makeHtml(document.getElementById('projects').innerHTML);
-  
-    // Find all heading elements in the HTML
-    var headings = htmlContent.match(/<h2.*?>.*?<\/h2>/g);
-  
-    // Create a project card for each heading
-    headings.forEach(function(heading) {
-      var text = heading.replace(/<[^>]*>/g, '');  // Get the text content of the heading
-      var cardId = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');  // Generate a unique ID for the card
-      var cardHtml = '<div class="project-card" id="' + cardId + '">' + heading + '</div>';
-      htmlContent = htmlContent.replace(heading, cardHtml);  // Replace the heading with the card HTML
-      
-      // Add the project-title class to the heading
-      htmlContent = htmlContent.replace('<h2', '<h2 class="project-title"');
-      
-      // Add the project-description class to the paragraph
-      htmlContent = htmlContent.replace('<p', '<p class="project-description"');
-    });
-  
-    // Set the modified HTML content back to the #projects div
-    document.getElementById('projects').innerHTML = htmlContent;
-    </script>
-
     
-    {% include footer.html %}
-  </body>
-</html>
+    <div class="project-card">
+      <!-- {% if page.project_title %}
+      <h2>{{ page.project_title }}</h2>
+      {% endif %} -->
+      
+      <div class="project-content">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>

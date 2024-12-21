@@ -1,64 +1,73 @@
 // Base Colors
-$primary-color: #0C0F0A;
-$secondary-color: #aaa;
-$complimentary-color: #fefefe;
-$body-bg: #f3f3f2;
-$body-font-color: #0E1C36;
+$primary-color: #1a365d;  // Deep blue
+$secondary-color: #4299E1; // Bright blue
+$complimentary-color: #ffffff;
+$body-bg: #ffffff;
+$body-font-color: #2D3748;
 
-// Links
-$link-color: $primary-color;
-$link-hover-color: lighten($link-color, 15%);
-$link-visited-color: lighten($link-color, 25%);
-
-// Text
-$base-font-family: "Crimson Text", Helvetica, "SolaimanLipi",  sans-serif;
-$base-font-size: 1.0em;
-$small-font-size: $base-font-size * 0.875;
-$base-line-height: 1.5;
+// Navigation
+$navbar-color: $primary-color;
+$navbar-text-color: $complimentary-color;
+$navbar-hover-color: $secondary-color;
+$navbar-active-color: rgba(66, 153, 225, 0.15);
+$navbar-font-size: 1rem;
+$navbar-font-family: var(--font-primary);
 
 // Header Settings
 $header-color: $primary-color;
 $header-link-color: $complimentary-color;
-$header-link-hover-color: $complimentary-color;
-$header-link-visted-color: $link-color;
-$header-active-link-color: #DE3163;
+$header-link-hover-color: $secondary-color;
+$header-link-visted-color: $complimentary-color;
+$header-active-link-color: $secondary-color;
+
+// Buttons
+$button-color: $secondary-color;
+$button-hover: darken($secondary-color, 10%);
+$button-text-color: $complimentary-color;
+
+// Links
+$link-color: #4299E1;  // Bright blue
+$link-hover-color: #2B6CB0;  // Darker blue
+$link-visited-color: #4299E1;
+
+// Text
+$base-font-family: var(--font-primary);
+$base-font-size: 1.125rem;
+$small-font-size: $base-font-size * 0.875;
+$base-line-height: 1.8;
 
 // Sidebar Settings
-$sidebar-color: lighten($primary-color, 55%);
+$sidebar-color: #f0f5fa;
 
 // Topbar Navbar Settings
 $navbar-height: 45px;
 
 // Mobile Navbar Settings
-$navbar-color: lighten($primary-color, 25%);
-$navbar-text-color: $secondary-color;
-$navbar-hover-color: $complimentary-color;
-$navbar-active-color: lighten($primary-color, 45%);
-$navbar-font-size: 13px;
-$navbar-font-family: "Crimson Text", "Open Sans", "SolaimanLipi", Helvetica, Arial, sans-serif;
+$navbar-color: $primary-color;
+$navbar-text-color: $complimentary-color;
+$navbar-hover-color: $secondary-color;
+$navbar-active-color: $secondary-color;
+$navbar-font-size: 1rem;
+$navbar-font-family: var(--font-primary);
 $hamburger-icon-color: $complimentary-color;
-
 
 // Socials Navbar Settings
 $socials-font-color: $complimentary-color;
 $socials-font-size: 1.5em;
 
 // Gallery Lightbox Pop-Up
-$lightbox-background-color: rgba(0, 0, 0, 0.95);
+$lightbox-background-color: rgba(26, 54, 93, 0.95);
 $lightbox-border-color: $complimentary-color;
-$lightbox-description-background-color: rgba(254, 254, 254, 0.8);
-$lightbox-description-text-color: black;
+$lightbox-description-background-color: rgba(255, 255, 255, 0.9);
+$lightbox-description-text-color: $body-font-color;
 $lightbox-caption-text-color: $complimentary-color;
 $lightbox-navigation-color: $complimentary-color;
-
 
 // Utility
 $spacing-unit: 30px;
 
 // Layout Settings
-$header-margin: 2rem;
-
-// Buttons
-$button-color: #6f77c2;
-$button-hover: #DE3163;
-$button-text-color: #fff;
+$header-margin: 0;
+$content-max-width: 1200px;
+$menu-width: 300px;
+$content-width: calc(100% - #{$menu-width});

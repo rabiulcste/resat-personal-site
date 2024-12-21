@@ -1,31 +1,7 @@
-<ul class="menu">
-    {% for nav in site.data.nav %}
-    {% if nav.subcategories != null %}
-    <li class="dropdown">
-        <a href="#">{{ nav.title }}</a>
-        <ul class="dropdown-child">
-            {% for subcategory in nav.subcategories %}
-            <li><a href="{{ site.github.url }}{{ subcategory.subhref }}">{{ subcategory.subtitle }}</a></li>
-            {% endfor %}
-        </ul>
-    </li>
-    {% elsif nav.external-subcategories != null %}
-    <li class="dropdown">
-        <a href="{{ site.url }}{{ nav.url }}">{{ nav.title }}</a>
-        <ul class="dropdown-child">
-            {% for subcategory in nav.external-subcategories %}
-            <li><a href="{{ subcategory.subhref }}">{{ subcategory.subtitle }}</a></li>
-            {% endfor %}
-        </ul>
-    </li>
-    {% elsif nav.title == page.title %}
-    <li class="active"><a href="{{ nav.href }}">{{ nav.title }}</a></li>
-    {% else %}
-    {% if nav.href %}
-    <li class="header-nav"><a href="{{ site.github.url }}{{ nav.href }}">{{ nav.title }}</a></li>
-    {% elsif nav.external %}
-    <li class="header-nav"><a href="{{ nav.external }}">{{ nav.title }}</a></li>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+<ul class="menu-items">
+  <li><a href="{{ site.github.url }}/about" {% if page.url contains 'about' %}class="active"{% endif %}>About</a></li>
+  <li><a href="{{ site.github.url }}/projects" {% if page.url contains 'projects' %}class="active"{% endif %}>Projects</a></li>
+  <li><a href="{{ site.github.url }}/blog" {% if page.url contains 'blog' %}class="active"{% endif %}>Blog</a></li>
+  <li><a href="{{ site.github.url }}/gallery" {% if page.url contains 'gallery' %}class="active"{% endif %}>Gallery</a></li>
+  <li><a href="{{ site.github.url }}/resume" {% if page.url contains 'resume' %}class="active"{% endif %}>Resume</a></li>
 </ul>
