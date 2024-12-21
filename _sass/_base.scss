@@ -360,15 +360,13 @@ width: 480px;
   
 
 .x-text-content-text-subheadline {
-    margin-top: 0em;
     font-family: "Crimson Text",serif;
     font-size: calc(0.63em + 0.2vw);
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0;
     letter-spacing: 0.25em;
-    margin-right: calc(0.25em * -1);
-    text-transform: uppercase;
+    // text-transform: uppercase;
     color: #DE3163;
     transition-timing-function: cubic-bezier(0.400,0.000,0.200,1.000);
 }
