@@ -17,7 +17,7 @@ header: images/profile.jpg
 
 
 # Exclude build artifacts and dependencies
-exclude: [.bundle, .vendor, .bin, starving-artist.gemspec, bin, vendor, Gemfile, Gemfile.lock, Rakefile, s3_website.yml, resat-personal-site-theme-*.gem, .DS_Store, .idea, README.md]
+exclude: [.bundle, .vendor, .bin, resat-personal-site.gemspec, bin, vendor, Gemfile, Gemfile.lock, Rakefile, s3_website.yml, resat-personal-site-theme-*.gem, .DS_Store, .idea, README.md]
 
 
 
@@ -29,7 +29,7 @@ kramdown:
 # This is a personal website, not a theme
   
 # Plugins
-gems:
+plugins:
   - jekyll-feed
 
 feed:

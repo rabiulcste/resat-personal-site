@@ -27,5 +27,5 @@ end
 ################
 desc "create the gem (if needed)"
 task :buildgem do
-  system "JEKYLL_ENV=production bundle exec gem build starving-artist.gemspec"
+  system "JEKYLL_ENV=production bundle exec gem build resat-personal-site.gemspec"
 end

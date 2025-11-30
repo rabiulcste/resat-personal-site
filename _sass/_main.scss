@@ -620,7 +620,7 @@ input[type="submit"], button {
   text-decoration: none;
   margin-top: auto;
   &::after {
-    content: '→';
+    content: '\2192';
     margin-left: 0.5rem;
     transition: transform 0.2s ease;
   }
@@ -1626,7 +1626,7 @@ input[type="submit"], button {
     border-left-color: rgba(0, 245, 255, 0.5);
     
     &::after {
-      content: '📱';
+      content: '\1F4F1';
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
@@ -1640,7 +1640,7 @@ input[type="submit"], button {
     border-left-color: rgba(255, 0, 110, 0.5);
     
     &::after {
-      content: '🔬';
+      content: '\1F52C';
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
@@ -1654,7 +1654,7 @@ input[type="submit"], button {
     border-left-color: rgba(131, 56, 236, 0.5);
     
     &::after {
-      content: '🎓';
+      content: '\1F393';
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
@@ -1668,7 +1668,7 @@ input[type="submit"], button {
     border-left-color: rgba(6, 255, 165, 0.5);
     
     &::after {
-      content: '✍️';
+      content: '\270D\FE0F';
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
@@ -2579,7 +2579,7 @@ input[type="submit"], button {
   position: relative;
   
   &::before {
-    content: '→';
+    content: '\2192';
     position: absolute;
     left: 0;
   color: $accent-color;
