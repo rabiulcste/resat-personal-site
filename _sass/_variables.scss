@@ -6,16 +6,11 @@ $primary-color: #0A0E27;  // Deep tech blue-black
 $secondary-color: #FF006E; // Vibrant tech pink/magenta
 $accent-color: #00F5FF; // Cyan tech accent
 $tech-purple: #8338EC; // Tech purple
-$tech-orange: #FF6B35; // Tech orange
-$tech-green: #06FFA5; // Tech green
 
 // Neutral palette
-$editorial-dark: #0A0E27;
-$editorial-text: #1A1F3A;
 $editorial-muted: #6B7280;
 $editorial-border: #1F2937;
 $editorial-bg: #0A0E27;
-$editorial-surface: #111827;
 $complimentary-color: #FFFFFF;
 $body-bg: #0A0E27;
 $body-font-color: #E5E7EB;
@@ -34,13 +29,6 @@ $navbar-font-family: var(--font-primary);
 $navbar-border: rgba(31, 41, 55, 0.8);
 $navbar-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 245, 255, 0.1);
 
-// Header Settings
-$header-color: $primary-color;
-$header-link-color: $complimentary-color;
-$header-link-hover-color: $accent-color;
-$header-link-visted-color: $complimentary-color;
-$header-active-link-color: $accent-color;
-
 // Buttons
 $button-color: $secondary-color;
 $button-hover: lighten($secondary-color, 5%);
@@ -57,9 +45,6 @@ $base-font-size: 1.125rem;
 $small-font-size: $base-font-size * 0.875;
 $base-line-height: 1.75;
 
-// Sidebar Settings (if needed)
-$sidebar-color: #F9FAFB;
-
 // Mobile Navbar Settings
 $hamburger-icon-color: $complimentary-color;
 
@@ -67,20 +52,9 @@ $hamburger-icon-color: $complimentary-color;
 $socials-font-size: 1.5em;
 $socials-font-color: $text-muted;
 
-// Gallery Lightbox Pop-Up
-$lightbox-background-color: rgba(26, 54, 93, 0.95);
-$lightbox-border-color: $complimentary-color;
-$lightbox-description-background-color: rgba(255, 255, 255, 0.9);
-$lightbox-description-text-color: $body-font-color;
-$lightbox-caption-text-color: $complimentary-color;
-$lightbox-navigation-color: $complimentary-color;
-
 // Utility
 $spacing-unit: 30px;
 
 // Layout Settings
-$header-margin: 0;
 $content-max-width: 1200px;
-$menu-width: 0; // No sidebar anymore
-$content-width: 100%;
 $navbar-height: 70px;

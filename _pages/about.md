@@ -24,11 +24,8 @@ permalink: "/about/"
 
   <div class="about-content-modern">
     <section class="about-block">
-      <div class="about-block-visual">
-        <div class="about-visual-gradient gradient-1"></div>
-      </div>
       <div class="about-block-content">
-        <h2 class="about-block-title">Growing Up Digital</h2>
+        <h2 class="about-block-title icon-1">Growing Up Digital</h2>
         <p>
           I grew up in Dhaka, Bangladesh, alongside the rise of social media platforms. I witnessed firsthand their transformative power 
           in amplifying marginalized voices and organizing social movements. My early exposure to histories of colonization, feminist movements, 
@@ -37,27 +34,32 @@ permalink: "/about/"
         <p>
           This early fascination with digital spaces, combined with my interest in structural inequalities, led me to pursue law initially, 
           before discovering my true passion lay in understanding the sociological dynamics between institutions, technology, and gender-based 
-          inequalities. My feminist perspective particularly informs my approach to examining how digital technologies intersect with systems 
-          of power and oppression.
+          inequalities.
+        </p>
+        <p>
+          As a young activist in Bangladesh, I witnessed friends and fellow activists arrested under the Digital Security Act for ordinary social media 
+          posts. Digital platforms, promised as democratic spaces, also become tools of surveillance and control. My work with initiatives like 
+          <a href="https://www.facebook.com/ProjectNirbhik">Project Nirbhik</a> (2020) and my "Feminism 101" TikTok series in Bengali showed me the 
+          transformative potential of online engagement.
         </p>
       </div>
     </section>
 
     <section class="about-block reverse">
-      <div class="about-block-visual">
-        <div class="about-visual-gradient gradient-2"></div>
-      </div>
       <div class="about-block-content">
-        <h2 class="about-block-title">Research Focus</h2>
+        <h2 class="about-block-title icon-2">Research Focus</h2>
         <p>
           I am a second-year sociology graduate student at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a>. 
-          My research focuses on the intersection of society and emerging technologies, particularly how digital platforms shape public discourse, 
-          mediate power dynamics, and perpetuate social inequalities.
+          My research focuses on how digital platforms and AI systems mediate power, visibility, and identity for marginalized communities. 
+          I study how technological infrastructures shape who becomes visible or silenced, and how different groups navigate these increasingly opaque 
+          systems.
         </p>
         <p>
-          I am broadly interested in the impact of <a href="https://arxiv.org/abs/2403.07924">AI</a> on society, algorithmic 
+          I am particularly interested in the impact of <a href="https://arxiv.org/abs/2403.07924">AI</a> on society, algorithmic 
           <a href="https://nyupress.org/9781479837243/algorithms-of-oppression/">biases</a>, and 
-          <a href="https://global.oup.com/academic/product/predict-and-surveil-9780190684099">digital oppression</a> within digital media.
+          <a href="https://global.oup.com/academic/product/predict-and-surveil-9780190684099">digital oppression</a> within digital media, 
+          public policy, and quantitative methodology. My work combines qualitative and quantitative approaches to examine how 
+          technology intersects with social structures and power dynamics.
         </p>
         <p>
           <a href="/research" class="research-link-inline">View my research projects →</a>
@@ -66,40 +68,35 @@ permalink: "/about/"
     </section>
 
     <section class="about-block">
-      <div class="about-block-visual">
-        <div class="about-visual-gradient gradient-3"></div>
-      </div>
       <div class="about-block-content">
-        <h2 class="about-block-title">Education & Work</h2>
+        <h2 class="about-block-title icon-3">Education & Work</h2>
         <p>
-          Currently pursuing an M.A. in Sociology at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a> (2023–Present), 
-          with coursework in social movements, contemporary theory, research methodology, gender and society, and digital media. 
-          Previously completed an LLB (Hons) at BRAC University (2017–2022) with a minor in Anthropology.
+          I am currently pursuing an M.A. in Sociology at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a>, 
+          where I've engaged with coursework in social movements, contemporary theory, research methodology, gender and society, and digital media. 
+          Previously, I completed an LLB (Hons) at BRAC University with a minor in Anthropology, which provided me with a foundation in legal systems 
+          and social structures that continues to inform my research.
         </p>
         <p>
-          Graduate Teaching Assistant at Florida Atlantic University (2023–Present), supporting courses in Global Society and Human Sexuality. 
-          Academic and Project Mentor at <a href="https://www.facebook.com/kendrobimukhi/">Kendrobimukhi</a>, a Dhaka-based social science research platform (2024–Present). 
-          Previously served as Peer Educator with <a href="https://www.facebook.com/cholokothaboli">Kotha</a>, facilitating workshops on gender and sexuality.
+          As a Graduate Teaching Assistant at Florida Atlantic University, I support courses in Global Society and Human Sexuality, working directly 
+          with students to explore complex social issues. I also serve as Co-President of the Graduate Sociology Student Association, organizing academic 
+          events and fostering community among graduate students. Through my role as Academic and Project Mentor at <a href="https://www.facebook.com/kendrobimukhi/">Kendrobimukhi</a>, 
+          a Dhaka-based social science research platform, I continue to engage with research communities in Bangladesh. Previously, I worked as a Peer 
+          Educator with <a href="https://www.facebook.com/cholokothaboli">Kotha</a>, facilitating workshops on gender and sexuality for young people.
         </p>
       </div>
     </section>
 
     <section class="about-block reverse">
-      <div class="about-block-visual">
-        <div class="about-visual-gradient gradient-4"></div>
-      </div>
       <div class="about-block-content">
-        <h2 class="about-block-title">Writing & Engagement</h2>
+        <h2 class="about-block-title icon-4">Writing & Engagement</h2>
         <p>
           Two manuscripts accepted for 2025: "Social Media as a Battleground" at Midwest Sociological Society Annual Meeting, 
           and "Eco-Friendly Housing Trends on Social Media" at the 40th Annual International Conference on Narrative in Miami. 
           Published op-ed: <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank">"Whose Language is Rumour?"</a> in Muktiforum (November 2024).
         </p>
         <p>
-          As a founding member of <a href="https://www.facebook.com/kendrobimukhi/">Kendrobimukhi</a> and a peer educator with 
-          <a href="https://www.facebook.com/cholokothaboli">Kotha</a>, I leveraged digital platforms to promote gender equity and social justice. 
-          My work includes creating accessible content through projects like Feminism101 on TikTok, making complex social issues more approachable 
-          for broader audiences.
+          I actively participate in academic conferences, including the 119th ASA Annual Meeting in Montreal (2024) and the AAAI Conference 
+          on Artificial Intelligence, Ethics, and Society (2024). <strong>Awards:</strong> Sociology Graduate Student Achievement Award (2025).
         </p>
       </div>
     </section>
@@ -164,6 +161,8 @@ permalink: "/about/"
         <span class="collab-tag">Global South</span>
         <span class="collab-tag">Gender & Technology</span>
         <span class="collab-tag">Digital Inequality</span>
+        <span class="collab-tag">Public Policy</span>
+        <span class="collab-tag">Quantitative Methodology</span>
       </div>
     </section>
 
