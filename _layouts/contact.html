@@ -1,31 +1,44 @@
 ---
 layout: default
 ---
-<div class="contact_container wraptainer">
-  <div class="small-12 columns">
-  <h1 class="entry-title medium-offset-1">Contact</h1>
-    <form action="{% if page.contact_form != null %}{{ page.contact_form }}{% else %}{{ site.contact_form }}{% endif %}" method="POST">
-      <div class="small-12 medium-offset-1 medium-4 columns">
+<div class="contact-page">
+  <header class="contact-header">
+    <h1>Get in Touch</h1>
+    <p class="contact-subtitle">I welcome collaborations and discussions about research, technology, and social justice.</p>
+  </header>
+  
+  <div class="contact-form-container">
+    <form action="{% if page.contact_form != null %}{{ page.contact_form }}{% else %}{{ site.contact_form }}{% endif %}" method="POST" class="contact-form">
+      <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" placeholder="Your name" required="">
+        <input type="text" id="name" name="name" placeholder="Your name" required>
       </div>
-      <div class="small-12 medium-offset-1 medium-4 columns">
+      
+      <div class="form-group">
         <label for="_replyto">Email</label>
-        <input type="email" name="_replyto" placeholder="Your email" required=""/>
+        <input type="email" id="_replyto" name="_replyto" placeholder="your.email@example.com" required>
       </div>
-      <div class="small-12 medium-offset-1 medium-4 columns">
+      
+      <div class="form-group">
         <label for="_subject">Subject</label>
-        <input type="text" name="_subject" placeholder="Subject" required=""/>
+        <input type="text" id="_subject" name="_subject" placeholder="What would you like to discuss?" required>
       </div>
-      <div class="small-12 medium-offset-1 medium-8 columns">
+      
+      <div class="form-group form-group-full">
         <label for="message">Message</label>
-        <textarea name="message" placeholder="Your Message" required=""></textarea>
+        <textarea id="message" name="message" placeholder="Tell me more about your inquiry..." required></textarea>
       </div>
-      <div class="small-12 medium-offset-1 medium-4 columns">
-        <input type="submit" value="Send Email" class="button">
-        <input type="hidden" name="_next" value="{{ site.github.url }}/contact/thanks/" />
-        <input type="text" name="_gotcha" style="display:none" />
+      
+      <div class="form-actions">
+        <input type="submit" value="Send Message" class="btn btn-primary">
+        <input type="hidden" name="_next" value="{{ site.github.url }}/contact/thanks/">
+        <input type="text" name="_gotcha" style="display:none">
       </div>
     </form>
+    
+    <div class="contact-info">
+      <p><strong>Email:</strong> <a href="mailto:resat.amin@gmail.com">resat.amin@gmail.com</a></p>
+      <p>You can also reach out via the social links in the footer.</p>
+    </div>
   </div>
 </div>

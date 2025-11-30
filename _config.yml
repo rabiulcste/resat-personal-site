@@ -1,10 +1,10 @@
 # Site settings
 title: Resat Amin
-email: oriana.unborn@gmail.com
-author: resat
+email: resat.amin@gmail.com
+author: Resat Amin
 
-keywords: resat, bracu, resat amin, law
-description: resat amin personal webpage
+keywords: resat amin, sociology, technology and society, feminist research, digital media, Bangladesh, FAU
+description: Resat Amin - Sociology graduate student researching the intersection of society and emerging technologies, focusing on digital platforms, power dynamics, and social inequalities.
 
 # Only use this if you are serving your site via Github Pages
 github:
@@ -12,12 +12,12 @@ github:
 
 header: images/profile.jpg
 
-# Formspree contact Form
-#contact_form: "https://formspree.io/ctarwater@chrisanthropic.com"
+# Formspree contact Form (uncomment and add your form URL)
+#contact_form: "https://formspree.io/YOUR_FORM_ID"
 
 
-# Exclude our ruby stuff
-exclude: [.bundle, .vendor, .bin, starving-artist.gemspec, bin, vendor, Gemfile, Gemfile.lock, Rakefile, s3_website.yml,  resat-personal-site-theme-*.gem]
+# Exclude build artifacts and dependencies
+exclude: [.bundle, .vendor, .bin, starving-artist.gemspec, bin, vendor, Gemfile, Gemfile.lock, Rakefile, s3_website.yml, resat-personal-site-theme-*.gem, .DS_Store, .idea, README.md]
 
 
 
@@ -26,7 +26,7 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-# theme: resat-personal-site-theme
+# This is a personal website, not a theme
   
 # Plugins
 gems:
@@ -43,8 +43,8 @@ include: ['_pages']
 
 permalink: /blog/:year/:title
 
-collections:
-  - galleries
+# collections:
+  # - galleries (removed - not used)
 
 #### SEO Stuff
 # Google Analytics

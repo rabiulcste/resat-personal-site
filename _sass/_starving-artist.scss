@@ -3,34 +3,8 @@
 // Variables
 @import "variables";
 
-@import "lightbox";
+// Main consolidated stylesheet (includes base, layout, blog, responsive)
+@import "main";
 
-// Navigation Menu
-@import "horizmenu";
-@import "vertmenu";
-
-@import "galleries";
-
-// project
-@import "project";
-
-// Icomoon Font Icons
+// Icons
 @import "icomoon/base";
-
-// Core Layout
-@import "base";
-@import "layout";
-
-// Utility Classes
-@import "utility";
-
-// Zurb Foundation Stuff
-@import "foundation/foundation";
-
-
-// Misc.
-@import "mobile"; 
-
-@import url('https://fonts.maateen.me/solaiman-lipi/font.css');
-
-@import "blog";

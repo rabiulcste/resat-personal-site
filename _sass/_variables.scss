@@ -1,59 +1,71 @@
-// Base Colors
-$primary-color: #1a365d;  // Deep blue
-$secondary-color: #4299E1; // Bright blue
-$complimentary-color: #ffffff;
-$body-bg: #ffffff;
-$body-font-color: #2D3748;
+// Resat Amin - Personal Website
+// Color Palette - Tech & Society Research
 
-// Navigation
-$navbar-color: $primary-color;
-$navbar-text-color: $complimentary-color;
+// Tech-forward palette
+$primary-color: #0A0E27;  // Deep tech blue-black
+$secondary-color: #FF006E; // Vibrant tech pink/magenta
+$accent-color: #00F5FF; // Cyan tech accent
+$tech-purple: #8338EC; // Tech purple
+$tech-orange: #FF6B35; // Tech orange
+$tech-green: #06FFA5; // Tech green
+
+// Neutral palette
+$editorial-dark: #0A0E27;
+$editorial-text: #1A1F3A;
+$editorial-muted: #6B7280;
+$editorial-border: #1F2937;
+$editorial-bg: #0A0E27;
+$editorial-surface: #111827;
+$complimentary-color: #FFFFFF;
+$body-bg: #0A0E27;
+$body-font-color: #E5E7EB;
+$text-muted: #9CA3AF;
+$border-color: #1F2937;
+$card-bg: #111827;
+$surface-elevated: #1F2937;
+
+// Navigation - Top bar style
+$navbar-color: rgba(10, 14, 39, 0.95);
+$navbar-text-color: #E5E7EB;
 $navbar-hover-color: $secondary-color;
-$navbar-active-color: rgba(66, 153, 225, 0.15);
-$navbar-font-size: 1rem;
+$navbar-active-color: $accent-color;
+$navbar-font-size: 0.95rem;
 $navbar-font-family: var(--font-primary);
+$navbar-border: rgba(31, 41, 55, 0.8);
+$navbar-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 245, 255, 0.1);
 
 // Header Settings
 $header-color: $primary-color;
 $header-link-color: $complimentary-color;
-$header-link-hover-color: $secondary-color;
+$header-link-hover-color: $accent-color;
 $header-link-visted-color: $complimentary-color;
-$header-active-link-color: $secondary-color;
+$header-active-link-color: $accent-color;
 
 // Buttons
 $button-color: $secondary-color;
-$button-hover: darken($secondary-color, 10%);
+$button-hover: lighten($secondary-color, 5%);
 $button-text-color: $complimentary-color;
 
 // Links
-$link-color: #4299E1;  // Bright blue
-$link-hover-color: #2B6CB0;  // Darker blue
-$link-visited-color: #4299E1;
+$link-color: #00F5FF;  // Cyan tech
+$link-hover-color: #FF006E;  // Tech pink
+$link-visited-color: #8338EC;
 
 // Text
 $base-font-family: var(--font-primary);
 $base-font-size: 1.125rem;
 $small-font-size: $base-font-size * 0.875;
-$base-line-height: 1.8;
+$base-line-height: 1.75;
 
-// Sidebar Settings
-$sidebar-color: #f0f5fa;
-
-// Topbar Navbar Settings
-$navbar-height: 45px;
+// Sidebar Settings (if needed)
+$sidebar-color: #F9FAFB;
 
 // Mobile Navbar Settings
-$navbar-color: $primary-color;
-$navbar-text-color: $complimentary-color;
-$navbar-hover-color: $secondary-color;
-$navbar-active-color: $secondary-color;
-$navbar-font-size: 1rem;
-$navbar-font-family: var(--font-primary);
 $hamburger-icon-color: $complimentary-color;
 
-// Socials Navbar Settings
-$socials-font-color: $complimentary-color;
+// Social Icons Settings
 $socials-font-size: 1.5em;
+$socials-font-color: $text-muted;
 
 // Gallery Lightbox Pop-Up
 $lightbox-background-color: rgba(26, 54, 93, 0.95);
@@ -69,5 +81,6 @@ $spacing-unit: 30px;
 // Layout Settings
 $header-margin: 0;
 $content-max-width: 1200px;
-$menu-width: 300px;
-$content-width: calc(100% - #{$menu-width});
+$menu-width: 0; // No sidebar anymore
+$content-width: 100%;
+$navbar-height: 70px;

@@ -19,18 +19,13 @@ end
 
 desc "Watch the site and regenerate when it changes"
 task :watch do
-  system "JEKYLL_ENV=development bundle exec jekyll serve --config '_config.yml,_config_localhost.yml' --watch"
+  system "JEKYLL_ENV=development bundle exec jekyll serve --watch"
 end
 
 ################
-#   Gem Theme  #
+#   Build Gem  #
 ################
-desc "create the gem"
+desc "create the gem (if needed)"
 task :buildgem do
   system "JEKYLL_ENV=production bundle exec gem build starving-artist.gemspec"
-end
-
-desc "release the gem"
-task :releasegem do
-  system "JEKYLL_ENV=production bundle exec gem push resat-personal-site-theme-*.gem"
 end

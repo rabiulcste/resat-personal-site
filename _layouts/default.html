@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   {% include head.html %}
   <body class="page-{{ page.layout }}">
+    <nav class="menu">
+      <ul class="menu-items">
+        <li><a href="{{ site.github.url }}/" class="site-title-nav">{{ site.title }}</a></li>
+        {% include navigation.html %}
+      </ul>
+    </nav>
+    
     <main class="wrap">
       <div class="content_container">
-        {% if page.profile_photo %}
-        <div class="profile-photo">
-          <img src="{{ site.github.url }}/{{ page.profile_photo }}" alt="Profile Photo">
-        </div>
-        {% endif %}
-        
-        {% if site.data.socials %}
-        <div class="social-links">
-          {% include socials.html %}
-        </div>
-        {% endif %}
-        
         {{ content }}
       </div>
-      
-      <nav class="menu">
-        {% include navigation.html %}
-      </nav>
     </main>
+    
+    {% include footer.html %}
   </body>
 </html>

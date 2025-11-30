@@ -1,25 +1,137 @@
-{% if site.footer_fixed %}
-<footer class="fixed-bottom">
-    <div class="container medium-12 columns">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.title }} {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            {% if site.data.socials %}
+            <div class="footer-socials">
+                {% include socials.html %}
+            </div>
+            {% endif %}
+            <div class="footer-text">
+                <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+                {%- if site.last_updated -%}
+                <p class="footer-meta">Last updated: {{ "now" | date: '%B %d, %Y' }}</p>
+                {%- endif -%}
+            </div>
+        </div>
     </div>
 </footer>
-{%- else -%}
-<footer class="sticky-bottom medium-12 columns">
-    <div class="container">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.title }} {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-    </div>
-</footer>
-{%- endif %}
+
+<script>
+// Lazy load videos
+(function() {
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const videoType = card.dataset.videoType;
+          const videoUrl = card.dataset.videoUrl;
+          const videoId = card.dataset.videoId;
+          
+          if (!card.classList.contains('loaded')) {
+            if (videoType === 'tiktok' && videoId) {
+              const blockquote = document.createElement('blockquote');
+              blockquote.className = 'tiktok-embed';
+              blockquote.setAttribute('cite', videoUrl);
+              blockquote.setAttribute('data-video-id', videoId);
+              blockquote.style.cssText = 'max-width: 605px; min-width: 325px;';
+              
+              const section = document.createElement('section');
+              const link = document.createElement('a');
+              link.href = videoUrl;
+              link.target = '_blank';
+              link.title = '@resat_priya';
+              link.textContent = '@resat_priya';
+              section.appendChild(link);
+              section.appendChild(document.createTextNode(' FEMINISM 101'));
+              blockquote.appendChild(section);
+              
+              card.appendChild(blockquote);
+              
+              if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+                const script = document.createElement('script');
+                script.src = 'https://www.tiktok.com/embed.js';
+                script.async = true;
+                document.body.appendChild(script);
+              }
+            } else if (videoType === 'facebook' && videoUrl) {
+              const iframe = document.createElement('iframe');
+              iframe.src = videoUrl;
+              iframe.width = '100%';
+              iframe.height = '100%';
+              iframe.style.cssText = 'border:none;overflow:hidden';
+              iframe.scrolling = 'no';
+              iframe.frameBorder = '0';
+              iframe.allowFullscreen = true;
+              iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+              iframe.loading = 'lazy';
+              
+              card.appendChild(iframe);
+            }
+            
+            card.classList.add('loaded');
+            observer.unobserve(card);
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+    
+    document.querySelectorAll('.video-card-lazy').forEach(card => {
+      videoObserver.observe(card);
+    });
+  } else {
+    document.querySelectorAll('.video-card-lazy').forEach(card => {
+      const videoType = card.dataset.videoType;
+      const videoUrl = card.dataset.videoUrl;
+      const videoId = card.dataset.videoId;
+      
+      card.addEventListener('click', function() {
+        if (!card.classList.contains('loaded')) {
+          if (videoType === 'tiktok' && videoId) {
+            const blockquote = document.createElement('blockquote');
+            blockquote.className = 'tiktok-embed';
+            blockquote.setAttribute('cite', videoUrl);
+            blockquote.setAttribute('data-video-id', videoId);
+            blockquote.style.cssText = 'max-width: 605px; min-width: 325px;';
+            
+            const section = document.createElement('section');
+            const link = document.createElement('a');
+            link.href = videoUrl;
+            link.target = '_blank';
+            link.title = '@resat_priya';
+            link.textContent = '@resat_priya';
+            section.appendChild(link);
+            section.appendChild(document.createTextNode(' FEMINISM 101'));
+            blockquote.appendChild(section);
+            
+            card.appendChild(blockquote);
+            
+            if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+              const script = document.createElement('script');
+              script.src = 'https://www.tiktok.com/embed.js';
+              script.async = true;
+              document.body.appendChild(script);
+            }
+          } else if (videoType === 'facebook' && videoUrl) {
+            const iframe = document.createElement('iframe');
+            iframe.src = videoUrl;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.cssText = 'border:none;overflow:hidden';
+            iframe.scrolling = 'no';
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+            
+            card.appendChild(iframe);
+          }
+          
+          card.classList.add('loaded');
+        }
+      });
+    });
+  }
+})();
+</script>

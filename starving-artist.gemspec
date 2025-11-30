@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["rabiul"]
   spec.email         = ["awalrabiul6@gmail.com"]
 
-  spec.summary       = "A mobile-friendly Jekyll theme for visual artists with custom layouts for: contact page, about page, blog, and pinterest-style gallery layout."
+  spec.summary       = "Personal website for Resat Amin - Society & Technology Researcher"
   spec.homepage      = "https://github.com/rabiulcste/resat-personal-site"
   spec.license       = "MIT"
 
