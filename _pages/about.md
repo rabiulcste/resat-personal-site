@@ -16,8 +16,8 @@ permalink: "/about/"
       {% endif %}
       <div class="about-hero-text">
         <h1 class="about-name">Resat Amin</h1>
-        <p class="about-role">Sociology Graduate Student</p>
-        <p class="about-location">Florida Atlantic University · Originally from Dhaka, Bangladesh</p>
+        <p class="about-role">Sociologist & Researcher</p>
+        <p class="about-location">M.A. Sociology, Florida Atlantic University · Originally from Dhaka, Bangladesh</p>
       </div>
     </div>
   </header>
@@ -49,7 +49,6 @@ permalink: "/about/"
       <div class="about-block-content">
         <h2 class="about-block-title icon-2">Research Focus</h2>
         <p>
-          I am a second-year sociology graduate student at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a>. 
           My research focuses on how digital platforms and AI systems mediate power, visibility, and identity for marginalized communities. 
           I study how technological infrastructures shape who becomes visible or silenced, and how different groups navigate these increasingly opaque 
           systems.
@@ -71,8 +70,8 @@ permalink: "/about/"
       <div class="about-block-content">
         <h2 class="about-block-title icon-3">Education & Work</h2>
         <p>
-          I am currently pursuing an M.A. in Sociology at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a>, 
-          where I've engaged with coursework in social movements, contemporary theory, research methodology, gender and society, and digital media. 
+          I completed an M.A. in Sociology at <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a>, 
+          where I engaged with coursework in social movements, contemporary theory, gender and society, and digital media. 
           Previously, I completed an LLB (Hons) at BRAC University with a minor in Anthropology, which provided me with a foundation in legal systems 
           and social structures that continues to inform my research.
         </p>
