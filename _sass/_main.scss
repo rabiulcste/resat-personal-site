@@ -3092,7 +3092,19 @@ input[type="submit"], button {
     padding: 0.5rem 0;
   }
 
-  .home-hero-visual { display: none; }
+  .home-hero-visual {
+    order: 2;
+    align-items: center;
+  }
+
+  .home-hero-content {
+    order: 1;
+  }
+
+  .home-visual-blocks {
+    max-width: 100%;
+    justify-content: center;
+  }
   
   
   .footer-content {
