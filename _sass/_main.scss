@@ -991,9 +991,6 @@ input[type="submit"], button {
   @media (max-width: 968px) {
     grid-template-columns: 1fr;
     gap: 4rem;
-
-    .home-hero-visual { order: 2; }
-    .home-hero-content { order: 1; }
   }
 
   &::before {
