@@ -8,7 +8,7 @@ permalink: "/contact/thanks/"
   <h1>Thank You!</h1>
   <p>Your message has been sent successfully. I'll get back to you as soon as possible.</p>
   <div class="thanks-actions">
-    <a href="/" class="btn btn-primary">Return Home</a>
-    <a href="/blog" class="btn btn-outline">Read Research</a>
+    <a href="{{ site.github.url }}/" class="btn btn-primary">Return home</a>
+    <a href="{{ site.github.url }}/blog" class="btn btn-outline">Browse writing</a>
   </div>
 </div>

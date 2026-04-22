@@ -1,43 +1,57 @@
 // Resat Amin - Personal Website
-// Color Palette - Tech & Society Research
+// Editorial / PhD researcher palette — restrained, readable, credible
 
-// Tech-forward palette
-$primary-color: #0A0E27;  // Deep tech blue-black
-$secondary-color: #FF006E; // Vibrant tech pink/magenta
-$accent-color: #00F5FF; // Cyan tech accent
-$tech-purple: #8338EC; // Tech purple
+// Core surfaces (ink-navy, not neon)
+$primary-color: #0c1017;
+$secondary-color: #9e4962; // muted wine — CTAs, emphasis (was electric magenta)
+$accent-color: #94a8c9; // steel blue — links, focus, subtle chrome
+$tech-purple: #7670a8; // dusty violet — gradients, secondary highlights
+
+// Sass rgba() channels (single source for glows/borders in _main.scss)
+$accent-r: 148;
+$accent-g: 163;
+$accent-b: 192;
+$rose-r: 158;
+$rose-g: 73;
+$rose-b: 98;
+$violet-r: 118;
+$violet-g: 112;
+$violet-b: 162;
+$shadow-tint-r: 90;
+$shadow-tint-g: 103;
+$shadow-tint-b: 132;
 
 // Neutral palette
 $editorial-muted: #6B7280;
 $editorial-border: #1F2937;
-$editorial-bg: #0A0E27;
-$complimentary-color: #FFFFFF;
-$body-bg: #0A0E27;
-$body-font-color: #E5E7EB;
-$text-muted: #9CA3AF;
-$border-color: #1F2937;
-$card-bg: #111827;
-$surface-elevated: #1F2937;
+$editorial-bg: #0c1017;
+$complimentary-color: #F4F6FA;
+$body-bg: #0c1017;
+$body-font-color: #D1D8E4;
+$text-muted: #8B95A8;
+$border-color: #252d3a;
+$card-bg: #141a24;
+$surface-elevated: #1a2230;
 
-// Navigation - Top bar style
-$navbar-color: rgba(10, 14, 39, 0.95);
-$navbar-text-color: #E5E7EB;
-$navbar-hover-color: $secondary-color;
+// Navigation
+$navbar-color: rgba(12, 16, 23, 0.94);
+$navbar-text-color: #E8ECF2;
+$navbar-hover-color: lighten($accent-color, 8%);
 $navbar-active-color: $accent-color;
 $navbar-font-size: 0.95rem;
 $navbar-font-family: var(--font-primary);
-$navbar-border: rgba(31, 41, 55, 0.8);
-$navbar-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 245, 255, 0.1);
+$navbar-border: rgba(37, 45, 58, 0.85);
+$navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 
 // Buttons
 $button-color: $secondary-color;
-$button-hover: lighten($secondary-color, 5%);
+$button-hover: lighten($secondary-color, 4%);
 $button-text-color: $complimentary-color;
 
-// Links
-$link-color: #00F5FF;  // Cyan tech
-$link-hover-color: #FF006E;  // Tech pink
-$link-visited-color: #8338EC;
+// Links (readable on dark, not fluorescent)
+$link-color: #b8c9e6;
+$link-hover-color: #e2d8cc; // warm paper — hover without hot pink
+$link-visited-color: #a896c4;
 
 // Text
 $base-font-family: var(--font-primary);

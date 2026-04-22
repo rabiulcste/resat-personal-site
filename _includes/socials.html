@@ -1,5 +1,5 @@
 <ul class="social-links">
 	{% for socials in site.data.socials %}
-	  <li><a href="{{ socials.href }}" target="_blank" rel="noopener"><span class="icon-{{ socials.title }} socials"></span></a></li>
+	  <li><a href="{{ socials.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ socials.label | default: socials.title }} — {{ site.author }}"><span class="icon-{{ socials.title }} socials" aria-hidden="true"></span></a></li>
 	{% endfor %}
 </ul> 

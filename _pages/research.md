@@ -6,7 +6,6 @@ permalink: "/research/"
 
 <div class="media-lab-research-page">
   <header class="research-hero">
-    <div class="hero-number">01</div>
     <h1 class="research-hero-title">Research<br>Projects</h1>
     <p class="research-hero-subtitle">Exploring the intersection of society, technology, and social justice</p>
   </header>
@@ -24,6 +23,12 @@ permalink: "/research/"
           <span class="manuscript-venue">— 40th International Narrative Conference, Miami, 2025 (Presented)</span>
         </li>
       </ol>
+
+      <h2 class="manuscripts-title manuscripts-follow-title">Public writing</h2>
+      <p class="manuscript-public-item">
+        <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank" rel="noopener">&ldquo;Whose language is rumour?&rdquo;</a>
+        <span class="manuscript-public-meta">Muktiforum · 2024</span>
+      </p>
     </div>
   </section>
 
@@ -88,7 +93,7 @@ permalink: "/research/"
       <div class="project-layout">
         <div class="project-visual-large">
           <div class="visual-gradient gradient-ai">
-            <div class="visual-number">01</div>
+            <div class="visual-number" aria-hidden="true">01</div>
             <div class="visual-title">AI &<br>Culture</div>
           </div>
         </div>
@@ -163,7 +168,7 @@ permalink: "/research/"
       <div class="project-layout reverse">
         <div class="project-visual-large">
           <div class="visual-gradient gradient-feminist">
-            <div class="visual-number">02</div>
+            <div class="visual-number" aria-hidden="true">02</div>
             <div class="visual-title">Feminist<br>Backlash</div>
           </div>
         </div>
@@ -245,7 +250,7 @@ permalink: "/research/"
       <div class="project-layout">
         <div class="project-visual-large">
           <div class="visual-gradient gradient-state">
-            <div class="visual-number">03</div>
+            <div class="visual-number" aria-hidden="true">03</div>
             <div class="visual-title">State &<br>Religion</div>
           </div>
         </div>

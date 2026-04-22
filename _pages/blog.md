@@ -6,10 +6,9 @@ permalink: "/blog/"
 
 <div class="media-lab-blog-container">
   <header class="blog-hero">
-    <div class="hero-number">02</div>
     <h1 class="blog-hero-title">Writing</h1>
     <p class="blog-hero-subtitle">Analysis and commentary on technology's impact on society, digital platforms, and social justice</p>
-    <p class="blog-note">For formal research projects, see <a href="/research">Research Projects</a>.</p>
+    <p class="blog-note">For formal research projects, see <a href="{{ site.github.url }}/research">Research Projects</a>.</p>
   </header>
   
   {% if site.posts.size > 0 %}

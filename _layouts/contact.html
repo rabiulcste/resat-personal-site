@@ -1,44 +1,57 @@
 ---
 layout: default
 ---
+{% assign form_endpoint = page.contact_form | default: site.contact_form %}
 <div class="contact-page">
   <header class="contact-header">
     <h1>Get in Touch</h1>
     <p class="contact-subtitle">I welcome collaborations and discussions about research, technology, and social justice.</p>
   </header>
-  
+
   <div class="contact-form-container">
-    <form action="{% if page.contact_form != null %}{{ page.contact_form }}{% else %}{{ site.contact_form }}{% endif %}" method="POST" class="contact-form">
+    {% if form_endpoint != nil and form_endpoint != '' %}
+    <form action="{{ form_endpoint }}" method="POST" class="contact-form">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required>
+        <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
       </div>
-      
+
       <div class="form-group">
         <label for="_replyto">Email</label>
-        <input type="email" id="_replyto" name="_replyto" placeholder="your.email@example.com" required>
+        <input type="email" id="_replyto" name="_replyto" placeholder="your.email@example.com" autocomplete="email" required>
       </div>
-      
+
       <div class="form-group">
         <label for="_subject">Subject</label>
         <input type="text" id="_subject" name="_subject" placeholder="What would you like to discuss?" required>
       </div>
-      
+
       <div class="form-group form-group-full">
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Tell me more about your inquiry..." required></textarea>
       </div>
-      
+
       <div class="form-actions">
         <input type="submit" value="Send Message" class="btn btn-primary">
         <input type="hidden" name="_next" value="{{ site.github.url }}/contact/thanks/">
-        <input type="text" name="_gotcha" style="display:none">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       </div>
     </form>
-    
-    <div class="contact-info">
-      <p><strong>Email:</strong> <a href="mailto:resat.amin@gmail.com">resat.amin@gmail.com</a></p>
-      <p>You can also reach out via the social links in the footer.</p>
+    {% else %}
+    <div class="contact-fallback">
+      <p class="contact-fallback-lead">Email is the best way to reach me about research, speaking, or collaboration.</p>
+      <p class="contact-fallback-action">
+        <a class="btn btn-primary" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      </p>
+      <p class="contact-fallback-meta">Social profiles are linked in the site footer.</p>
     </div>
+    {% endif %}
+
+    {% if form_endpoint != nil and form_endpoint != '' %}
+    <div class="contact-info">
+      <p><strong>Prefer email?</strong> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <p>You can also use the social links in the footer.</p>
+    </div>
+    {% endif %}
   </div>
 </div>

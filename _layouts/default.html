@@ -2,14 +2,15 @@
 <html lang="en">
   {% include head.html %}
   <body class="page-{{ page.layout }}">
-    <nav class="menu">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <nav class="menu" aria-label="Primary">
       <ul class="menu-items">
         <li><a href="{{ site.github.url }}/" class="site-title-nav">{{ site.title }}</a></li>
         {% include navigation.html %}
       </ul>
     </nav>
     
-    <main class="wrap">
+    <main id="main-content" class="wrap" role="main">
       <div class="content_container">
         {{ content }}
       </div>

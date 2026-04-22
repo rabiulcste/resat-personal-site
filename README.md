@@ -1,6 +1,6 @@
 # Resat Amin - Personal Website
 
-Personal website for Resat Amin, Sociology Graduate Student researching the intersection of society and emerging technologies.
+Personal website for Resat Amin, Ph.D. student in Communication at the University of Massachusetts Amherst, researching the intersection of society and emerging technologies.
 
 ## About
 

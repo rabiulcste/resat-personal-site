@@ -1,0 +1,119 @@
+<script>
+// Lazy-load TikTok/Facebook embeds on the About page only
+(function() {
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const videoType = card.dataset.videoType;
+          const videoUrl = card.dataset.videoUrl;
+          const videoId = card.dataset.videoId;
+
+          if (!card.classList.contains('loaded')) {
+            if (videoType === 'tiktok' && videoId) {
+              const blockquote = document.createElement('blockquote');
+              blockquote.className = 'tiktok-embed';
+              blockquote.setAttribute('cite', videoUrl);
+              blockquote.setAttribute('data-video-id', videoId);
+              blockquote.style.cssText = 'max-width: 605px; min-width: 325px;';
+
+              const section = document.createElement('section');
+              const link = document.createElement('a');
+              link.href = videoUrl;
+              link.target = '_blank';
+              link.title = '@resat_priya';
+              link.textContent = '@resat_priya';
+              section.appendChild(link);
+              section.appendChild(document.createTextNode(' FEMINISM 101'));
+              blockquote.appendChild(section);
+
+              card.appendChild(blockquote);
+
+              if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+                const script = document.createElement('script');
+                script.src = 'https://www.tiktok.com/embed.js';
+                script.async = true;
+                document.body.appendChild(script);
+              }
+            } else if (videoType === 'facebook' && videoUrl) {
+              const iframe = document.createElement('iframe');
+              iframe.src = videoUrl;
+              iframe.width = '100%';
+              iframe.height = '100%';
+              iframe.style.cssText = 'border:none;overflow:hidden';
+              iframe.scrolling = 'no';
+              iframe.frameBorder = '0';
+              iframe.allowFullscreen = true;
+              iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+              iframe.loading = 'lazy';
+
+              card.appendChild(iframe);
+            }
+
+            card.classList.add('loaded');
+            observer.unobserve(card);
+          }
+        }
+      });
+    }, {
+      rootMargin: '50px'
+    });
+
+    document.querySelectorAll('.video-card-lazy').forEach(card => {
+      videoObserver.observe(card);
+    });
+  } else {
+    document.querySelectorAll('.video-card-lazy').forEach(card => {
+      const videoType = card.dataset.videoType;
+      const videoUrl = card.dataset.videoUrl;
+      const videoId = card.dataset.videoId;
+
+      card.addEventListener('click', function() {
+        if (!card.classList.contains('loaded')) {
+          if (videoType === 'tiktok' && videoId) {
+            const blockquote = document.createElement('blockquote');
+            blockquote.className = 'tiktok-embed';
+            blockquote.setAttribute('cite', videoUrl);
+            blockquote.setAttribute('data-video-id', videoId);
+            blockquote.style.cssText = 'max-width: 605px; min-width: 325px;';
+
+            const section = document.createElement('section');
+            const link = document.createElement('a');
+            link.href = videoUrl;
+            link.target = '_blank';
+            link.title = '@resat_priya';
+            link.textContent = '@resat_priya';
+            section.appendChild(link);
+            section.appendChild(document.createTextNode(' FEMINISM 101'));
+            blockquote.appendChild(section);
+
+            card.appendChild(blockquote);
+
+            if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+              const script = document.createElement('script');
+              script.src = 'https://www.tiktok.com/embed.js';
+              script.async = true;
+              document.body.appendChild(script);
+            }
+          } else if (videoType === 'facebook' && videoUrl) {
+            const iframe = document.createElement('iframe');
+            iframe.src = videoUrl;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.cssText = 'border:none;overflow:hidden';
+            iframe.scrolling = 'no';
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+
+            card.appendChild(iframe);
+          }
+
+          card.classList.add('loaded');
+        }
+      });
+    });
+  }
+})();
+</script>
