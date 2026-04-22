@@ -1,36 +1,44 @@
-# Resat Amin - Personal Website
+# Resat Amin — Personal Website
 
-Personal website for Resat Amin, Ph.D. student in Communication at the University of Massachusetts Amherst, researching the intersection of society and emerging technologies.
+Personal website of Resat Amin, Ph.D. student in the Department of Communication at the University of Massachusetts Amherst. Research focuses on digital platforms, feminist activism, AI representation, and technology in the Global South.
 
-## About
+Live at: [resatamin.netlify.app](https://resatamin.netlify.app)
 
-This website showcases research, publications, and writing on technology's impact on society, digital platforms, and social justice. Built with Jekyll.
+## Pages
+
+- **Home** — hero introduction with research themes
+- **About** — background, research approach, education, experience, and media work
+- **Research** — current projects and full research portfolio
+- **Writing** — essays and commentary published in various outlets
+- **Contact** — direct email contact
 
 ## Local Development
 
 ### Prerequisites
-- Ruby (3.3.0 or compatible)
+
+- Ruby 3.3+
 - Bundler
 
 ### Setup
-1. Install dependencies:
-   ```bash
-   bundle install
-   ```
 
-2. Run the development server:
-   ```bash
-   bundle exec jekyll serve
-   ```
+```bash
+bundle install
+bundle exec jekyll serve
+```
 
-3. View the site at [http://localhost:4000](http://localhost:4000)
+Visit [http://localhost:4000](http://localhost:4000)
 
-## Structure
+## Tech
 
-- **Pages**: About, Research Blog, Contact
-- **Posts**: Research articles and writings
-- **Design**: Modern, clean aesthetic focused on readability and research presentation
+- [Jekyll](https://jekyllrb.com/) static site generator
+- Sass for styling (single consolidated `_main.scss`)
+- Fonts: Space Grotesk, Source Serif 4, IBM Plex Mono (Google Fonts)
+- Deployed on [Netlify](https://netlify.com)
 
-## License
+## Contact Form
 
-MIT
+Uses [Formspree](https://formspree.io). To activate, add your form endpoint to `_config.yml`:
+
+```yaml
+contact_form: "https://formspree.io/YOUR_FORM_ID"
+```
