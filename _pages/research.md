@@ -7,7 +7,7 @@ permalink: "/research/"
 <div class="media-lab-research-page">
   <header class="research-hero">
     <h1 class="research-hero-title">Research<br>Projects</h1>
-    <p class="research-hero-subtitle">Exploring the intersection of society, technology, and social justice</p>
+    <p class="research-hero-subtitle">How platforms encode power, who gets represented, and how movements resist — with work on AI imagery, feminist activism in Bangladesh, and colonial legal systems</p>
   </header>
 
   <section class="manuscripts-section">
@@ -34,11 +34,11 @@ permalink: "/research/"
 
   <section class="course-research-section course-research-top">
     <div class="course-research-container">
-      <button class="course-research-toggle" onclick="toggleAdditionalResearch(this)">
+      <button class="course-research-toggle expanded" onclick="toggleAdditionalResearch(this)">
         <h2 class="course-research-title">Research Portfolio</h2>
-        <span class="toggle-arrow">→</span>
+        <span class="toggle-arrow">↑</span>
       </button>
-      <div class="research-projects-compact" id="additional-research-content" style="display: none;">
+      <div class="research-projects-compact" id="additional-research-content">
         <div class="research-project-item-compact">
           <span class="research-project-title-compact">Emotional Labor in Legal Practice: Navigating the Complexities</span>
           <span class="research-project-meta-compact">Prof. Lotus Seeley · Spring 2024</span>
@@ -343,15 +343,16 @@ function toggleProjectDetails(btn) {
 function toggleAdditionalResearch(btn) {
   const content = document.getElementById('additional-research-content');
   const arrow = btn.querySelector('.toggle-arrow');
-  
-  if (content.style.display === 'none') {
-    content.style.display = 'grid';
-    arrow.textContent = '↑';
-    btn.classList.add('expanded');
-  } else {
+  const isExpanded = btn.classList.contains('expanded');
+
+  if (isExpanded) {
     content.style.display = 'none';
     arrow.textContent = '→';
     btn.classList.remove('expanded');
+  } else {
+    content.style.display = 'grid';
+    arrow.textContent = '↑';
+    btn.classList.add('expanded');
   }
 }
 </script>

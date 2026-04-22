@@ -16,7 +16,7 @@ permalink: "/about/"
       <div class="about-hero-text">
         <h1 class="about-name">Resat Amin</h1>
         <p class="about-role">Ph.D. student at <span class="about-umass">UMass Amherst</span></p>
-        <p class="about-role-detail">Department of Communication · University of Massachusetts Amherst</p>
+        <p class="about-role-detail">Department of Communication · Amherst, MA</p>
         <p class="about-location">M.A. Sociology, Florida Atlantic University · From Dhaka, Bangladesh</p>
       </div>
     </div>
@@ -42,11 +42,11 @@ permalink: "/about/"
       <div class="about-block-content">
         <h2 class="about-block-title icon-2">Research &amp; scholarship</h2>
         <p>
-          I study how platforms and AI mediate power, visibility, and identity—who gets heard, who gets punished, and how people push back—with qualitative and quantitative work on
-          <a href="https://arxiv.org/abs/2403.07924">AI</a>,
-          <a href="https://nyupress.org/9781479837243/algorithms-of-oppression/">algorithmic bias</a>, and
-          <a href="https://global.oup.com/academic/product/predict-and-surveil-9780190684099">digital oppression</a> in media and policy.
-          Manuscripts in progress, presentations, and project write-ups are on the Research page.
+          I study how platforms and AI mediate power, visibility, and identity—who gets heard, who gets punished, and how people push back.
+          My current work examines how AI image generators reproduce colonial hierarchies in their depictions of Global South activists,
+          and how feminist movements in Bangladesh navigate algorithmic amplification, online harassment, and state surveillance simultaneously.
+          I draw on qualitative content analysis, legal case study methods, and close reading of platform affordances—working at the intersection
+          of feminist media studies, postcolonial critique, and critical algorithm studies.
         </p>
         <p>
           <a href="{{ site.github.url }}/research" class="research-link-inline">Research projects &amp; papers →</a>
@@ -105,7 +105,7 @@ permalink: "/about/"
     </section>
 
     <section class="video-section">
-      <h2 class="section-title">Video</h2>
+      <h2 class="section-title">Media &amp; Public Work</h2>
       <div class="video-grid-modern">
         <div class="video-card-lazy" data-video-type="tiktok" data-video-id="7068996889735204122" data-video-url="https://www.tiktok.com/@resat_priya/video/7068996889735204122">
           <div class="video-placeholder">
@@ -132,14 +132,14 @@ permalink: "/about/"
           <div class="video-placeholder">
             <div class="video-play-icon">▶</div>
             <div class="video-label">Facebook</div>
-            <div class="video-title">Video Content</div>
+            <div class="video-title">Feminist Activism</div>
           </div>
         </div>
         <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F504250997121036%2F&show_text=false&width=267&t=0">
           <div class="video-placeholder">
             <div class="video-play-icon">▶</div>
             <div class="video-label">Facebook</div>
-            <div class="video-title">Video Content</div>
+            <div class="video-title">Digital Organizing</div>
           </div>
         </div>
         <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Froyboxproductions%2Fvideos%2F225219102435754%2F&show_text=false&width=560&t=0">

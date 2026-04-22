@@ -1,17 +1,15 @@
 ---
 layout: post
-title: Observation of Gender Bias in Perceptions of Employment Opportunities 
-
-keywords: gender, bias, employment
-description: Shamsee Lone Idiot and Cub - page 013
+title: Observation of Gender Bias in Perceptions of Employment Opportunities
+date: 2024-07-09
+author: Resat Amin
+keywords: gender, bias, employment, Bangladesh, patriarchy, workforce
+description: An analysis of how men in online comment sections respond to rising female employment—attributing women's professional success to appearance or sexual favor rather than skill, and what that reveals about patriarchal dispossession.
 
 thumbnail: images/posts/thumbs/unemploymen-men-women.jpeg
-
-facebook_type: 
-facebook_image: 
 ---
 
-I was scrolling through Instagram when I noticed a [news]() article on -The Front Page which stated that the number of unemployed men has increased, while the number of unemployed women has decreased. 
+I was scrolling through Instagram when I noticed a news article on The Front Page which stated that the number of unemployed men has increased, while the number of unemployed women has decreased. 
 
 For fact-checking, I went through the [Daily Star](https://www.thedailystar.net/) online newspaper. I found this very interesting in light of the growing number of women in the workforce. Therefore, I scrolled down to read the comments to see others’ opinions on this matter, I was surprised to see that most of the men think women got jobs by satisfying their bosses' sexual desires or by taking advantage of quotas in the job sector. Some of them are also claiming that corporate companies use women's faces to attract clients, and that is how women are getting jobs without having any professional skills. It's disheartening to see that whatever women do in their job sector, it is always portrayed as being without any skillful contribution and instead only as having sexual appeal. The idea that one can achieve a promotion at work by satisfying their boss in bed is an archaic concept that has been prevalent in the world for a long time.
 

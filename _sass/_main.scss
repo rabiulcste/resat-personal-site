@@ -209,7 +209,7 @@ li > ul, li > ol { margin-bottom: 0; }
 
 blockquote {
   color: $text-muted;
-  border-left: 4px solid $secondary-color;
+  border-left: 4px solid $accent-color;
   padding: 1rem 0 1rem calc($spacing-unit / 2);
   font-size: 1.125rem;
   font-style: italic;
@@ -285,10 +285,12 @@ pre {
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 3rem;
-  
+
   li { margin: 0; padding: 0; }
+
+  li:first-child { margin-right: auto; }
   
   a {
     display: block;
@@ -505,20 +507,53 @@ input[type="submit"], button {
   gap: 2rem;
 }
 
+.footer-brand {
+  .footer-name {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $complimentary-color;
+    letter-spacing: -0.02em;
+  }
+  .footer-tagline {
+    margin: 0;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: $text-muted;
+    letter-spacing: 0.02em;
+  }
+}
+
+.footer-nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  a {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    &:hover { color: $accent-color; }
+  }
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
 .footer-socials .social-links a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   &:hover { color: $accent-color; }
-}
-
-.footer-text p {
-  margin: 0.5rem 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-}
-
-.footer-meta {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 
@@ -534,28 +569,8 @@ input[type="submit"], button {
 }
 
 
-.post-hero-number {
-  position: absolute;
-  top: 8rem;
-  left: 2rem;
-  font-size: clamp(8rem, 15vw, 16rem);
-  font-weight: 700;
-  font-family: var(--font-primary);
-  color: rgba($accent-r, $accent-g, $accent-b, 0.08);
-  line-height: 1;
-  z-index: 0;
-  letter-spacing: -0.05em;
-  
-  @media (max-width: 768px) {
-    top: 4rem;
-    left: 1.5rem;
-    font-size: 6rem;
-  }
-}
 
 .post-hero-content {
-  position: relative;
-  z-index: 2;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -568,8 +583,6 @@ input[type="submit"], button {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
 }
 
 .post-title {
@@ -580,13 +593,11 @@ input[type="submit"], button {
   line-height: 1.1;
   margin-bottom: 2rem;
   letter-spacing: -0.03em;
-  position: relative;
-  z-index: 2;
 }
 
 .post-featured-image {
   margin: 3rem 0 0;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba($accent-r, $accent-g, $accent-b, 0.1);
   border: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.2);
@@ -1079,6 +1090,21 @@ input[type="submit"], button {
   }
 }
 
+.block-label {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: rgba($accent-r, $accent-g, $accent-b, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-30px); }
@@ -1309,9 +1335,9 @@ input[type="submit"], button {
   img {
     width: 250px;
     height: 250px;
-    border-radius: 0;
+    border-radius: var(--radius-sm);
     object-fit: cover;
-  border: none;
+    border: none;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     transform: rotate(-2deg);
     transition: transform 0.4s ease;
@@ -3041,6 +3067,7 @@ input[type="submit"], button {
     flex-wrap: wrap;
     justify-content: center;
     a { font-size: 0.9rem; }
+    li:first-child { margin-right: 0; }
   }
   
   .site-title-nav {
@@ -3058,7 +3085,16 @@ input[type="submit"], button {
   
   .footer-content {
     flex-direction: column;
+    align-items: center;
     text-align: center;
+  }
+
+  .footer-right {
+    align-items: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
   }
   
   h1 { font-size: 2.25rem; }

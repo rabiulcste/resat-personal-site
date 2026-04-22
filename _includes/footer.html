@@ -1,16 +1,24 @@
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-content">
-            {% if site.data.socials %}
-            <div class="footer-socials">
-                {% include socials.html %}
+            <div class="footer-brand">
+                <p class="footer-name">{{ site.title }}</p>
+                <p class="footer-tagline">Ph.D. student · UMass Amherst</p>
             </div>
-            {% endif %}
-            <div class="footer-text">
-                <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
-                {%- if site.last_updated -%}
-                <p class="footer-meta">Last updated: {{ "now" | date: '%B %d, %Y' }}</p>
-                {%- endif -%}
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="{{ site.github.url }}/about">About</a>
+                <a href="{{ site.github.url }}/research">Research</a>
+                <a href="{{ site.github.url }}/blog">Writing</a>
+                <a href="{{ site.github.url }}/contact">Contact</a>
+                <a href="{{ site.github.url }}/assets/pdf/resat_amin_research_cv.pdf">CV</a>
+            </nav>
+            <div class="footer-right">
+                {% if site.data.socials %}
+                <div class="footer-socials">
+                    {% include socials.html %}
+                </div>
+                {% endif %}
+                <p class="footer-copy">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
             </div>
         </div>
     </div>
