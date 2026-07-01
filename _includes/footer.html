@@ -2,25 +2,13 @@
     <div class="footer-container">
         <div class="footer-content">
             <div class="footer-brand">
-                <p class="footer-name">{{ site.title }}</p>
-                <p class="footer-tagline">Ph.D. student · UMass Amherst</p>
-            </div>
-            <nav class="footer-nav" aria-label="Footer">
-                <a href="{{ site.github.url }}/about">About</a>
-                <a href="{{ site.github.url }}/research">Research</a>
-                <a href="{{ site.github.url }}/blog">Writing</a>
-                <a href="{{ site.github.url }}/study/">Study Room</a>
-                <a href="{{ site.github.url }}/contact">Contact</a>
-                <a href="{{ site.github.url }}/assets/pdf/resat_amin_research_cv.pdf">CV</a>
-            </nav>
-            <div class="footer-right">
-                {% if site.data.socials %}
-                <div class="footer-socials">
-                    {% include socials.html %}
-                </div>
-                {% endif %}
                 <p class="footer-copy">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
             </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="{{ site.github.url }}/contact">Contact</a>
+                <a href="{{ site.github.url }}/assets/pdf/resat_amin_research_cv.pdf">CV</a>
+                <a href="mailto:{{ site.email }}">Email</a>
+            </nav>
         </div>
     </div>
 </footer>

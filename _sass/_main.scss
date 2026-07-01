@@ -491,15 +491,15 @@ input[type="submit"], button {
 // ============================================
 
 .site-footer {
-  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 3%) 100%);
-  color: $complimentary-color;
-  padding: 4rem 0 3rem;
-  margin-top: 6rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: $text-muted;
+  padding: 1.4rem 0 1.8rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.18);
+  background: transparent;
 }
 
 .footer-container {
-  max-width: $content-max-width;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -508,38 +508,29 @@ input[type="submit"], button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .footer-brand {
-  .footer-name {
-    margin: 0 0 0.25rem;
-    font-size: 1rem;
-    font-weight: 700;
-    color: $complimentary-color;
-    letter-spacing: -0.02em;
-  }
-  .footer-tagline {
-    margin: 0;
-    font-size: 0.8rem;
-    font-family: var(--font-mono);
-    color: $text-muted;
-    letter-spacing: 0.02em;
-  }
+  min-width: 0;
 }
 
 .footer-nav {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
+  justify-content: flex-end;
+
   a {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.875rem;
-    font-weight: 500;
+    color: $text-muted;
+    font-size: 0.86rem;
+    font-weight: 700;
     text-decoration: none;
     transition: color 0.2s ease;
-    &:hover { color: $accent-color; }
+
+    &:hover {
+      color: $secondary-color;
+    }
   }
 }
 
@@ -552,8 +543,8 @@ input[type="submit"], button {
 
 .footer-copy {
   margin: 0;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.86rem;
+  color: $text-muted;
 }
 
 .footer-socials .social-links a {
@@ -3103,8 +3094,9 @@ input[type="submit"], button {
   
   .footer-content {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.75rem;
   }
 
   .footer-right {
@@ -3112,7 +3104,7 @@ input[type="submit"], button {
   }
 
   .footer-nav {
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   h1 { font-size: 2.25rem; }
@@ -3795,11 +3787,6 @@ body {
 .about-flow-year {
   border-radius: 999px;
   box-shadow: none;
-}
-
-.site-footer {
-  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.2);
-  background: rgba(255, 253, 247, 0.72);
 }
 
 @media (max-width: 768px) {
