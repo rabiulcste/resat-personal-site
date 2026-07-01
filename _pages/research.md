@@ -6,7 +6,7 @@ permalink: "/research/"
 
 <div class="media-lab-research-page">
   <header class="research-hero">
-    <h1 class="research-hero-title">Research<br>Projects</h1>
+    <h1 class="research-hero-title">Research Projects</h1>
     <p class="research-hero-subtitle">How platforms encode power, who gets represented, and how movements resist — with work on AI imagery, feminist activism in Bangladesh, and colonial legal systems</p>
   </header>
 
@@ -356,4 +356,3 @@ function toggleAdditionalResearch(btn) {
   }
 }
 </script>
-
