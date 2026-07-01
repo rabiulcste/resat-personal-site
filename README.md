@@ -10,6 +10,7 @@ Live at: [resatamin.netlify.app](https://resatamin.netlify.app)
 - **About** — background, research approach, education, experience, and media work
 - **Research** — current projects and full research portfolio
 - **Writing** — essays and commentary published in various outlets
+- **Study Room** — standalone page for The 90-Minute Study Room co-working app
 - **Contact** — direct email contact
 
 ## Local Development
