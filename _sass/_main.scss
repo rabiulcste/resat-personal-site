@@ -4297,3 +4297,102 @@ p {
     padding-top: 1rem;
   }
 }
+
+// ============================================
+// RESEARCH PAGE SCHOLARLY STRUCTURE
+// ============================================
+
+.research-agenda-section {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.research-agenda-container {
+  max-width: var(--site-width);
+  margin: 0 auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+}
+
+.research-agenda-intro {
+  max-width: 46rem;
+
+  h2 {
+    margin-bottom: 0.65rem;
+    font-size: clamp(1.55rem, 3vw, 2.1rem);
+  }
+
+  p {
+    color: $body-font-color;
+    font-size: 1.02rem;
+    line-height: 1.68;
+  }
+}
+
+.research-agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.35rem;
+
+  article {
+    padding: 1rem 0;
+    border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+  }
+
+  span {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: darken($accent-color, 14%);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    margin-bottom: 0.45rem;
+    font-size: 1.05rem;
+  }
+
+  p {
+    margin: 0;
+    color: $text-muted;
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+}
+
+.research-methods-note {
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.12);
+  color: $text-muted;
+  font-size: 0.95rem;
+}
+
+.selected-projects-title {
+  margin-bottom: 1rem;
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+}
+
+.course-research-section.course-research-top {
+  margin-top: 1rem;
+}
+
+.course-research-toggle {
+  cursor: pointer;
+}
+
+.course-research-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+}
+
+@media (max-width: 768px) {
+  .research-agenda-section {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .research-agenda-grid {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}

@@ -6,9 +6,41 @@ permalink: "/research/"
 
 <div class="media-lab-research-page">
   <header class="research-hero">
-    <h1 class="research-hero-title">Research Projects</h1>
-    <p class="research-hero-subtitle">How platforms encode power, who gets represented, and how movements resist — with work on AI imagery, feminist activism in Bangladesh, and colonial legal systems</p>
+    <h1 class="research-hero-title">Research</h1>
+    <p class="research-hero-subtitle">I study how digital platforms, AI systems, and legal infrastructures shape visibility, identity, and resistance, with a focus on feminist politics and the Global South.</p>
   </header>
+
+  <section class="research-agenda-section">
+    <div class="research-agenda-container">
+      <div class="research-agenda-intro">
+        <h2>Research agenda</h2>
+        <p>
+          My work asks how power moves through platforms: who becomes visible, who is disciplined or mocked, and how activists create room to speak back.
+          I approach these questions through feminist media studies, postcolonial critique, and qualitative analysis of digital discourse.
+        </p>
+      </div>
+      <div class="research-agenda-grid">
+        <article>
+          <span>01</span>
+          <h3>Platformed feminism</h3>
+          <p>Online feminist activism, anti-feminist backlash, harassment, satire, and the politics of visibility in Bangladesh.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>AI representation</h3>
+          <p>How generative AI reproduces cultural hierarchies in images of activists, especially from the Global South.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Law and control</h3>
+          <p>Digital security laws, colonial legal inheritances, religious sentiment, and the governance of online speech.</p>
+        </article>
+      </div>
+      <p class="research-methods-note">
+        Methods: qualitative content analysis, visual analysis, legal case study, close reading, and discourse analysis.
+      </p>
+    </div>
+  </section>
 
   <section class="manuscripts-section">
     <div class="manuscripts-container">
@@ -32,62 +64,8 @@ permalink: "/research/"
     </div>
   </section>
 
-  <section class="course-research-section course-research-top">
-    <div class="course-research-container">
-      <button class="course-research-toggle expanded" onclick="toggleAdditionalResearch(this)">
-        <h2 class="course-research-title">Research Portfolio</h2>
-        <span class="toggle-arrow">↑</span>
-      </button>
-      <div class="research-projects-compact" id="additional-research-content">
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Emotional Labor in Legal Practice: Navigating the Complexities</span>
-          <span class="research-project-meta-compact">Prof. Lotus Seeley · Spring 2024</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Do predictive policing algorithms pose a risk to individual constitutional rights?</span>
-          <span class="research-project-meta-compact">Prof. Matty Lichtenstein · Spring 2024</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">The Crucial Role of Grassroots Organizations and NGOs in the RMG Labour Movement in Bangladesh</span>
-          <span class="research-project-meta-compact">Prof. Patricia Widener · Fall 2023</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Does gender identity influence the perception of unisex fashion among young adults in Bangladesh?</span>
-          <span class="research-project-meta-compact">Prof. J. Lotus Seeley · Fall 2023</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">'Life' before and after enforcement of Cyber Security Laws and Policies</span>
-          <span class="research-project-meta-compact">Dr. Seuti Sabur · Fall 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">How uncomfortable a prison for women inmates in Bangladesh</span>
-          <span class="research-project-meta-compact">Dr. Saira Rahman Khan · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Why might non-elite women be disinterested in participating in movements?</span>
-          <span class="research-project-meta-compact">Shehzad M Arifeen · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Gender representation in deodorant advertisements</span>
-          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">The Triple A (Availability, Accessibility, and Adaptability)</span>
-          <span class="research-project-meta-compact">Independent research · Spring 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Challenges of application of Cyber Security Laws and policies regarding Human Rights Laws</span>
-          <span class="research-project-meta-compact">Advocate Mostafa Hossain · Fall 2020</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">A Comparative Analysis on the Engagement of urban Middle-Class People in Social Movements: Political Hegemony</span>
-          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2020</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <div class="projects-container">
+    <h2 class="selected-projects-title">Selected projects</h2>
     
     <article class="media-lab-project" data-project="1">
       <div class="project-layout">
@@ -318,6 +296,61 @@ permalink: "/research/"
     </article>
 
   </div>
+
+  <section class="course-research-section course-research-top">
+    <div class="course-research-container">
+      <button class="course-research-toggle" onclick="toggleAdditionalResearch(this)">
+        <h2 class="course-research-title">Earlier research archive</h2>
+        <span class="toggle-arrow">→</span>
+      </button>
+      <div class="research-projects-compact" id="additional-research-content" style="display: none;">
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Emotional Labor in Legal Practice: Navigating the Complexities</span>
+          <span class="research-project-meta-compact">Prof. Lotus Seeley · Spring 2024</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Do predictive policing algorithms pose a risk to individual constitutional rights?</span>
+          <span class="research-project-meta-compact">Prof. Matty Lichtenstein · Spring 2024</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">The Crucial Role of Grassroots Organizations and NGOs in the RMG Labour Movement in Bangladesh</span>
+          <span class="research-project-meta-compact">Prof. Patricia Widener · Fall 2023</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Does gender identity influence the perception of unisex fashion among young adults in Bangladesh?</span>
+          <span class="research-project-meta-compact">Prof. J. Lotus Seeley · Fall 2023</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">'Life' before and after enforcement of Cyber Security Laws and Policies</span>
+          <span class="research-project-meta-compact">Dr. Seuti Sabur · Fall 2021</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">How uncomfortable a prison for women inmates in Bangladesh</span>
+          <span class="research-project-meta-compact">Dr. Saira Rahman Khan · Summer 2021</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Why might non-elite women be disinterested in participating in movements?</span>
+          <span class="research-project-meta-compact">Shehzad M Arifeen · Summer 2021</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Gender representation in deodorant advertisements</span>
+          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2021</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">The Triple A (Availability, Accessibility, and Adaptability)</span>
+          <span class="research-project-meta-compact">Independent research · Spring 2021</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">Challenges of application of Cyber Security Laws and policies regarding Human Rights Laws</span>
+          <span class="research-project-meta-compact">Advocate Mostafa Hossain · Fall 2020</span>
+        </div>
+        <div class="research-project-item-compact">
+          <span class="research-project-title-compact">A Comparative Analysis on the Engagement of urban Middle-Class People in Social Movements: Political Hegemony</span>
+          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2020</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
