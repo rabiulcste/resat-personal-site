@@ -205,6 +205,7 @@ h3 {
 }
 
 .hero-visual {
+  position: relative;
   padding: 10px;
   max-width: 470px;
   justify-self: end;
@@ -223,6 +224,26 @@ h3 {
   display: none;
 }
 
+.soft-note {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.42rem 0.68rem;
+  color: var(--accent-dark);
+  background: rgba(232, 244, 234, 0.78);
+  border: 1px solid rgba(111, 154, 120, 0.18);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.soft-note-top {
+  position: absolute;
+  left: 1.35rem;
+  top: 1.35rem;
+  transform: rotate(-2deg);
+}
+
 .section {
   padding-top: 3.4rem;
   padding-bottom: 3.4rem;
@@ -233,7 +254,13 @@ h3 {
 }
 
 .intro-box {
+  position: relative;
   padding: 1.4rem 1.6rem;
+}
+
+.intro-box .soft-note {
+  margin-bottom: 0.85rem;
+  transform: rotate(1deg);
 }
 
 .intro p {
@@ -345,6 +372,10 @@ h3 {
 
   .hero {
     padding-top: 2.5rem;
+  }
+
+  .hero-visual {
+    justify-self: start;
   }
 
   h1 {
