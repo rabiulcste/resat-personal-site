@@ -1,57 +1,57 @@
 // Resat Amin - Personal Website
-// Editorial / PhD researcher palette — restrained, readable, credible
+// Editorial / PhD researcher palette: warm, human, readable
 
-// Core surfaces (ink-navy, not neon)
-$primary-color: #0c1017;
-$secondary-color: #9e4962; // muted wine — CTAs, emphasis (was electric magenta)
-$accent-color: #94a8c9; // steel blue — links, focus, subtle chrome
-$tech-purple: #7670a8; // dusty violet — gradients, secondary highlights
+// Core surfaces
+$primary-color: #25352b;
+$secondary-color: #9e4962; // muted wine for emphasis
+$accent-color: #6f9a78; // sage green for links, focus, quiet structure
+$tech-purple: #8a769e; // dusty mauve for secondary highlights
 
 // Sass rgba() channels (single source for glows/borders in _main.scss)
-$accent-r: 148;
-$accent-g: 163;
-$accent-b: 192;
+$accent-r: 111;
+$accent-g: 154;
+$accent-b: 120;
 $rose-r: 158;
 $rose-g: 73;
 $rose-b: 98;
 $violet-r: 118;
 $violet-g: 112;
 $violet-b: 162;
-$shadow-tint-r: 90;
-$shadow-tint-g: 103;
-$shadow-tint-b: 132;
+$shadow-tint-r: 93;
+$shadow-tint-g: 119;
+$shadow-tint-b: 101;
 
 // Neutral palette
-$editorial-muted: #6B7280;
-$editorial-border: #1F2937;
-$editorial-bg: #0c1017;
-$complimentary-color: #F4F6FA;
-$body-bg: #0c1017;
-$body-font-color: #D1D8E4;
-$text-muted: #8B95A8;
-$border-color: #252d3a;
-$card-bg: #141a24;
-$surface-elevated: #1a2230;
+$editorial-muted: #67756c;
+$editorial-border: #d8e3da;
+$editorial-bg: #fbf8f0;
+$complimentary-color: #24352b;
+$body-bg: #fbf8f0;
+$body-font-color: #34463a;
+$text-muted: #6b786f;
+$border-color: #d8e3da;
+$card-bg: rgba(255, 255, 250, 0.86);
+$surface-elevated: #fffdf7;
 
 // Navigation
-$navbar-color: rgba(12, 16, 23, 0.94);
-$navbar-text-color: #E8ECF2;
-$navbar-hover-color: lighten($accent-color, 8%);
+$navbar-color: rgba(251, 248, 240, 0.9);
+$navbar-text-color: #34463a;
+$navbar-hover-color: darken($accent-color, 8%);
 $navbar-active-color: $accent-color;
 $navbar-font-size: 0.95rem;
 $navbar-font-family: var(--font-primary);
-$navbar-border: rgba(37, 45, 58, 0.85);
-$navbar-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+$navbar-border: rgba(216, 227, 218, 0.95);
+$navbar-shadow: 0 10px 30px rgba(93, 119, 101, 0.09);
 
 // Buttons
 $button-color: $secondary-color;
 $button-hover: lighten($secondary-color, 4%);
-$button-text-color: $complimentary-color;
+$button-text-color: #fffdf7;
 
 // Links (readable on dark, not fluorescent)
-$link-color: #b8c9e6;
-$link-hover-color: #e2d8cc; // warm paper — hover without hot pink
-$link-visited-color: #a896c4;
+$link-color: #477652;
+$link-hover-color: #8a3f56;
+$link-visited-color: #786494;
 
 // Text
 $base-font-family: var(--font-primary);
