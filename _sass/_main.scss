@@ -3813,3 +3813,118 @@ body {
     padding: 2.5rem 1.25rem 2rem;
   }
 }
+
+// ============================================
+// HEADER / FOOTER ALIGNMENT
+// ============================================
+
+.menu,
+.site-footer {
+  color: $text-muted;
+  background: rgba(255, 253, 247, 0.82);
+  border-color: rgba($accent-r, $accent-g, $accent-b, 0.16);
+}
+
+.menu {
+  height: 64px;
+  box-shadow: none;
+}
+
+.wrap {
+  padding-top: 64px;
+}
+
+.menu-items,
+.footer-container {
+  max-width: 1080px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.menu-items {
+  gap: clamp(0.9rem, 2vw, 1.75rem);
+}
+
+.menu-items a,
+.footer-nav a,
+.footer-copy {
+  font-size: 0.84rem;
+  line-height: 1.2;
+}
+
+.menu-items a,
+.footer-nav a {
+  color: $text-muted;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.menu-items a::after {
+  bottom: -0.2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.menu-items a:hover,
+.menu-items a.active,
+.footer-nav a:hover {
+  color: darken($accent-color, 15%);
+}
+
+.menu-items a.active {
+  font-weight: 650;
+}
+
+.menu-items a.active::after {
+  height: 1px;
+  background: currentColor;
+}
+
+.site-title-nav {
+  color: $complimentary-color;
+  font-size: 0.95rem;
+  font-family: var(--font-editorial);
+  font-weight: 700;
+}
+
+.site-title-nav:hover {
+  color: darken($accent-color, 15%);
+  transform: none;
+}
+
+.site-footer {
+  padding: 1.15rem 0;
+  margin-top: 2.5rem;
+}
+
+.footer-content {
+  min-height: 32px;
+}
+
+.footer-nav {
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+}
+
+.footer-copy {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    min-height: 64px;
+  }
+
+  .wrap {
+    padding-top: 86px;
+  }
+
+  .menu-items,
+  .footer-container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-content {
+    align-items: flex-start;
+  }
+}
