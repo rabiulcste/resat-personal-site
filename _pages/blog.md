@@ -19,20 +19,7 @@ permalink: "/blog/"
       <div class="blog-card-image">
         <a href="{{ site.github.url }}{{ post.url }}">
           <img src="{{ site.github.url }}/{{ post.thumbnail }}" alt="{{ post.title }}"/>
-          <div class="image-overlay"></div>
         </a>
-      </div>
-      {% else %}
-      <div class="blog-card-image-placeholder">
-        <svg width="100%" height="100%" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="blogGrad{{ forloop.index }}" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#94a8c9;stop-opacity:0.2" />
-              <stop offset="100%" style="stop-color:#7670a8;stop-opacity:0.2" />
-            </linearGradient>
-          </defs>
-          <rect width="400" height="250" fill="url(#blogGrad{{ forloop.index }})"/>
-        </svg>
       </div>
       {% endif %}
       <div class="blog-card-content">
@@ -65,4 +52,3 @@ permalink: "/blog/"
   </div>
   {% endif %}
 </div>
-

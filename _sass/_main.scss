@@ -3928,3 +3928,372 @@ body {
     align-items: flex-start;
   }
 }
+
+// ============================================
+// REDUCTION PASS
+// ============================================
+
+:root {
+  --site-width: 1040px;
+  --section-gap: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+body {
+  font-size: 1.05rem;
+}
+
+p {
+  margin-bottom: 1.05rem;
+}
+
+.content_container,
+.home-hero,
+.about-hero-content,
+.projects-container,
+.media-lab-blog-grid,
+.manuscripts-container,
+.course-research-container,
+.footer-container,
+.menu-items {
+  max-width: var(--site-width);
+}
+
+.content_container {
+  padding: 3.25rem 1.5rem;
+}
+
+.home-hero,
+.about-hero,
+.research-hero,
+.blog-hero {
+  padding: var(--section-gap) 1.5rem;
+}
+
+.home-hero {
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.home-hero-title,
+.research-hero-title,
+.blog-hero-title,
+.about-hero-text .about-name {
+  font-size: clamp(2.35rem, 5vw, 3.8rem);
+  line-height: 1.05;
+}
+
+.home-hero-description,
+.research-hero-subtitle,
+.blog-hero-subtitle,
+.post-content,
+.about-block-content p {
+  font-size: 1.02rem;
+  line-height: 1.68;
+}
+
+.home-portrait-card {
+  width: min(100%, 300px);
+}
+
+.home-hero-links {
+  margin-top: 1.35rem;
+}
+
+.home-hero-link-primary,
+.home-hero-link-secondary,
+.btn-primary,
+.btn-outline {
+  padding: 0.68rem 1.05rem;
+}
+
+.about-content-modern,
+.projects-container,
+.media-lab-blog-container {
+  padding-bottom: 3rem;
+}
+
+.about-block,
+.course-research-container,
+.blog-note,
+.media-lab-blog-card,
+.contact-form,
+.contact-fallback-card,
+.research-cta-section {
+  background: transparent;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+  border-bottom: 0;
+  padding: 1.4rem 0;
+}
+
+.about-block {
+  margin-bottom: 0;
+}
+
+.about-block-content .about-block-title,
+.course-research-title,
+.manuscripts-title {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  margin-bottom: 0.9rem;
+}
+
+.about-training-flow,
+.research-projects-compact,
+.manuscripts-list {
+  gap: 0.7rem;
+}
+
+.research-project-item-compact {
+  padding: 0.75rem 0;
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.12);
+}
+
+.research-project-meta-compact,
+.research-project-meta,
+.manuscript-venue,
+.manuscript-public-meta,
+.blog-card-date {
+  color: $text-muted;
+}
+
+.media-lab-project {
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+}
+
+.project-layout,
+.project-layout.reverse {
+  display: block;
+}
+
+.project-visual-large,
+.visual-gradient,
+.blog-card-image-placeholder {
+  display: none;
+}
+
+.project-info {
+  padding-top: 0;
+}
+
+.project-header {
+  margin-bottom: 1.25rem;
+}
+
+.project-category {
+  margin-bottom: 0.45rem;
+  color: darken($accent-color, 14%);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.project-title-large {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  line-height: 1.18;
+  margin-bottom: 0.55rem;
+}
+
+.project-subtitle,
+.project-description-large,
+.blog-card-excerpt {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.project-specs,
+.findings-list {
+  gap: 0.7rem;
+}
+
+.spec-item,
+.finding-item,
+.question-grid p,
+.rules-list li,
+.steps article {
+  background: rgba(255, 255, 250, 0.48);
+  border: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+  border-radius: 10px;
+  padding: 0.9rem;
+  box-shadow: none;
+}
+
+.media-lab-blog-grid {
+  display: block;
+  padding-bottom: 3rem;
+}
+
+.media-lab-blog-card {
+  transition: none;
+  padding-bottom: 1.25rem;
+}
+
+.media-lab-blog-card::before,
+.image-overlay {
+  display: none;
+}
+
+.media-lab-blog-card:hover {
+  transform: none;
+}
+
+.blog-card-image {
+  display: none;
+}
+
+.blog-card-meta {
+  margin-bottom: 0.65rem;
+  gap: 0.55rem;
+}
+
+.blog-card-tags {
+  display: none;
+}
+
+.blog-card-title {
+  font-size: clamp(1.25rem, 2.3vw, 1.55rem);
+  line-height: 1.25;
+  margin-bottom: 0.65rem;
+}
+
+.blog-card-link {
+  border-bottom-width: 1px;
+  font-size: 0.92rem;
+}
+
+.site-footer {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .content_container,
+  .home-hero,
+  .about-hero,
+  .research-hero,
+  .blog-hero {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .media-lab-blog-grid {
+    display: block;
+  }
+}
+
+// ============================================
+// WHITE SPACE TUNING
+// ============================================
+
+.research-hero,
+.blog-hero,
+.about-hero {
+  padding-bottom: 1.75rem;
+}
+
+.manuscripts-section,
+.course-research-section,
+.projects-container,
+.media-lab-blog-grid,
+.about-content-modern {
+  padding-top: 1.5rem;
+}
+
+.manuscripts-section {
+  margin-top: 0;
+}
+
+.manuscripts-title {
+  margin-bottom: 0.65rem;
+}
+
+.manuscripts-list {
+  margin-bottom: 1.5rem;
+}
+
+.manuscripts-list li {
+  margin-bottom: 0.8rem;
+}
+
+.course-research-section.course-research-top {
+  margin-top: 0;
+}
+
+.course-research-container {
+  padding-top: 1rem;
+}
+
+.projects-container {
+  padding-top: 1rem;
+}
+
+.media-lab-project {
+  margin-bottom: 2.2rem;
+  padding-top: 1.4rem;
+}
+
+.project-body p:last-child,
+.project-description-large {
+  margin-bottom: 1rem;
+}
+
+.project-specs,
+.project-findings,
+.project-details {
+  margin-top: 1rem;
+}
+
+.blog-hero {
+  padding-bottom: 1rem;
+}
+
+.blog-note {
+  margin-top: 1rem;
+  padding: 0.9rem 0 0;
+}
+
+.media-lab-blog-grid {
+  padding-top: 1rem;
+}
+
+.media-lab-blog-card {
+  padding-top: 1rem;
+  padding-bottom: 1.1rem;
+}
+
+.blog-card-excerpt {
+  margin-bottom: 0.9rem;
+}
+
+.about-content-modern {
+  padding-top: 1.25rem;
+}
+
+.about-block-content .about-block-title {
+  margin-bottom: 0.6rem;
+}
+
+.video-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .research-hero,
+  .blog-hero,
+  .about-hero {
+    padding-bottom: 1.25rem;
+  }
+
+  .manuscripts-section,
+  .course-research-section,
+  .projects-container,
+  .media-lab-blog-grid,
+  .about-content-modern {
+    padding-top: 1rem;
+  }
+}
