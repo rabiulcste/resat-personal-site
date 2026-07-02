@@ -294,6 +294,41 @@ h3 {
   padding: 1.15rem;
 }
 
+.timezone-note {
+  margin: 0.25rem 0 1rem;
+  color: var(--accent-dark);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.slot-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.slot-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(111, 154, 120, 0.16);
+}
+
+.slot-item:last-child {
+  border-bottom: 1px solid rgba(111, 154, 120, 0.16);
+}
+
+.slot-time {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.slot-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .steps span {
   display: block;
   margin-bottom: 0.7rem;
@@ -386,5 +421,10 @@ h3 {
   .steps,
   .question-grid {
     grid-template-columns: 1fr;
+  }
+
+  .slot-item {
+    flex-direction: column;
+    gap: 0.2rem;
   }
 }
