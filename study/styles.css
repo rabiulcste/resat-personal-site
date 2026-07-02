@@ -141,6 +141,7 @@ h3 {
 .steps p,
 .question-grid p,
 .rules-list li,
+.request-form label,
 .footer {
   color: var(--muted);
 }
@@ -195,6 +196,7 @@ h3 {
 .hero-visual,
 .sticker-board,
 .booking-box,
+.request-form,
 .steps article,
 .rules-list li,
 .question-grid p,
@@ -274,6 +276,7 @@ h3 {
 .grid-section,
 .split,
 .booking,
+.request-panel,
 .about {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
@@ -290,7 +293,8 @@ h3 {
 .steps article,
 .rules-list li,
 .question-grid p,
-.booking-box {
+.booking-box,
+.request-form {
   padding: 1.15rem;
 }
 
@@ -309,6 +313,7 @@ h3 {
 
 .slot-item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem 0;
@@ -320,13 +325,98 @@ h3 {
 }
 
 .slot-time {
+  display: block;
   color: var(--ink);
   font-weight: 800;
 }
 
 .slot-label {
+  display: block;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.slot-request {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0 0.9rem;
+  color: var(--accent-dark);
+  background: rgba(248, 251, 247, 0.82);
+  border: 1px solid rgba(111, 154, 120, 0.28);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.slot-request:hover,
+.slot-request:focus {
+  color: #fffdf7;
+  background: var(--accent-dark);
+  outline: none;
+}
+
+.request-panel[hidden] {
+  display: none;
+}
+
+.request-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.selected-slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(111, 154, 120, 0.16);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.selected-slot strong {
+  color: var(--ink);
+  text-align: right;
+}
+
+.request-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.request-form input,
+.request-form select,
+.request-form textarea {
+  width: 100%;
+  padding: 0.72rem 0.78rem;
+  color: var(--ink);
+  background: #fffdf7;
+  border: 1px solid rgba(111, 154, 120, 0.28);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+}
+
+.request-form textarea {
+  resize: vertical;
+}
+
+.request-form input:focus,
+.request-form select:focus,
+.request-form textarea:focus {
+  border-color: var(--accent-dark);
+  outline: 3px solid rgba(111, 154, 120, 0.14);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.2rem;
 }
 
 .steps span {
@@ -395,6 +485,7 @@ h3 {
   .grid-section,
   .split,
   .booking,
+  .request-panel,
   .about {
     grid-template-columns: 1fr;
   }
@@ -425,6 +516,16 @@ h3 {
 
   .slot-item {
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.2rem;
+  }
+
+  .selected-slot {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .selected-slot strong {
+    text-align: left;
   }
 }
