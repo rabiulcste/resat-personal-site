@@ -43,6 +43,7 @@ requestForm.addEventListener('submit', (event) => {
     `Name: ${formData.get('name')}`,
     `Email: ${formData.get('email')}`,
     `Time zone: ${formData.get('timezone')}`,
+    `How often they want to join: ${formData.get('frequency')}`,
     `Can stay for the full slot: ${formData.get('stay')}`,
     '',
     'What I will work on:',
