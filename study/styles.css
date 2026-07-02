@@ -306,31 +306,73 @@ h3 {
 }
 
 .day-picker {
-  display: flex;
-  gap: 0.45rem;
-  margin: 1rem 0;
-  padding-bottom: 0.35rem;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  gap: 0.55rem;
+  margin: 1rem 0 1.1rem;
 }
 
 .day-button {
-  flex: 0 0 auto;
-  min-height: 36px;
-  padding: 0 0.78rem;
+  position: relative;
+  display: grid;
+  gap: 0.05rem;
+  min-height: 112px;
+  padding: 0.72rem 0.58rem;
   color: var(--muted);
   background: rgba(248, 251, 247, 0.82);
   border: 1px solid rgba(111, 154, 120, 0.22);
-  border-radius: 999px;
+  border-radius: 16px;
   font: inherit;
-  font-size: 0.8rem;
   font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 10px 22px rgba(36, 53, 43, 0.05);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.day-button:hover {
+  transform: translateY(-2px) rotate(-0.4deg);
+  border-color: rgba(158, 73, 98, 0.28);
 }
 
 .day-button[aria-pressed="true"] {
   color: #fffdf7;
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background: var(--wine);
+  border-color: var(--wine);
+  transform: rotate(-1.2deg);
+}
+
+.day-weekday,
+.day-month,
+.day-note {
+  font-size: 0.72rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.day-number {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.day-button[aria-pressed="true"] .day-number {
+  color: #fffdf7;
+}
+
+.day-note {
+  width: fit-content;
+  justify-self: center;
+  margin-top: 0.25rem;
+  padding: 0.18rem 0.42rem;
+  color: var(--accent-dark);
+  background: rgba(232, 244, 234, 0.82);
+  border-radius: 999px;
+}
+
+.day-button[aria-pressed="true"] .day-note {
+  color: var(--wine);
+  background: #fffdf7;
 }
 
 .slot-list {
@@ -572,6 +614,14 @@ h3 {
   .steps,
   .question-grid {
     grid-template-columns: 1fr;
+  }
+
+  .day-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .day-button {
+    min-height: 100px;
   }
 
   .slot-item {

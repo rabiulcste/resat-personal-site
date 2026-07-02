@@ -87,6 +87,15 @@ function formatNetherlandsDateShort(dateParts) {
   }).format(new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12)));
 }
 
+function getCalendarLabel(dateParts) {
+  const date = new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12));
+  return {
+    weekday: new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: 'UTC' }).format(date),
+    month: new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' }).format(date),
+    day: new Intl.DateTimeFormat('en-US', { day: 'numeric', timeZone: 'UTC' }).format(date)
+  };
+}
+
 function getDateKey(dateParts) {
   return `${dateParts.year}-${String(dateParts.month).padStart(2, '0')}-${String(dateParts.day).padStart(2, '0')}`;
 }
@@ -143,6 +152,7 @@ function getUpcomingSessionDays() {
       sessionDays.push({
         key: getDateKey(dateParts),
         dateParts,
+        calendar: getCalendarLabel(dateParts),
         label: formatNetherlandsDateShort(dateParts),
         fullLabel: formatNetherlandsDate(dateParts)
       });
@@ -167,8 +177,14 @@ function renderDayPicker() {
     button.className = 'day-button';
     button.type = 'button';
     button.dataset.dateKey = sessionDay.key;
-    button.textContent = sessionDay.label;
+    button.innerHTML = `
+      <span class="day-weekday">${sessionDay.calendar.weekday}</span>
+      <span class="day-number">${sessionDay.calendar.day}</span>
+      <span class="day-month">${sessionDay.calendar.month}</span>
+      <span class="day-note">3 sessions</span>
+    `;
     button.setAttribute('aria-pressed', sessionDay.key === selectedDateKey ? 'true' : 'false');
+    button.setAttribute('aria-label', `${sessionDay.fullLabel}, 3 sessions`);
     fragment.appendChild(button);
   });
 
