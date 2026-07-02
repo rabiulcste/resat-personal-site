@@ -10,7 +10,8 @@ const slotList = document.getElementById('slot-list');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbyfT0Q_WNaO0OutWBW0nZkX4FHSQTr2x8LxFHOv7R-cK_agAPx0y3GtKTbV-o6AVX-Kxw/exec';
 const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
-const scheduleEnd = { year: 2026, month: 8, day: 15 };
+const calendarStart = { year: 2026, month: 7, day: 1 };
+const scheduleEnd = { year: 2026, month: 7, day: 31 };
 const studyDays = [
   { label: 'Monday', index: 1 },
   { label: 'Tuesday', index: 2 },
@@ -25,7 +26,6 @@ let selectedSlot = '';
 let selectedLocalSlot = '';
 let selectedSlotKey = '';
 let sessionsByDate = [];
-let selectedDateKey = '';
 let availabilityBySlot = {};
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -176,22 +176,25 @@ function createSlotItem(dateParts, slot) {
 
 function getUpcomingSessionDays() {
   const today = getZonedParts(new Date(), netherlandsTimeZone);
-  const cursor = new Date(Date.UTC(today.year, today.month - 1, today.day, 12));
+  const startDate = compareDateParts(today, calendarStart) > 0 ? today : calendarStart;
+  const cursor = new Date(Date.UTC(calendarStart.year, calendarStart.month - 1, calendarStart.day, 12));
   const sessionDays = [];
 
   while (compareDateParts(datePartsFromUtcDate(cursor), scheduleEnd) <= 0) {
     const dateParts = datePartsFromUtcDate(cursor);
+    const isAvailableDay = studyDays.some((day) => day.index === cursor.getUTCDay());
+    const isPast = compareDateParts(dateParts, startDate) < 0;
 
-    if (studyDays.some((day) => day.index === cursor.getUTCDay())) {
-      sessionDays.push({
-        key: getDateKey(dateParts),
-        dateParts,
-        calendar: getCalendarLabel(dateParts),
-        heading: formatCalendarHeading(dateParts),
-        label: formatNetherlandsDateShort(dateParts),
-        fullLabel: formatNetherlandsDate(dateParts)
-      });
-    }
+    sessionDays.push({
+      key: getDateKey(dateParts),
+      dateParts,
+      calendar: getCalendarLabel(dateParts),
+      heading: formatCalendarHeading(dateParts),
+      label: formatNetherlandsDateShort(dateParts),
+      fullLabel: formatNetherlandsDate(dateParts),
+      hasSessions: isAvailableDay && !isPast,
+      isPast
+    });
 
     cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
@@ -206,25 +209,38 @@ function renderDayPicker() {
   }
 
   const fragment = document.createDocumentFragment();
+  const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const firstDay = sessionsByDate[0].dateParts;
+  const firstWeekday = new Date(Date.UTC(firstDay.year, firstDay.month - 1, firstDay.day, 12)).getUTCDay();
+  const leadingBlanks = (firstWeekday + 6) % 7;
+
+  weekdays.forEach((weekday) => {
+    const weekdayLabel = document.createElement('div');
+    weekdayLabel.className = 'calendar-weekday';
+    weekdayLabel.textContent = weekday;
+    fragment.appendChild(weekdayLabel);
+  });
+
+  for (let index = 0; index < leadingBlanks; index += 1) {
+    const blank = document.createElement('div');
+    blank.className = 'day-card is-blank';
+    fragment.appendChild(blank);
+  }
 
   sessionsByDate.forEach((sessionDay) => {
     const dateCard = document.createElement('article');
-    dateCard.className = 'day-card';
+    dateCard.className = `day-card${sessionDay.hasSessions ? '' : ' is-muted'}`;
     dateCard.dataset.dateKey = sessionDay.key;
 
-    const button = document.createElement('button');
-    button.className = 'day-button';
-    button.type = 'button';
-    button.dataset.dateKey = sessionDay.key;
-    button.innerHTML = `
+    const header = document.createElement('div');
+    header.className = 'day-heading';
+    header.innerHTML = `
       <span class="day-title">${sessionDay.heading}</span>
-      <span class="day-note">3 sessions</span>
+      <span class="day-note">${sessionDay.hasSessions ? '3 sessions' : sessionDay.isPast ? 'past' : 'no room'}</span>
     `;
-    button.setAttribute('aria-pressed', sessionDay.key === selectedDateKey ? 'true' : 'false');
-    button.setAttribute('aria-label', `${sessionDay.fullLabel}, 3 sessions`);
-    dateCard.appendChild(button);
+    dateCard.appendChild(header);
 
-    if (sessionDay.key === selectedDateKey) {
+    if (sessionDay.hasSessions) {
       const slots = document.createElement('div');
       slots.className = 'date-slots';
       studySlots.forEach((slot) => {
@@ -239,13 +255,8 @@ function renderDayPicker() {
   dayPicker.replaceChildren(fragment);
 }
 
-function renderSlotsForSelectedDate() {
-  renderDayPicker();
-}
-
 function renderSchedule() {
   sessionsByDate = getUpcomingSessionDays();
-  selectedDateKey = sessionsByDate[0]?.key || '';
   renderDayPicker();
 }
 
@@ -268,20 +279,10 @@ function refreshAvailability() {
 refreshAvailability();
 
 dayPicker.addEventListener('click', (event) => {
-  const button = event.target.closest('.day-button');
-
-  if (!button) return;
-
-  selectedDateKey = button.dataset.dateKey;
-  renderDayPicker();
-  renderSlotsForSelectedDate();
-});
-
-slotList.addEventListener('click', (event) => {
   handleSlotClick(event);
 });
 
-dayPicker.addEventListener('click', (event) => {
+slotList.addEventListener('click', (event) => {
   handleSlotClick(event);
 });
 
