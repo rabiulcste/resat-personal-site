@@ -139,7 +139,6 @@ h3 {
 .about p,
 .booking-box p,
 .steps p,
-.question-grid p,
 .rules-list li,
 .request-form label,
 .footer {
@@ -199,7 +198,6 @@ h3 {
 .request-form,
 .steps article,
 .rules-list li,
-.question-grid p,
 .intro-box {
   background: var(--card);
   border: 1px solid rgba(111, 154, 120, 0.18);
@@ -298,7 +296,6 @@ h3 {
 
 .steps article,
 .rules-list li,
-.question-grid p,
 .booking-box,
 .request-form {
   padding: 1.15rem;
@@ -686,17 +683,6 @@ h3 {
   color: var(--ink);
 }
 
-.question-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.8rem;
-  margin-top: 1.4rem;
-}
-
-.question-grid p {
-  margin: 0;
-}
-
 .footer {
   width: min(100%, 1120px);
   margin: 2.5rem auto 0;
@@ -750,8 +736,7 @@ h3 {
     font-size: clamp(2.7rem, 12vw, 4rem);
   }
 
-  .steps,
-  .question-grid {
+  .steps {
     grid-template-columns: 1fr;
   }
 
