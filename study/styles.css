@@ -214,11 +214,17 @@ h3 {
 }
 
 .hero-visual img,
+.hero-visual video,
 .sticker-board img {
   display: block;
   width: 100%;
-  height: auto;
   border-radius: 12px;
+}
+
+.hero-visual video {
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
 }
 
 .mini-tags,
