@@ -265,6 +265,19 @@ h3 {
   align-items: start;
 }
 
+.booking {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.booking-text {
+  max-width: 44rem;
+}
+
+.booking-box {
+  width: 100%;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -310,7 +323,7 @@ h3 {
 
 .day-picker {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   margin: 1.1rem 0 1.1rem;
 }
@@ -718,7 +731,7 @@ h3 {
   }
 
   .day-picker {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
 
@@ -743,5 +756,11 @@ h3 {
 
   .selected-slot strong {
     text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .day-picker {
+    grid-template-columns: 1fr;
   }
 }
