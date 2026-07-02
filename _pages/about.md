@@ -25,15 +25,24 @@ permalink: "/about/"
   <div class="about-content-modern">
     <section class="about-block">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-1">Background</h2>
+        <h2 class="about-block-title icon-1">Hi!</h2>
         <p>
-          I grew up in Dhaka as social media reshaped political life—amplification for marginalized voices and movements, but also surveillance and risk.
-          Histories of colonization and feminist struggle grounded my commitment to justice. I started in law, then turned to sociology to study how institutions,
-          technology, and gendered inequality intersect.
+          I love to talk. I love small observations, big feelings, and the strange little details people casually reveal about themselves.
         </p>
         <p>
-          As an activist I saw peers charged under Bangladesh’s Digital Security Act for ordinary posts. I learned both limits and possibilities of online organizing through
-          <a href="https://www.facebook.com/ProjectNirbhik">Project Nirbhik</a> and a Bengali “Feminism 101” TikTok series.
+          I am from Bangladesh, where I spent the first 26 years of my life. I studied law and anthropology, did social work, activism, and politics, and spent a highly impressive number of hours on social media, which I still believe should count as fieldwork. :')
+        </p>
+        <p>
+          I love people, books, food, and rooms where good conversations happen. I have a large circle of friends, and back home I have a big book corner that makes me feel very intellectual. These days, I mostly read while traveling by train, plane, or bus, which makes my reading life inconsistent but cinematic.
+        </p>
+        <p>
+          Oh yes, I used to play an instrument called the esraj. I still have it. Sometimes I open it, look at it, and check whether I can still play, or whether we have simply become two emotionally attached objects living in the same room.
+        </p>
+        <p>
+          Now I dance Bharatanatyam, and I have just finished my first year. The funny thing is, I actually started dancing when I was four. Then, because of small-town South Asian social stigma, I had to stop when I was eleven. Now, at twenty-nine, I have started again. Crazy, right? But I am loving it!
+        </p>
+        <p>
+          My biggest strength is cooking. Somehow, whatever I cook turns out well, which is both a gift and a personality trait. My weakness is getting extremely excited about everything, saying yes to all of it, and then becoming stressed later, as if this was not entirely my own decision. And speaking of stress, I love running, yoga, and herbs to help me stay balanced.
         </p>
       </div>
     </section>
