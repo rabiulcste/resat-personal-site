@@ -3328,13 +3328,18 @@ h1,
 }
 
 .about-hero {
+  overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(246, 223, 231, 0.72) 0%, rgba(232, 244, 234, 0.86) 48%, rgba(255, 253, 247, 0.92) 100%);
+    radial-gradient(circle at 12% 18%, rgba(248, 232, 178, 0.48) 0 8rem, transparent 8.2rem),
+    radial-gradient(circle at 88% 28%, rgba(246, 196, 211, 0.38) 0 9rem, transparent 9.2rem),
+    linear-gradient(135deg, rgba(252, 239, 222, 0.94) 0%, rgba(232, 244, 234, 0.9) 48%, rgba(255, 248, 252, 0.96) 100%);
 }
 
 .about-hero-text .about-name {
   color: #102016;
-  text-shadow: 0 2px 0 rgba(255, 253, 247, 0.9);
+  text-shadow:
+    0 2px 0 rgba(255, 253, 247, 0.95),
+    0 8px 22px rgba(93, 119, 101, 0.13);
 }
 
 .about-hero-text .about-role {
@@ -3543,9 +3548,25 @@ input[type='submit'] {
 }
 
 .about-photo-large img {
-  border-radius: 30px;
-  border: 6px solid #fffdf7;
-  box-shadow: 0 24px 52px rgba(93, 119, 101, 0.24);
+  border-radius: 24px;
+  border: 12px solid #fffdf7;
+  box-shadow: 0 24px 52px rgba(93, 119, 101, 0.26);
+  transform: rotate(-3.5deg);
+}
+
+.about-photo-large::before {
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  z-index: 3;
+  width: 5.8rem;
+  height: 1.55rem;
+  background: rgba(255, 242, 184, 0.78);
+  border: 1px solid rgba(178, 139, 60, 0.13);
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgba(93, 119, 101, 0.1);
+  content: "";
+  transform: translateX(-50%) rotate(2deg);
 }
 
 .about-block,
@@ -3565,23 +3586,55 @@ input[type='submit'] {
 }
 
 .about-block {
+  position: relative;
   padding: 2.25rem;
   border: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.24);
   background:
-    linear-gradient(135deg, rgba(255, 253, 247, 0.94), rgba(238, 247, 239, 0.86));
-  box-shadow: 0 18px 42px rgba(93, 119, 101, 0.12);
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(238, 247, 239, 0.9));
+  box-shadow: 0 18px 42px rgba(93, 119, 101, 0.13);
+  transform: rotate(-0.35deg);
+}
+
+.about-block::before {
+  position: absolute;
+  top: -0.78rem;
+  left: 2rem;
+  z-index: 1;
+  padding: 0.28rem 0.7rem;
+  color: rgba(22, 37, 27, 0.76);
+  background: rgba(255, 242, 184, 0.82);
+  border: 1px solid rgba(178, 139, 60, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 8px 16px rgba(93, 119, 101, 0.08);
+  font-family: var(--font-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  content: "note";
 }
 
 .about-block:nth-of-type(2) {
   background:
-    linear-gradient(135deg, rgba(255, 253, 247, 0.94), rgba(248, 232, 238, 0.82));
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(248, 232, 238, 0.88));
   border-color: rgba($rose-r, $rose-g, $rose-b, 0.22);
+  transform: rotate(0.45deg);
+}
+
+.about-block:nth-of-type(2)::before {
+  background: rgba(255, 226, 237, 0.88);
+  content: "research";
 }
 
 .about-block:nth-of-type(3) {
   background:
-    linear-gradient(135deg, rgba(255, 253, 247, 0.94), rgba(236, 232, 248, 0.78));
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(236, 232, 248, 0.86));
   border-color: rgba($violet-r, $violet-g, $violet-b, 0.22);
+  transform: rotate(-0.25deg);
+}
+
+.about-block:nth-of-type(3)::before {
+  background: rgba(232, 226, 255, 0.88);
+  content: "timeline";
 }
 
 .about-block-content .about-block-title,
@@ -3601,6 +3654,11 @@ input[type='submit'] {
 .about-block-content .about-flow-sub {
   color: darken($accent-color, 18%);
   font-weight: 700;
+  width: fit-content;
+  padding: 0.18rem 0.55rem;
+  background: rgba(255, 253, 247, 0.72);
+  border: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.16);
+  border-radius: 999px;
 }
 
 .blog-tag,
@@ -4439,5 +4497,37 @@ p {
   .research-agenda-grid {
     grid-template-columns: 1fr;
     gap: 0.25rem;
+  }
+}
+
+// Pinterest-style About polish
+.media-lab-about-page .about-block {
+  background:
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(238, 247, 239, 0.9));
+  border: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.24);
+  box-shadow: 0 18px 42px rgba(93, 119, 101, 0.13);
+  transform: rotate(-0.35deg);
+}
+
+.media-lab-about-page .about-block:nth-of-type(2) {
+  background:
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(248, 232, 238, 0.88));
+  transform: rotate(0.45deg);
+}
+
+.media-lab-about-page .about-block:nth-of-type(3) {
+  background:
+    linear-gradient(135deg, rgba(255, 253, 247, 0.98), rgba(236, 232, 248, 0.86));
+  transform: rotate(-0.25deg);
+}
+
+@media (max-width: 768px) {
+  .media-lab-about-page .about-photo-large img,
+  .media-lab-about-page .about-block {
+    transform: none;
+  }
+
+  .media-lab-about-page .about-block {
+    box-shadow: none;
   }
 }
