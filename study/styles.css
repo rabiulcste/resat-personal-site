@@ -305,23 +305,55 @@ h3 {
   font-weight: 800;
 }
 
+.day-picker {
+  display: flex;
+  gap: 0.45rem;
+  margin: 1rem 0;
+  padding-bottom: 0.35rem;
+  overflow-x: auto;
+}
+
+.day-button {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 0.78rem;
+  color: var(--muted);
+  background: rgba(248, 251, 247, 0.82);
+  border: 1px solid rgba(111, 154, 120, 0.22);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.day-button[aria-pressed="true"] {
+  color: #fffdf7;
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
 .slot-list {
   display: grid;
-  gap: 0.65rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
   margin: 1rem 0;
 }
 
 .slot-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.85rem 0;
-  border-top: 1px solid rgba(111, 154, 120, 0.16);
+  min-height: 100%;
+  padding: 0.9rem;
+  border: 1px solid rgba(111, 154, 120, 0.16);
+  border-radius: 12px;
 }
 
-.slot-item:last-child {
-  border-bottom: 1px solid rgba(111, 154, 120, 0.16);
+.slot-item > div {
+  min-width: 0;
 }
 
 .slot-time {
@@ -357,7 +389,7 @@ h3 {
 }
 
 .slot-request {
-  flex: 0 0 auto;
+  width: 100%;
   min-height: 38px;
   padding: 0 0.9rem;
   color: var(--accent-dark);
@@ -535,9 +567,12 @@ h3 {
   }
 
   .slot-item {
-    flex-direction: column;
     align-items: flex-start;
     gap: 0.2rem;
+  }
+
+  .slot-list {
+    grid-template-columns: 1fr;
   }
 
   .selected-slot {

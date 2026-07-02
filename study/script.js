@@ -4,6 +4,7 @@ const requestPanel = document.getElementById('request');
 const requestForm = document.getElementById('request-form');
 const selectedSlotText = document.getElementById('selected-slot-text');
 const clearRequestButton = document.getElementById('clear-request');
+const dayPicker = document.getElementById('day-picker');
 const slotList = document.getElementById('slot-list');
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const scheduleEnd = { year: 2026, month: 8, day: 15 };
@@ -19,6 +20,8 @@ const studySlots = [
 ];
 let selectedSlot = '';
 let selectedLocalSlot = '';
+let sessionsByDate = [];
+let selectedDateKey = '';
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
 
@@ -73,6 +76,19 @@ function formatNetherlandsDate(dateParts) {
   }).format(new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12)));
 }
 
+function formatNetherlandsDateShort(dateParts) {
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12)));
+}
+
+function getDateKey(dateParts) {
+  return `${dateParts.year}-${String(dateParts.month).padStart(2, '0')}-${String(dateParts.day).padStart(2, '0')}`;
+}
+
 function formatSlotTime(startDate, endDate) {
   const timeFormatter = new Intl.DateTimeFormat([], {
     hour: 'numeric',
@@ -113,32 +129,85 @@ function createSlotItem(dateParts, slot) {
   return slotItem;
 }
 
-function renderSlots() {
+function getUpcomingSessionDays() {
   const today = getZonedParts(new Date(), netherlandsTimeZone);
   const cursor = new Date(Date.UTC(today.year, today.month - 1, today.day, 12));
-  const fragment = document.createDocumentFragment();
+  const sessionDays = [];
 
   while (compareDateParts(datePartsFromUtcDate(cursor), scheduleEnd) <= 0) {
     const dateParts = datePartsFromUtcDate(cursor);
 
     if (studyDays.some((day) => day.index === cursor.getUTCDay())) {
-      studySlots.forEach((slot) => {
-        fragment.appendChild(createSlotItem(dateParts, slot));
+      sessionDays.push({
+        key: getDateKey(dateParts),
+        dateParts,
+        label: formatNetherlandsDateShort(dateParts),
+        fullLabel: formatNetherlandsDate(dateParts)
       });
     }
 
     cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
 
-  if (fragment.childNodes.length === 0) {
+  return sessionDays;
+}
+
+function renderDayPicker() {
+  if (sessionsByDate.length === 0) {
+    dayPicker.innerHTML = '';
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+
+  sessionsByDate.forEach((sessionDay) => {
+    const button = document.createElement('button');
+    button.className = 'day-button';
+    button.type = 'button';
+    button.dataset.dateKey = sessionDay.key;
+    button.textContent = sessionDay.label;
+    button.setAttribute('aria-pressed', sessionDay.key === selectedDateKey ? 'true' : 'false');
+    fragment.appendChild(button);
+  });
+
+  dayPicker.replaceChildren(fragment);
+}
+
+function renderSlotsForSelectedDate() {
+  const selectedDay = sessionsByDate.find((sessionDay) => sessionDay.key === selectedDateKey);
+
+  if (!selectedDay) {
     slotList.innerHTML = '<p class="slot-empty">No upcoming study sessions are listed yet.</p>';
     return;
   }
 
+  const fragment = document.createDocumentFragment();
+
+  studySlots.forEach((slot) => {
+    fragment.appendChild(createSlotItem(selectedDay.dateParts, slot));
+  });
+
   slotList.replaceChildren(fragment);
 }
 
-renderSlots();
+function renderSchedule() {
+  sessionsByDate = getUpcomingSessionDays();
+  selectedDateKey = sessionsByDate[0]?.key || '';
+  renderDayPicker();
+  renderSlotsForSelectedDate();
+}
+
+renderSchedule();
+
+dayPicker.addEventListener('click', (event) => {
+  const button = event.target.closest('.day-button');
+
+  if (!button) return;
+
+  selectedDateKey = button.dataset.dateKey;
+  renderDayPicker();
+  renderSlotsForSelectedDate();
+});
 
 slotList.addEventListener('click', (event) => {
   const button = event.target.closest('.slot-request');
