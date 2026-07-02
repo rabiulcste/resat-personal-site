@@ -4537,9 +4537,9 @@ p {
 body {
   background:
     radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.045) 1px, transparent 1.35px),
-    radial-gradient(circle at 92% 12%, rgba(246, 196, 211, 0.34) 0 12rem, transparent 12.2rem),
+    radial-gradient(circle at 92% 12%, rgba(176, 217, 180, 0.38) 0 12rem, transparent 12.2rem),
     radial-gradient(circle at 8% 42%, rgba(205, 232, 205, 0.52) 0 10rem, transparent 10.2rem),
-    linear-gradient(180deg, #f1f8e9 0%, #fbfff4 42%, #eaf2e4 100%);
+    linear-gradient(180deg, #dcefdc 0%, #eaf7e9 42%, #cfe4d2 100%);
   background-size: 19px 19px, auto, auto, auto;
 }
 
@@ -4562,7 +4562,7 @@ body {
 }
 
 .menu {
-  background: rgba(245, 252, 238, 0.88);
+  background: rgba(220, 239, 220, 0.92);
   border-bottom: 1px solid rgba(36, 53, 43, 0.18);
   box-shadow: 0 12px 28px rgba(93, 119, 101, 0.1);
 }
@@ -4579,8 +4579,8 @@ body {
   overflow: visible;
   background:
     radial-gradient(circle at 14% 18%, rgba(174, 217, 171, 0.42) 0 7rem, transparent 7.2rem),
-    radial-gradient(circle at 86% 22%, rgba(158, 73, 98, 0.12) 0 8rem, transparent 8.2rem),
-    rgba(247, 253, 239, 0.76);
+    radial-gradient(circle at 86% 22%, rgba(112, 154, 120, 0.18) 0 8rem, transparent 8.2rem),
+    rgba(222, 242, 221, 0.84);
   border: 0;
   border-radius: 28px;
   box-shadow: 0 22px 54px rgba(93, 119, 101, 0.12);
@@ -4641,7 +4641,7 @@ h3,
 
 .home-portrait-card,
 .about-photo-large img {
-  border: 10px solid #fbfff4;
+  border: 10px solid #dcefdc;
   border-radius: 18px;
   box-shadow: 0 18px 34px rgba(36, 53, 43, 0.16), 8px 8px 0 rgba(158, 73, 98, 0.16);
 }
@@ -4684,7 +4684,7 @@ h3,
 .btn-primary,
 .btn-outline,
 input[type='submit'] {
-  color: #fbfff4;
+  color: #edf8ed;
   background: #9e4962;
   border: 0;
   border-radius: 999px;
@@ -4711,7 +4711,7 @@ input[type='submit'] {
 .research-cta-section {
   background:
     radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.045) 1px, transparent 1.35px),
-    rgba(247, 253, 239, 0.88);
+    rgba(222, 242, 221, 0.92);
   background-size: 18px 18px, auto;
   border: 0;
   border-radius: 18px;
@@ -4721,14 +4721,27 @@ input[type='submit'] {
 .media-lab-about-page .about-block {
   padding: 1.65rem;
   background:
-    linear-gradient(135deg, rgba(247, 253, 239, 0.95), rgba(225, 243, 222, 0.74));
+    linear-gradient(135deg, rgba(221, 241, 219, 0.96), rgba(196, 225, 200, 0.86));
   border: 0;
   box-shadow: 0 18px 36px rgba(93, 119, 101, 0.1);
 }
 
 .media-lab-about-page .about-block:nth-of-type(2n) {
   background:
-    linear-gradient(135deg, rgba(247, 253, 239, 0.95), rgba(210, 235, 215, 0.82));
+    linear-gradient(135deg, rgba(211, 235, 211, 0.96), rgba(180, 214, 189, 0.88));
+}
+
+.about-hero {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(184, 222, 182, 0.62) 0 8rem, transparent 8.2rem),
+    radial-gradient(circle at 88% 28%, rgba(143, 187, 150, 0.38) 0 9rem, transparent 9.2rem),
+    linear-gradient(135deg, rgba(218, 240, 216, 0.96) 0%, rgba(193, 224, 198, 0.92) 52%, rgba(225, 243, 222, 0.96) 100%);
+}
+
+.about-hero-text .about-name {
+  text-shadow:
+    0 2px 0 rgba(215, 238, 211, 0.95),
+    0 8px 22px rgba(93, 119, 101, 0.13);
 }
 
 .media-lab-about-page .about-block-content {
