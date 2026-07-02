@@ -63,19 +63,19 @@ permalink: "/about/"
             <ul class="about-flow-list">
               <li>
                 <span class="about-flow-main">Ph.D. in Communication, <a href="https://www.umass.edu/social-sciences/academics/communication">UMass Amherst</a> (in progress)</span>
-                <span class="about-flow-year">2025–present</span>
+                <span class="about-flow-year">Fall 2026</span>
               </li>
               <li>
                 <span class="about-flow-main">One year, Sociology graduate program, <a href="https://www.concordia.ca/artsci/sociology-anthropology.html">Concordia University</a></span>
-                <span class="about-flow-year">2024–2025</span>
+                <span class="about-flow-year">Fall, 2025 – Summer, 2026</span>
               </li>
               <li>
                 <span class="about-flow-main">M.A. in Sociology, <a href="https://www.fau.edu/artsandletters/sociology/">Florida Atlantic University</a></span>
-                <span class="about-flow-year">2022–2024</span>
+                <span class="about-flow-year">2023–2025</span>
               </li>
               <li>
                 <span class="about-flow-main">LLB (Hons) with Anthropology minor, BRAC University</span>
-                <span class="about-flow-year">2017–2021</span>
+                <span class="about-flow-year">2017–2022</span>
               </li>
             </ul>
           </div>
@@ -92,11 +92,10 @@ permalink: "/about/"
               </li>
               <li>
                 <span class="about-flow-main">Academic and Project Mentor, <a href="https://www.facebook.com/kendrobimukhi/">Kendrobimukhi</a> (Dhaka)</span>
-                <span class="about-flow-year">2025–present</span>
+                <span class="about-flow-year">2024–present</span>
               </li>
               <li>
                 <span class="about-flow-main">Peer educator, <a href="https://www.facebook.com/cholokothaboli">Kotha</a></span>
-                <span class="about-flow-year">—</span>
               </li>
             </ul>
           </div>

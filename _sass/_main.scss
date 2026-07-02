@@ -1353,16 +1353,15 @@ input[type="submit"], button {
 .about-hero-text {
   .about-name {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
+    font-weight: 900;
     font-family: var(--font-primary);
-    color: $complimentary-color;
+    color: #172119;
     margin-bottom: 0.75rem;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.015em;
     line-height: 1.1;
-    background: linear-gradient(135deg, #FFFFFF 0%, rgba($accent-r, $accent-g, $accent-b, 0.8) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
   }
   
   .about-role {
@@ -1566,7 +1565,7 @@ input[type="submit"], button {
     li {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(5.75rem, auto);
+      grid-template-columns: minmax(0, 1fr) minmax(8rem, auto);
       gap: 0.65rem 1.25rem;
       align-items: start;
       font-size: 1.0625rem;
@@ -1621,13 +1620,13 @@ input[type="submit"], button {
       font-style: normal;
       letter-spacing: 0;
       color: rgba($accent-r, $accent-g, $accent-b, 0.52);
-      white-space: nowrap;
+      max-width: 13rem;
       font-variant-numeric: tabular-nums;
       line-height: 1.65;
       padding-top: 0.18em;
       justify-self: end;
-      align-self: start;
       text-align: right;
+      align-self: start;
 
       @media (max-width: 720px) {
         justify-self: start;
