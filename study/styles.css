@@ -330,6 +330,14 @@ h3 {
   font-weight: 800;
 }
 
+.slot-date {
+  display: block;
+  margin-bottom: 0.12rem;
+  color: var(--wine);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
 .slot-label {
   display: block;
   color: var(--muted);
@@ -342,6 +350,10 @@ h3 {
   color: var(--accent-dark);
   font-size: 0.86rem;
   font-weight: 800;
+}
+
+.slot-empty {
+  margin: 0;
 }
 
 .slot-request {

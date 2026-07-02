@@ -4,11 +4,18 @@ const requestPanel = document.getElementById('request');
 const requestForm = document.getElementById('request-form');
 const selectedSlotText = document.getElementById('selected-slot-text');
 const clearRequestButton = document.getElementById('clear-request');
+const slotList = document.getElementById('slot-list');
 const netherlandsTimeZone = 'Europe/Amsterdam';
+const scheduleEnd = { year: 2026, month: 8, day: 15 };
 const studyDays = [
-  { label: 'Monday', short: 'Mon', index: 1 },
-  { label: 'Tuesday', short: 'Tue', index: 2 },
-  { label: 'Wednesday', short: 'Wed', index: 3 }
+  { label: 'Monday', index: 1 },
+  { label: 'Tuesday', index: 2 },
+  { label: 'Wednesday', index: 3 }
+];
+const studySlots = [
+  { label: 'morning room', start: '11:00', end: '12:45', display: '11:00 AM - 12:45 PM' },
+  { label: 'afternoon room', start: '13:00', end: '15:45', display: '1:00 PM - 3:45 PM' },
+  { label: 'short room', start: '15:45', end: '16:30', display: '3:45 PM - 4:30 PM' }
 ];
 let selectedSlot = '';
 let selectedLocalSlot = '';
@@ -29,18 +36,17 @@ function getZonedParts(date, timeZone) {
   return Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, Number(part.value)]));
 }
 
-function getNetherlandsDateForWeekday(weekdayIndex) {
-  const today = getZonedParts(new Date(), netherlandsTimeZone);
-  const todayAtNoonUtc = new Date(Date.UTC(today.year, today.month - 1, today.day, 12));
-  const todayWeekdayIndex = todayAtNoonUtc.getUTCDay();
-  const daysUntil = (weekdayIndex - todayWeekdayIndex + 7) % 7;
-  const target = new Date(todayAtNoonUtc);
-  target.setUTCDate(target.getUTCDate() + daysUntil);
+function compareDateParts(firstDate, secondDate) {
+  const first = Date.UTC(firstDate.year, firstDate.month - 1, firstDate.day);
+  const second = Date.UTC(secondDate.year, secondDate.month - 1, secondDate.day);
+  return first - second;
+}
 
+function datePartsFromUtcDate(date) {
   return {
-    year: target.getUTCFullYear(),
-    month: target.getUTCMonth() + 1,
-    day: target.getUTCDate()
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth() + 1,
+    day: date.getUTCDate()
   };
 }
 
@@ -58,7 +64,16 @@ function netherlandsTimeToDate(dateParts, time) {
   return new Date(utcGuess);
 }
 
-function formatLocalSlot(startDate, endDate) {
+function formatNetherlandsDate(dateParts) {
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12)));
+}
+
+function formatSlotTime(startDate, endDate) {
   const timeFormatter = new Intl.DateTimeFormat([], {
     hour: 'numeric',
     minute: '2-digit',
@@ -67,44 +82,78 @@ function formatLocalSlot(startDate, endDate) {
   return `${timeFormatter.format(startDate)} - ${timeFormatter.format(endDate)}`;
 }
 
-function formatLocalDays(localDates) {
-  const dayFormatter = new Intl.DateTimeFormat([], { weekday: 'short' });
-  const days = localDates.map((date) => dayFormatter.format(date));
-  const uniqueDays = [...new Set(days)];
-
-  return uniqueDays.length === studyDays.length ? uniqueDays.join(', ') : uniqueDays.join(' / ');
-}
-
-function updateLocalSlotTimes() {
-  document.querySelectorAll('.slot-item').forEach((slotItem) => {
-    const localSlots = studyDays.map((day) => {
-      const dateParts = getNetherlandsDateForWeekday(day.index);
-      const startDate = netherlandsTimeToDate(dateParts, slotItem.dataset.start);
-      const endDate = netherlandsTimeToDate(dateParts, slotItem.dataset.end);
-      return { startDate, endDate };
-    });
-    const sameTimeText = formatLocalSlot(localSlots[0].startDate, localSlots[0].endDate);
-    const localDays = formatLocalDays(localSlots.map((slot) => slot.startDate));
-    const localText = `Your time: ${localDays}, ${sameTimeText}`;
-
-    slotItem.dataset.localSlot = localText.replace('Your time: ', '');
-    slotItem.querySelector('.slot-local').textContent = localText;
+function formatLocalDateTime(startDate, endDate) {
+  const dateFormatter = new Intl.DateTimeFormat([], {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric'
   });
+  return `${dateFormatter.format(startDate)}, ${formatSlotTime(startDate, endDate)}`;
 }
 
-updateLocalSlotTimes();
+function createSlotItem(dateParts, slot) {
+  const startDate = netherlandsTimeToDate(dateParts, slot.start);
+  const endDate = netherlandsTimeToDate(dateParts, slot.end);
+  const netherlandsDate = formatNetherlandsDate(dateParts);
+  const netherlandsSlot = `${netherlandsDate}, ${slot.display}`;
+  const localSlot = formatLocalDateTime(startDate, endDate);
+  const slotItem = document.createElement('div');
+  slotItem.className = 'slot-item';
+  slotItem.dataset.slot = netherlandsSlot;
+  slotItem.dataset.localSlot = localSlot;
+  slotItem.innerHTML = `
+    <div>
+      <span class="slot-date">${netherlandsDate}</span>
+      <span class="slot-time">${slot.display}</span>
+      <span class="slot-label">${slot.label}</span>
+      <span class="slot-local">Your time: ${localSlot}</span>
+    </div>
+    <button class="slot-request" type="button">Request this slot</button>
+  `;
+  return slotItem;
+}
 
-document.querySelectorAll('.slot-request').forEach((button) => {
-  button.addEventListener('click', () => {
-    selectedSlot = button.dataset.slot;
-    selectedLocalSlot = button.closest('.slot-item').dataset.localSlot || '';
+function renderSlots() {
+  const today = getZonedParts(new Date(), netherlandsTimeZone);
+  const cursor = new Date(Date.UTC(today.year, today.month - 1, today.day, 12));
+  const fragment = document.createDocumentFragment();
+
+  while (compareDateParts(datePartsFromUtcDate(cursor), scheduleEnd) <= 0) {
+    const dateParts = datePartsFromUtcDate(cursor);
+
+    if (studyDays.some((day) => day.index === cursor.getUTCDay())) {
+      studySlots.forEach((slot) => {
+        fragment.appendChild(createSlotItem(dateParts, slot));
+      });
+    }
+
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+
+  if (fragment.childNodes.length === 0) {
+    slotList.innerHTML = '<p class="slot-empty">No upcoming study sessions are listed yet.</p>';
+    return;
+  }
+
+  slotList.replaceChildren(fragment);
+}
+
+renderSlots();
+
+slotList.addEventListener('click', (event) => {
+  const button = event.target.closest('.slot-request');
+
+  if (button) {
+    const slotItem = button.closest('.slot-item');
+    selectedSlot = slotItem.dataset.slot;
+    selectedLocalSlot = slotItem.dataset.localSlot || '';
     selectedSlotText.textContent = selectedLocalSlot
       ? `${selectedSlot} Netherlands time · ${selectedLocalSlot} your time`
-      : `${selectedSlot} · Monday, Tuesday, or Wednesday`;
+      : selectedSlot;
     requestPanel.hidden = false;
     requestPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     requestForm.elements.name.focus();
-  });
+  }
 });
 
 clearRequestButton.addEventListener('click', () => {
@@ -131,7 +180,7 @@ requestForm.addEventListener('submit', (event) => {
     '',
     'I would like to request a seat in the study room.',
     '',
-    `Slot: ${selectedSlot} on Monday, Tuesday, or Wednesday, Netherlands time`,
+    `Slot: ${selectedSlot} Netherlands time`,
     selectedLocalSlot ? `Visitor local time: ${selectedLocalSlot}${visitorTimeZone ? ` (${visitorTimeZone})` : ''}` : '',
     `Name: ${formData.get('name')}`,
     `Email: ${formData.get('email')}`,
