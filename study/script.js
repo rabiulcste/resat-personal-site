@@ -4,8 +4,10 @@ const requestPanel = document.getElementById('request');
 const requestForm = document.getElementById('request-form');
 const selectedSlotText = document.getElementById('selected-slot-text');
 const clearRequestButton = document.getElementById('clear-request');
+const formStatus = document.getElementById('form-status');
 const dayPicker = document.getElementById('day-picker');
 const slotList = document.getElementById('slot-list');
+const requestEndpoint = '';
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const scheduleEnd = { year: 2026, month: 8, day: 15 };
 const studyDays = [
@@ -243,26 +245,60 @@ requestForm.addEventListener('submit', (event) => {
   }
 
   const formData = new FormData(requestForm);
-  const subject = `Study Room Request - ${selectedSlot}`;
-  const body = [
-    'Hi Resat,',
-    '',
-    'I would like to request a seat in the study room.',
-    '',
-    `Slot: ${selectedSlot} Netherlands time`,
-    selectedLocalSlot ? `Visitor local time: ${selectedLocalSlot}${visitorTimeZone ? ` (${visitorTimeZone})` : ''}` : '',
-    `Name: ${formData.get('name')}`,
-    `Email: ${formData.get('email')}`,
-    `How often they want to join: ${formData.get('frequency')}`,
-    '',
-    'What I will work on:',
-    formData.get('work'),
-    '',
-    'Why I want to join:',
-    formData.get('why'),
-    '',
-    'Thank you!'
-  ].join('\n');
+  const payload = {
+    slot: selectedSlot,
+    localSlot: selectedLocalSlot,
+    visitorTimeZone,
+    name: formData.get('name'),
+    email: formData.get('email'),
+    work: formData.get('work'),
+    frequency: formData.get('frequency'),
+    why: formData.get('why')
+  };
 
-  window.location.href = `mailto:resat.amin@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  if (!requestEndpoint) {
+    const subject = `Study Room Request - ${selectedSlot}`;
+    const body = [
+      'Hi Resat,',
+      '',
+      'I would like to request a seat in the study room.',
+      '',
+      `Slot: ${payload.slot} Netherlands time`,
+      payload.localSlot ? `Visitor local time: ${payload.localSlot}${visitorTimeZone ? ` (${visitorTimeZone})` : ''}` : '',
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `How often they want to join: ${payload.frequency}`,
+      '',
+      'What I will work on:',
+      payload.work,
+      '',
+      'Why I want to join:',
+      payload.why,
+      '',
+      'Thank you!'
+    ].join('\n');
+
+    window.location.href = `mailto:resat.amin@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+
+  formStatus.textContent = 'Sending your request...';
+  requestForm.querySelector('button[type="submit"]').disabled = true;
+
+  fetch(requestEndpoint, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  })
+    .then(() => {
+      formStatus.textContent = 'Request sent. If you are already approved, the room link will come automatically.';
+      requestForm.reset();
+    })
+    .catch(() => {
+      formStatus.textContent = 'Something went wrong. Please try again in a moment.';
+    })
+    .finally(() => {
+      requestForm.querySelector('button[type="submit"]').disabled = false;
+    });
 });
