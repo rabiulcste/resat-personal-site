@@ -305,75 +305,71 @@ h3 {
 }
 
 .timezone-note {
-  margin: 0.25rem 0 1rem;
+  margin: 0.7rem 0 1rem;
   color: var(--accent-dark);
   font-size: 0.86rem;
   font-weight: 800;
+  text-align: center;
+}
+
+.calendar-heading {
+  text-align: center;
+}
+
+.calendar-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.35rem;
+  color: #111;
+  background: #eeeae7;
+  border-radius: 18px;
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.calendar-heading h3 {
+  margin-top: 1.2rem;
+  color: #111;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1;
 }
 
 .day-picker {
   display: grid;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
-  gap: 0.55rem;
-  margin: 1rem 0 1.1rem;
-  overflow-x: auto;
-  padding-bottom: 0.35rem;
-}
-
-.calendar-weekday {
-  padding: 0 0.25rem;
-  color: var(--accent-dark);
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-align: center;
-  text-transform: uppercase;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.7rem 1.55rem;
+  margin: 1.35rem 0 1.1rem;
 }
 
 .day-card {
   overflow: hidden;
-  min-height: 118px;
-  background: rgba(255, 253, 247, 0.64);
-  border: 1px solid rgba(111, 154, 120, 0.18);
-  border-radius: 10px;
-}
-
-.day-card.is-blank {
-  background: transparent;
-  border-color: transparent;
-}
-
-.day-card.is-muted {
-  background: rgba(248, 251, 247, 0.38);
+  min-height: 238px;
+  background: #eeeae7;
+  border: 0;
+  border-radius: 8px;
 }
 
 .day-heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.6rem;
-  width: 100%;
-  min-height: 48px;
-  padding: 0.65rem 0.65rem 0.5rem;
-  color: var(--muted);
-  background: rgba(232, 244, 234, 0.58);
+  margin: 0.45rem;
+  padding: 0.72rem 0.6rem;
+  color: #111;
+  background: #fff;
+  border-radius: 6px;
+  text-align: center;
 }
 
 .day-title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.94rem;
+  font-size: clamp(1.25rem, 2.7vw, 1.65rem);
   font-weight: 700;
-  line-height: 1.2;
-}
-
-.day-note {
-  flex: 0 0 auto;
-  padding: 0.14rem 0.38rem;
-  color: var(--accent-dark);
-  background: #fffdf7;
-  border: 1px solid rgba(111, 154, 120, 0.18);
-  border-radius: 999px;
-  font-size: 0.68rem;
-  line-height: 1.2;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .slot-list {
@@ -385,21 +381,19 @@ h3 {
 
 .date-slots {
   display: grid;
-  gap: 0.42rem;
-  padding: 0.55rem;
-  border-top: 1px solid rgba(111, 154, 120, 0.14);
+  gap: 0.68rem;
+  padding: 0.9rem 1.2rem 1.1rem;
 }
 
 .slot-item {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
-  gap: 0.55rem;
-  min-height: 100%;
-  padding: 0.58rem;
-  border: 1px solid rgba(111, 154, 120, 0.16);
-  border-radius: 8px;
+  gap: 0.7rem;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 
 .slot-item.is-booked {
@@ -412,42 +406,33 @@ h3 {
 
 .slot-time {
   display: block;
-  color: var(--ink);
-  font-size: 0.82rem;
-  font-weight: 800;
-}
-
-.slot-date {
-  display: block;
-  margin-bottom: 0.12rem;
-  color: var(--wine);
-  font-size: 0.88rem;
-  font-weight: 800;
+  color: #111;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .slot-label {
-  display: block;
-  color: var(--muted);
-  font-size: 0.76rem;
+  display: none;
 }
 
 .slot-local {
   display: block;
-  margin-top: 0.2rem;
-  color: var(--accent-dark);
-  font-size: 0.74rem;
+  margin-top: 0.08rem;
+  color: #5f5a56;
+  font-size: 0.7rem;
   font-weight: 800;
 }
 
 .slot-capacity {
   display: inline-flex;
   width: fit-content;
-  margin-top: 0.36rem;
-  padding: 0.16rem 0.46rem;
+  margin-top: 0.18rem;
+  padding: 0.12rem 0.36rem;
   color: var(--wine);
-  background: rgba(158, 73, 98, 0.08);
+  background: rgba(255, 255, 255, 0.72);
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
 }
 
@@ -461,15 +446,15 @@ h3 {
 }
 
 .slot-request {
-  width: 100%;
-  min-height: 32px;
-  padding: 0 0.55rem;
-  color: var(--accent-dark);
-  background: rgba(248, 251, 247, 0.82);
-  border: 1px solid rgba(111, 154, 120, 0.28);
-  border-radius: 8px;
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 0 0.58rem;
+  color: #111;
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 999px;
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
   cursor: pointer;
 }
@@ -654,12 +639,12 @@ h3 {
   }
 
   .day-picker {
-    grid-template-columns: repeat(7, minmax(104px, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .slot-item {
-    align-items: flex-start;
-    gap: 0.2rem;
+    align-items: center;
   }
 
   .slot-list,

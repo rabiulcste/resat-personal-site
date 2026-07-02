@@ -185,16 +185,17 @@ function getUpcomingSessionDays() {
     const isAvailableDay = studyDays.some((day) => day.index === cursor.getUTCDay());
     const isPast = compareDateParts(dateParts, startDate) < 0;
 
-    sessionDays.push({
-      key: getDateKey(dateParts),
-      dateParts,
-      calendar: getCalendarLabel(dateParts),
-      heading: formatCalendarHeading(dateParts),
-      label: formatNetherlandsDateShort(dateParts),
-      fullLabel: formatNetherlandsDate(dateParts),
-      hasSessions: isAvailableDay && !isPast,
-      isPast
-    });
+    if (isAvailableDay && !isPast) {
+      sessionDays.push({
+        key: getDateKey(dateParts),
+        dateParts,
+        calendar: getCalendarLabel(dateParts),
+        heading: formatCalendarHeading(dateParts),
+        label: formatNetherlandsDateShort(dateParts),
+        fullLabel: formatNetherlandsDate(dateParts),
+        hasSessions: true
+      });
+    }
 
     cursor.setUTCDate(cursor.getUTCDate() + 1);
   }
@@ -209,45 +210,25 @@ function renderDayPicker() {
   }
 
   const fragment = document.createDocumentFragment();
-  const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const firstDay = sessionsByDate[0].dateParts;
-  const firstWeekday = new Date(Date.UTC(firstDay.year, firstDay.month - 1, firstDay.day, 12)).getUTCDay();
-  const leadingBlanks = (firstWeekday + 6) % 7;
-
-  weekdays.forEach((weekday) => {
-    const weekdayLabel = document.createElement('div');
-    weekdayLabel.className = 'calendar-weekday';
-    weekdayLabel.textContent = weekday;
-    fragment.appendChild(weekdayLabel);
-  });
-
-  for (let index = 0; index < leadingBlanks; index += 1) {
-    const blank = document.createElement('div');
-    blank.className = 'day-card is-blank';
-    fragment.appendChild(blank);
-  }
 
   sessionsByDate.forEach((sessionDay) => {
     const dateCard = document.createElement('article');
-    dateCard.className = `day-card${sessionDay.hasSessions ? '' : ' is-muted'}`;
+    dateCard.className = 'day-card';
     dateCard.dataset.dateKey = sessionDay.key;
 
     const header = document.createElement('div');
     header.className = 'day-heading';
     header.innerHTML = `
       <span class="day-title">${sessionDay.heading}</span>
-      <span class="day-note">${sessionDay.hasSessions ? '3 sessions' : sessionDay.isPast ? 'past' : 'no room'}</span>
     `;
     dateCard.appendChild(header);
 
-    if (sessionDay.hasSessions) {
-      const slots = document.createElement('div');
-      slots.className = 'date-slots';
-      studySlots.forEach((slot) => {
-        slots.appendChild(createSlotItem(sessionDay.dateParts, slot));
-      });
-      dateCard.appendChild(slots);
-    }
+    const slots = document.createElement('div');
+    slots.className = 'date-slots';
+    studySlots.forEach((slot) => {
+      slots.appendChild(createSlotItem(sessionDay.dateParts, slot));
+    });
+    dateCard.appendChild(slots);
 
     fragment.appendChild(dateCard);
   });
