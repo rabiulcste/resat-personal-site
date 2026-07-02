@@ -4532,3 +4532,185 @@ p {
     display: none;
   }
 }
+
+// Vintage comic magazine finish
+body {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.07) 1px, transparent 1.4px),
+    linear-gradient(180deg, #fff4cf 0%, #fffaf0 36%, #f5f0df 100%);
+  background-size: 18px 18px, auto;
+}
+
+.content_container,
+.home-hero,
+.about-hero,
+.research-hero,
+.blog-hero {
+  position: relative;
+}
+
+.content_container::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(176, 47, 47, 0.035), transparent 22%, transparent 78%, rgba(43, 79, 146, 0.035)),
+    repeating-linear-gradient(0deg, rgba(36, 53, 43, 0.025) 0, rgba(36, 53, 43, 0.025) 1px, transparent 1px, transparent 5px);
+  content: "";
+}
+
+.menu {
+  background: rgba(255, 244, 207, 0.94);
+  border-bottom: 4px solid #24352b;
+  box-shadow: 0 7px 0 rgba(158, 73, 98, 0.18);
+}
+
+.site-title-nav,
+.menu-items a {
+  text-transform: uppercase;
+}
+
+.site-title-nav {
+  color: #24352b;
+  text-shadow: 2px 2px 0 rgba(248, 214, 90, 0.72);
+}
+
+.home-hero,
+.about-hero,
+.research-hero,
+.blog-hero {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(248, 214, 90, 0.34) 0 7rem, transparent 7.2rem),
+    radial-gradient(circle at 84% 22%, rgba(158, 73, 98, 0.14) 0 9rem, transparent 9.2rem),
+    rgba(255, 250, 235, 0.72);
+  border: 4px solid #24352b;
+  box-shadow: 10px 10px 0 rgba(36, 53, 43, 0.12);
+}
+
+h1,
+h2,
+h3,
+.home-hero-title,
+.about-hero-text .about-name,
+.research-hero-title,
+.blog-hero-title,
+.about-block-content .about-block-title,
+.course-research-title,
+.selected-projects-title {
+  color: #18271e;
+  letter-spacing: -0.01em;
+  text-shadow: 3px 3px 0 rgba(248, 214, 90, 0.62);
+}
+
+.home-hero-title,
+.research-hero-title,
+.blog-hero-title,
+.about-hero-text .about-name {
+  text-transform: uppercase;
+}
+
+.home-portrait-card,
+.about-photo-large img {
+  border: 6px solid #24352b;
+  border-radius: 6px;
+  box-shadow: 8px 8px 0 rgba(158, 73, 98, 0.22);
+}
+
+.home-portrait-note,
+.home-topic-notes span,
+.blog-tag,
+.research-project-date,
+.research-project-advisor,
+.about-flow-year {
+  color: #24352b;
+  background: #ffe76f;
+  border: 3px solid #24352b;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 rgba(36, 53, 43, 0.12);
+}
+
+.home-hero-link-primary,
+.home-hero-link-secondary,
+.btn-primary,
+.btn-outline,
+input[type='submit'] {
+  color: #fffaf0;
+  background: #9e4962;
+  border: 3px solid #24352b;
+  border-radius: 4px;
+  box-shadow: 5px 5px 0 rgba(36, 53, 43, 0.18);
+  text-transform: uppercase;
+}
+
+.home-hero-link-secondary,
+.btn-outline {
+  color: #24352b;
+  background: #ffe76f;
+}
+
+.about-block,
+.research-agenda-section,
+.course-research-container,
+.research-project-item,
+.research-project-item-compact,
+.media-lab-blog-card,
+.blog-note,
+.contact-form,
+.contact-fallback-card,
+.video-card-lazy,
+.research-cta-section {
+  background: rgba(255, 250, 235, 0.9);
+  border: 3px solid #24352b;
+  border-radius: 6px;
+  box-shadow: 7px 7px 0 rgba(36, 53, 43, 0.1);
+}
+
+.media-lab-about-page .about-block {
+  padding: 1.65rem;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(158, 73, 98, 0.08) 1px, transparent 1.4px),
+    rgba(255, 250, 235, 0.88);
+  background-size: 15px 15px, auto;
+  border: 3px solid #24352b;
+  box-shadow: 7px 7px 0 rgba(36, 53, 43, 0.1);
+}
+
+.media-lab-about-page .about-block-content {
+  padding-left: 0;
+}
+
+.media-lab-about-page .about-block-content::before {
+  display: none;
+}
+
+.research-link-inline,
+.about-block-content a {
+  color: #477652;
+  font-weight: 900;
+  text-decoration-thickness: 3px;
+}
+
+@media (max-width: 768px) {
+  .home-hero,
+  .about-hero,
+  .research-hero,
+  .blog-hero,
+  .media-lab-about-page .about-block,
+  .course-research-container,
+  .research-project-item,
+  .media-lab-blog-card {
+    border-width: 2px;
+    box-shadow: 4px 4px 0 rgba(36, 53, 43, 0.1);
+  }
+
+  h1,
+  h2,
+  h3,
+  .home-hero-title,
+  .about-hero-text .about-name,
+  .research-hero-title,
+  .blog-hero-title {
+    text-shadow: 2px 2px 0 rgba(248, 214, 90, 0.62);
+  }
+}
