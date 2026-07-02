@@ -336,6 +336,14 @@ h3 {
   font-size: 0.9rem;
 }
 
+.slot-local {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--accent-dark);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
 .slot-request {
   flex: 0 0 auto;
   min-height: 38px;
