@@ -10,6 +10,7 @@ const slotList = document.getElementById('slot-list');
 const slotPopupTitle = document.getElementById('slot-popup-title');
 const slotPopupOptions = document.getElementById('slot-popup-options');
 const slotPopupClose = document.getElementById('slot-popup-close');
+const studyVideo = document.getElementById('study-video');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbyfT0Q_WNaO0OutWBW0nZkX4FHSQTr2x8LxFHOv7R-cK_agAPx0y3GtKTbV-o6AVX-Kxw/exec';
 const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
@@ -32,6 +33,15 @@ let sessionsByDate = [];
 let availabilityBySlot = {};
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+
+if (studyVideo) {
+  studyVideo.muted = true;
+  studyVideo.volume = 0;
+  studyVideo.addEventListener('volumechange', () => {
+    studyVideo.muted = true;
+    studyVideo.volume = 0;
+  });
+}
 
 function getZonedParts(date, timeZone) {
   const parts = new Intl.DateTimeFormat('en-US', {
@@ -224,7 +234,10 @@ function renderDayPicker() {
     const header = document.createElement('div');
     header.className = 'day-heading';
     header.innerHTML = `
+      <span class="day-weekday">${sessionDay.calendar.weekday}</span>
+      <span class="day-date"><span>${sessionDay.calendar.month}</span> ${sessionDay.calendar.day}</span>
       <span class="day-title">${sessionDay.heading}</span>
+      <span class="day-tap">Pick a time</span>
     `;
     dateCard.appendChild(header);
 
