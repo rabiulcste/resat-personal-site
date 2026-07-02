@@ -3,6 +3,7 @@ const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
+const MAX_SEATS_PER_SLOT = 3;
 
 function doPost(event) {
   const data = JSON.parse(event.postData.contents);
@@ -17,6 +18,7 @@ function doPost(event) {
     'name',
     'email',
     'slot',
+    'slotKey',
     'localSlot',
     'visitorTimeZone',
     'frequency',
@@ -32,6 +34,7 @@ function doPost(event) {
     data.name,
     email,
     data.slot,
+    data.slotKey,
     data.localSlot,
     data.visitorTimeZone,
     data.frequency,
@@ -39,6 +42,12 @@ function doPost(event) {
     data.why,
     ''
   ]);
+
+  if (isSlotFull_(ss, data.slotKey)) {
+    markRequest_(ss, requestId, 'full');
+    sendFullEmail_(email, data.name, data.slot, data.localSlot);
+    return json_({ ok: true, status: 'full' });
+  }
 
   if (isApprovedRegular_(ss, email)) {
     markRequest_(ss, requestId, 'auto-approved');
@@ -53,6 +62,10 @@ function doPost(event) {
 function doGet(event) {
   const action = event.parameter.action;
   const requestId = event.parameter.id;
+
+  if (action === 'availability') {
+    return json_({ ok: true, booked: getBookedCounts_(SpreadsheetApp.getActiveSpreadsheet()) });
+  }
 
   if (action === 'approve') {
     return approveRequest_(requestId);
@@ -71,6 +84,11 @@ function approveRequest_(requestId) {
 
   if (!request) {
     return HtmlService.createHtmlOutput('Request not found.');
+  }
+
+  if (isSlotFull_(ss, request.slotKey)) {
+    markRequest_(ss, requestId, 'full');
+    return HtmlService.createHtmlOutput('This slot is already booked. No link was sent.');
   }
 
   markRequest_(ss, requestId, 'approved');
@@ -108,6 +126,7 @@ function sendApprovalEmail_(requestId, data) {
   const htmlBody = `
     <p><strong>${escape_(data.name)}</strong> requested a study room seat.</p>
     <p><strong>Slot:</strong> ${escape_(data.slot)} Netherlands time<br>
+    <strong>Seats left:</strong> ${escape_(getSeatsLeft_(SpreadsheetApp.getActiveSpreadsheet(), data.slotKey))}<br>
     <strong>Their local time:</strong> ${escape_(data.localSlot || '')}<br>
     <strong>Email:</strong> ${escape_(data.email)}<br>
     <strong>Frequency:</strong> ${escape_(data.frequency)}</p>
@@ -135,6 +154,14 @@ function sendMeetLink_(email, name, slot, localSlot) {
   });
 }
 
+function sendFullEmail_(email, name, slot, localSlot) {
+  MailApp.sendEmail({
+    to: email,
+    subject: 'Study room slot is full',
+    body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nPlease choose another slot.\n\nResat`
+  });
+}
+
 function isRegularAccess_(frequency) {
   return ['This same slot regularly', 'All available sessions when I can'].includes(frequency);
 }
@@ -145,6 +172,13 @@ function getSheet_(ss, name, headers) {
   if (!sheet) {
     sheet = ss.insertSheet(name);
     sheet.appendRow(headers);
+  } else if (headers.length > 0) {
+    const existingHeaders = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), 1)).getValues()[0];
+    headers.forEach((header) => {
+      if (!existingHeaders.includes(header)) {
+        sheet.getRange(1, sheet.getLastColumn() + 1).setValue(header);
+      }
+    });
   }
 
   return sheet;
@@ -180,6 +214,38 @@ function markRequest_(ss, requestId, status) {
       return;
     }
   }
+}
+
+function getBookedCounts_(ss) {
+  const sheet = getSheet_(ss, SHEET_REQUESTS, []);
+  const values = sheet.getDataRange().getValues();
+
+  if (values.length < 2) return {};
+
+  const headers = values[0];
+  const slotKeyIndex = headers.indexOf('slotKey');
+  const statusIndex = headers.indexOf('status');
+  const counts = {};
+
+  values.slice(1).forEach((row) => {
+    const status = row[statusIndex];
+    const slotKey = row[slotKeyIndex];
+
+    if (slotKey && ['approved', 'auto-approved'].includes(status)) {
+      counts[slotKey] = (counts[slotKey] || 0) + 1;
+    }
+  });
+
+  return counts;
+}
+
+function getSeatsLeft_(ss, slotKey) {
+  return Math.max(MAX_SEATS_PER_SLOT - (getBookedCounts_(ss)[slotKey] || 0), 0);
+}
+
+function isSlotFull_(ss, slotKey) {
+  if (!slotKey) return false;
+  return getSeatsLeft_(ss, slotKey) <= 0;
 }
 
 function isApprovedRegular_(ss, email) {

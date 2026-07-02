@@ -8,6 +8,7 @@ const formStatus = document.getElementById('form-status');
 const dayPicker = document.getElementById('day-picker');
 const slotList = document.getElementById('slot-list');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbyfT0Q_WNaO0OutWBW0nZkX4FHSQTr2x8LxFHOv7R-cK_agAPx0y3GtKTbV-o6AVX-Kxw/exec';
+const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const scheduleEnd = { year: 2026, month: 8, day: 15 };
 const studyDays = [
@@ -22,8 +23,10 @@ const studySlots = [
 ];
 let selectedSlot = '';
 let selectedLocalSlot = '';
+let selectedSlotKey = '';
 let sessionsByDate = [];
 let selectedDateKey = '';
+let availabilityBySlot = {};
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
 
@@ -78,6 +81,21 @@ function formatNetherlandsDate(dateParts) {
   }).format(new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12)));
 }
 
+function formatCalendarHeading(dateParts) {
+  const date = new Date(Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, 12));
+  const monthDay = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC'
+  }).format(date);
+  const weekday = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    timeZone: 'UTC'
+  }).format(date);
+
+  return `${monthDay} -- ${weekday}`;
+}
+
 function formatNetherlandsDateShort(dateParts) {
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
@@ -100,6 +118,10 @@ function getDateKey(dateParts) {
   return `${dateParts.year}-${String(dateParts.month).padStart(2, '0')}-${String(dateParts.day).padStart(2, '0')}`;
 }
 
+function getSlotKey(dateParts, slot) {
+  return `${getDateKey(dateParts)}__${slot.start}-${slot.end}`;
+}
+
 function formatSlotTime(startDate, endDate) {
   const timeFormatter = new Intl.DateTimeFormat([], {
     hour: 'numeric',
@@ -118,24 +140,36 @@ function formatLocalDateTime(startDate, endDate) {
   return `${dateFormatter.format(startDate)}, ${formatSlotTime(startDate, endDate)}`;
 }
 
+function getCapacityLabel(slotKey) {
+  const booked = availabilityBySlot[slotKey] || 0;
+  const left = Math.max(maxSeatsPerSlot - booked, 0);
+
+  if (left === 0) return 'booked';
+  if (left === 1) return '1 left';
+  return `${left} left`;
+}
+
 function createSlotItem(dateParts, slot) {
   const startDate = netherlandsTimeToDate(dateParts, slot.start);
   const endDate = netherlandsTimeToDate(dateParts, slot.end);
   const netherlandsDate = formatNetherlandsDate(dateParts);
   const netherlandsSlot = `${netherlandsDate}, ${slot.display}`;
   const localSlot = formatLocalDateTime(startDate, endDate);
+  const slotKey = getSlotKey(dateParts, slot);
+  const isBooked = getCapacityLabel(slotKey) === 'booked';
   const slotItem = document.createElement('div');
-  slotItem.className = 'slot-item';
+  slotItem.className = `slot-item${isBooked ? ' is-booked' : ''}`;
   slotItem.dataset.slot = netherlandsSlot;
   slotItem.dataset.localSlot = localSlot;
+  slotItem.dataset.slotKey = slotKey;
   slotItem.innerHTML = `
     <div>
-      <span class="slot-date">${netherlandsDate}</span>
       <span class="slot-time">${slot.display}</span>
       <span class="slot-label">${slot.label}</span>
       <span class="slot-local">Your time: ${localSlot}</span>
+      <span class="slot-capacity">${getCapacityLabel(slotKey)}</span>
     </div>
-    <button class="slot-request" type="button">Request this slot</button>
+    <button class="slot-request" type="button" ${isBooked ? 'disabled' : ''}>${isBooked ? 'Booked' : 'Request this slot'}</button>
   `;
   return slotItem;
 }
@@ -153,6 +187,7 @@ function getUpcomingSessionDays() {
         key: getDateKey(dateParts),
         dateParts,
         calendar: getCalendarLabel(dateParts),
+        heading: formatCalendarHeading(dateParts),
         label: formatNetherlandsDateShort(dateParts),
         fullLabel: formatNetherlandsDate(dateParts)
       });
@@ -173,49 +208,64 @@ function renderDayPicker() {
   const fragment = document.createDocumentFragment();
 
   sessionsByDate.forEach((sessionDay) => {
+    const dateCard = document.createElement('article');
+    dateCard.className = 'day-card';
+    dateCard.dataset.dateKey = sessionDay.key;
+
     const button = document.createElement('button');
     button.className = 'day-button';
     button.type = 'button';
     button.dataset.dateKey = sessionDay.key;
     button.innerHTML = `
-      <span class="day-weekday">${sessionDay.calendar.weekday}</span>
-      <span class="day-number">${sessionDay.calendar.day}</span>
-      <span class="day-month">${sessionDay.calendar.month}</span>
+      <span class="day-title">${sessionDay.heading}</span>
       <span class="day-note">3 sessions</span>
     `;
     button.setAttribute('aria-pressed', sessionDay.key === selectedDateKey ? 'true' : 'false');
     button.setAttribute('aria-label', `${sessionDay.fullLabel}, 3 sessions`);
-    fragment.appendChild(button);
+    dateCard.appendChild(button);
+
+    if (sessionDay.key === selectedDateKey) {
+      const slots = document.createElement('div');
+      slots.className = 'date-slots';
+      studySlots.forEach((slot) => {
+        slots.appendChild(createSlotItem(sessionDay.dateParts, slot));
+      });
+      dateCard.appendChild(slots);
+    }
+
+    fragment.appendChild(dateCard);
   });
 
   dayPicker.replaceChildren(fragment);
 }
 
 function renderSlotsForSelectedDate() {
-  const selectedDay = sessionsByDate.find((sessionDay) => sessionDay.key === selectedDateKey);
-
-  if (!selectedDay) {
-    slotList.innerHTML = '<p class="slot-empty">No upcoming study sessions are listed yet.</p>';
-    return;
-  }
-
-  const fragment = document.createDocumentFragment();
-
-  studySlots.forEach((slot) => {
-    fragment.appendChild(createSlotItem(selectedDay.dateParts, slot));
-  });
-
-  slotList.replaceChildren(fragment);
+  renderDayPicker();
 }
 
 function renderSchedule() {
   sessionsByDate = getUpcomingSessionDays();
   selectedDateKey = sessionsByDate[0]?.key || '';
   renderDayPicker();
-  renderSlotsForSelectedDate();
 }
 
 renderSchedule();
+
+function refreshAvailability() {
+  if (!requestEndpoint) return;
+
+  fetch(`${requestEndpoint}?action=availability`)
+    .then((response) => response.json())
+    .then((data) => {
+      availabilityBySlot = data.booked || {};
+      renderDayPicker();
+    })
+    .catch(() => {
+      availabilityBySlot = {};
+    });
+}
+
+refreshAvailability();
 
 dayPicker.addEventListener('click', (event) => {
   const button = event.target.closest('.day-button');
@@ -228,12 +278,22 @@ dayPicker.addEventListener('click', (event) => {
 });
 
 slotList.addEventListener('click', (event) => {
+  handleSlotClick(event);
+});
+
+dayPicker.addEventListener('click', (event) => {
+  handleSlotClick(event);
+});
+
+function handleSlotClick(event) {
   const button = event.target.closest('.slot-request');
 
   if (button) {
     const slotItem = button.closest('.slot-item');
+    if (button.disabled || slotItem.classList.contains('is-booked')) return;
     selectedSlot = slotItem.dataset.slot;
     selectedLocalSlot = slotItem.dataset.localSlot || '';
+    selectedSlotKey = slotItem.dataset.slotKey || '';
     selectedSlotText.textContent = selectedLocalSlot
       ? `${selectedSlot} Netherlands time · ${selectedLocalSlot} your time`
       : selectedSlot;
@@ -241,11 +301,12 @@ slotList.addEventListener('click', (event) => {
     requestPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     requestForm.elements.name.focus();
   }
-});
+}
 
 clearRequestButton.addEventListener('click', () => {
   selectedSlot = '';
   selectedLocalSlot = '';
+  selectedSlotKey = '';
   selectedSlotText.textContent = 'Choose a slot above';
   requestPanel.hidden = true;
   document.getElementById('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -263,6 +324,7 @@ requestForm.addEventListener('submit', (event) => {
   const formData = new FormData(requestForm);
   const payload = {
     slot: selectedSlot,
+    slotKey: selectedSlotKey,
     localSlot: selectedLocalSlot,
     visitorTimeZone,
     name: formData.get('name'),
@@ -310,6 +372,7 @@ requestForm.addEventListener('submit', (event) => {
     .then(() => {
       formStatus.textContent = 'Request sent. If you are already approved, the room link will come automatically.';
       requestForm.reset();
+      refreshAvailability();
     })
     .catch(() => {
       formStatus.textContent = 'Something went wrong. Please try again in a moment.';

@@ -8,6 +8,7 @@ This makes the flow work like this:
 4. You receive an email with Approve and Decline buttons.
 5. If you approve, the person automatically receives the Google Meet link.
 6. If they asked for regular access, their email is saved as approved. Next time they request, the link is sent automatically.
+7. Each slot allows 3 approved people. After that, the website can show the slot as booked.
 
 ## What You Need
 
@@ -60,3 +61,7 @@ const requestEndpoint = '';
 ```
 
 After that, the website form will stop using email drafts and will send requests into the approval system.
+
+## Updating The Script Later
+
+If this repository changes `study/google-apps-script.js`, paste the updated code into Apps Script again and deploy a new version. Google does not update the deployed Web App from GitHub automatically.
