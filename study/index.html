@@ -125,11 +125,18 @@
       <div class="booking-box card-soft">
         <div class="calendar-heading">
           <span class="calendar-badge">This month</span>
-          <h3>Available appointments</h3>
           <p class="timezone-note">Through July 31 · Netherlands time, with your local time below</p>
         </div>
         <div class="day-picker" id="day-picker" aria-label="Choose a study room date and time"></div>
-        <div class="slot-list" id="slot-list" hidden aria-live="polite" aria-label="Available study room time slots"></div>
+        <div class="slot-list" id="slot-list" hidden aria-live="polite" aria-label="Available study room time slots">
+          <div class="slot-popup">
+            <div class="slot-popup-header">
+              <h4 id="slot-popup-title">Choose a time</h4>
+              <button class="slot-popup-close" id="slot-popup-close" type="button" aria-label="Close time options">Close</button>
+            </div>
+            <div class="slot-popup-options" id="slot-popup-options"></div>
+          </div>
+        </div>
         <p>
           After you request a slot, I will check the note first. If it fits, you will get the private room link. Regulars only need approval once.
         </p>

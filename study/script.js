@@ -7,6 +7,9 @@ const clearRequestButton = document.getElementById('clear-request');
 const formStatus = document.getElementById('form-status');
 const dayPicker = document.getElementById('day-picker');
 const slotList = document.getElementById('slot-list');
+const slotPopupTitle = document.getElementById('slot-popup-title');
+const slotPopupOptions = document.getElementById('slot-popup-options');
+const slotPopupClose = document.getElementById('slot-popup-close');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbyfT0Q_WNaO0OutWBW0nZkX4FHSQTr2x8LxFHOv7R-cK_agAPx0y3GtKTbV-o6AVX-Kxw/exec';
 const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
@@ -212,9 +215,11 @@ function renderDayPicker() {
   const fragment = document.createDocumentFragment();
 
   sessionsByDate.forEach((sessionDay) => {
-    const dateCard = document.createElement('article');
+    const dateCard = document.createElement('button');
     dateCard.className = 'day-card';
+    dateCard.type = 'button';
     dateCard.dataset.dateKey = sessionDay.key;
+    dateCard.setAttribute('aria-label', `${sessionDay.fullLabel}, choose time`);
 
     const header = document.createElement('div');
     header.className = 'day-heading';
@@ -222,13 +227,6 @@ function renderDayPicker() {
       <span class="day-title">${sessionDay.heading}</span>
     `;
     dateCard.appendChild(header);
-
-    const slots = document.createElement('div');
-    slots.className = 'date-slots';
-    studySlots.forEach((slot) => {
-      slots.appendChild(createSlotItem(sessionDay.dateParts, slot));
-    });
-    dateCard.appendChild(slots);
 
     fragment.appendChild(dateCard);
   });
@@ -260,12 +258,35 @@ function refreshAvailability() {
 refreshAvailability();
 
 dayPicker.addEventListener('click', (event) => {
-  handleSlotClick(event);
+  const dateCard = event.target.closest('.day-card');
+
+  if (!dateCard) return;
+
+  openSlotPopup(dateCard.dataset.dateKey);
 });
 
 slotList.addEventListener('click', (event) => {
   handleSlotClick(event);
 });
+
+slotPopupClose.addEventListener('click', () => {
+  slotList.hidden = true;
+});
+
+function openSlotPopup(dateKey) {
+  const sessionDay = sessionsByDate.find((day) => day.key === dateKey);
+
+  if (!sessionDay) return;
+
+  dayPicker.querySelectorAll('.day-card').forEach((card) => {
+    card.setAttribute('aria-pressed', card.dataset.dateKey === dateKey ? 'true' : 'false');
+  });
+
+  slotPopupTitle.textContent = sessionDay.heading;
+  slotPopupOptions.replaceChildren(...studySlots.map((slot) => createSlotItem(sessionDay.dateParts, slot)));
+  slotList.hidden = false;
+  slotList.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 
 function handleSlotClick(event) {
   const button = event.target.closest('.slot-request');
