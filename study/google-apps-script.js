@@ -64,7 +64,8 @@ function doGet(event) {
   const requestId = event.parameter.id;
 
   if (action === 'availability') {
-    return json_({ ok: true, booked: getBookedCounts_(SpreadsheetApp.getActiveSpreadsheet()) });
+    const payload = { ok: true, booked: getBookedCounts_(SpreadsheetApp.getActiveSpreadsheet()) };
+    return event.parameter.callback ? javascript_(event.parameter.callback, payload) : json_(payload);
   }
 
   if (action === 'approve') {
@@ -264,6 +265,13 @@ function json_(value) {
   return ContentService
     .createTextOutput(JSON.stringify(value))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function javascript_(callback, value) {
+  const safeCallback = String(callback || '').replace(/[^\w.$]/g, '');
+  return ContentService
+    .createTextOutput(`${safeCallback}(${JSON.stringify(value)});`)
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
 }
 
 function escape_(value) {

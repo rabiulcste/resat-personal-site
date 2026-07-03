@@ -137,7 +137,6 @@ h3 {
 .section-copy,
 .booking-text p,
 .about p,
-.backstory-copy p,
 .booking-box p,
 .steps p,
 .rules-list li,
@@ -259,8 +258,7 @@ h3 {
 .split,
 .booking,
 .request-panel,
-.about,
-.backstory {
+.about {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(2rem, 5vw, 4rem);
@@ -654,12 +652,11 @@ h3 {
 
 .section-copy,
 .booking-text p,
-.about p,
-.backstory-copy p {
+.about p {
   font-size: 1rem;
 }
 
-.backstory-copy p + p {
+.about-copy p + p {
   margin-top: 1rem;
 }
 
@@ -705,8 +702,7 @@ h3 {
   .split,
   .booking,
   .request-panel,
-  .about,
-  .backstory {
+  .about {
     grid-template-columns: 1fr;
   }
 

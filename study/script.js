@@ -257,15 +257,31 @@ renderSchedule();
 function refreshAvailability() {
   if (!requestEndpoint) return;
 
-  fetch(`${requestEndpoint}?action=availability`)
-    .then((response) => response.json())
-    .then((data) => {
-      availabilityBySlot = data.booked || {};
-      renderDayPicker();
-    })
-    .catch(() => {
-      availabilityBySlot = {};
-    });
+  const callbackName = `studyAvailability${Date.now()}`;
+  const script = document.createElement('script');
+  let timeout;
+  const cleanup = () => {
+    window.clearTimeout(timeout);
+    delete window[callbackName];
+    script.remove();
+  };
+  timeout = window.setTimeout(() => {
+    availabilityBySlot = {};
+    cleanup();
+  }, 8000);
+
+  window[callbackName] = (data) => {
+    availabilityBySlot = data.booked || {};
+    renderDayPicker();
+    cleanup();
+  };
+
+  script.src = `${requestEndpoint}?action=availability&callback=${callbackName}`;
+  script.onerror = () => {
+    availabilityBySlot = {};
+    cleanup();
+  };
+  document.head.appendChild(script);
 }
 
 refreshAvailability();
