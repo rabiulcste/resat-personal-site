@@ -1,5 +1,6 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
+const SCRIPT_VERSION = '2026-07-03-slot-key-fallback';
 
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
@@ -298,6 +299,7 @@ function getAvailabilityDebug_(ss) {
   });
 
   return {
+    scriptVersion: SCRIPT_VERSION,
     sheetName: sheet.getName(),
     rows: Math.max(values.length - 1, 0),
     headersPresent: REQUEST_HEADERS.every((header) => headers.includes(header)),
