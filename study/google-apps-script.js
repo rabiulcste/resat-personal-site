@@ -4,6 +4,21 @@ const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
 const MAX_SEATS_PER_SLOT = 3;
+const REQUEST_HEADERS = [
+  'createdAt',
+  'requestId',
+  'status',
+  'name',
+  'email',
+  'slot',
+  'slotKey',
+  'localSlot',
+  'visitorTimeZone',
+  'frequency',
+  'work',
+  'why',
+  'approvedAt'
+];
 
 function doPost(event) {
   const data = JSON.parse(event.postData.contents);
@@ -11,21 +26,7 @@ function doPost(event) {
   const requestId = Utilities.getUuid();
   const createdAt = new Date();
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const requests = getSheet_(ss, SHEET_REQUESTS, [
-    'createdAt',
-    'requestId',
-    'status',
-    'name',
-    'email',
-    'slot',
-    'slotKey',
-    'localSlot',
-    'visitorTimeZone',
-    'frequency',
-    'work',
-    'why',
-    'approvedAt'
-  ]);
+  const requests = getRequestsSheet_(ss);
 
   requests.appendRow([
     createdAt,
@@ -65,6 +66,11 @@ function doGet(event) {
 
   if (action === 'availability') {
     const payload = { ok: true, booked: getBookedCounts_(SpreadsheetApp.getActiveSpreadsheet()) };
+    return event.parameter.callback ? javascript_(event.parameter.callback, payload) : json_(payload);
+  }
+
+  if (action === 'availability-debug') {
+    const payload = Object.assign({ ok: true }, getAvailabilityDebug_(SpreadsheetApp.getActiveSpreadsheet()));
     return event.parameter.callback ? javascript_(event.parameter.callback, payload) : json_(payload);
   }
 
@@ -185,8 +191,12 @@ function getSheet_(ss, name, headers) {
   return sheet;
 }
 
+function getRequestsSheet_(ss) {
+  return getSheet_(ss, SHEET_REQUESTS, REQUEST_HEADERS);
+}
+
 function findRequest_(ss, requestId) {
-  const sheet = getSheet_(ss, SHEET_REQUESTS, []);
+  const sheet = getRequestsSheet_(ss);
   const values = sheet.getDataRange().getValues();
   const headers = values[0];
   const idIndex = headers.indexOf('requestId');
@@ -201,7 +211,7 @@ function findRequest_(ss, requestId) {
 }
 
 function markRequest_(ss, requestId, status) {
-  const sheet = getSheet_(ss, SHEET_REQUESTS, []);
+  const sheet = getRequestsSheet_(ss);
   const values = sheet.getDataRange().getValues();
   const headers = values[0];
   const idIndex = headers.indexOf('requestId');
@@ -211,14 +221,16 @@ function markRequest_(ss, requestId, status) {
   for (let row = 1; row < values.length; row += 1) {
     if (values[row][idIndex] === requestId) {
       sheet.getRange(row + 1, statusIndex + 1).setValue(status);
-      sheet.getRange(row + 1, approvedAtIndex + 1).setValue(new Date());
+      if (approvedAtIndex >= 0 && ['approved', 'auto-approved'].includes(normalizeStatus_(status))) {
+        sheet.getRange(row + 1, approvedAtIndex + 1).setValue(new Date());
+      }
       return;
     }
   }
 }
 
 function getBookedCounts_(ss) {
-  const sheet = getSheet_(ss, SHEET_REQUESTS, []);
+  const sheet = getRequestsSheet_(ss);
   const values = sheet.getDataRange().getValues();
 
   if (values.length < 2) return {};
@@ -229,8 +241,8 @@ function getBookedCounts_(ss) {
   const counts = {};
 
   values.slice(1).forEach((row) => {
-    const status = row[statusIndex];
-    const slotKey = row[slotKeyIndex];
+    const status = normalizeStatus_(row[statusIndex]);
+    const slotKey = String(row[slotKeyIndex] || '').trim();
 
     if (slotKey && ['approved', 'auto-approved'].includes(status)) {
       counts[slotKey] = (counts[slotKey] || 0) + 1;
@@ -238,6 +250,41 @@ function getBookedCounts_(ss) {
   });
 
   return counts;
+}
+
+function getAvailabilityDebug_(ss) {
+  const sheet = getRequestsSheet_(ss);
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0] || [];
+  const slotKeyIndex = headers.indexOf('slotKey');
+  const statusIndex = headers.indexOf('status');
+  const statusCounts = {};
+  const approvedSlotKeys = [];
+
+  values.slice(1).forEach((row) => {
+    const status = normalizeStatus_(row[statusIndex]);
+    const slotKey = String(row[slotKeyIndex] || '').trim();
+
+    statusCounts[status || 'blank'] = (statusCounts[status || 'blank'] || 0) + 1;
+    if (slotKey && ['approved', 'auto-approved'].includes(status) && approvedSlotKeys.length < 10) {
+      approvedSlotKeys.push(slotKey);
+    }
+  });
+
+  return {
+    sheetName: sheet.getName(),
+    rows: Math.max(values.length - 1, 0),
+    headersPresent: REQUEST_HEADERS.every((header) => headers.includes(header)),
+    hasSlotKeyHeader: slotKeyIndex >= 0,
+    hasStatusHeader: statusIndex >= 0,
+    statusCounts,
+    approvedSlotKeys,
+    booked: getBookedCounts_(ss)
+  };
+}
+
+function normalizeStatus_(status) {
+  return String(status || '').trim().toLowerCase();
 }
 
 function getSeatsLeft_(ss, slotKey) {
