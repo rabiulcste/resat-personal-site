@@ -19,6 +19,25 @@ const REQUEST_HEADERS = [
   'why',
   'approvedAt'
 ];
+const SLOT_TIME_KEYS = {
+  '11:00 AM - 12:45 PM': '11:00-12:45',
+  '1:00 PM - 3:45 PM': '13:00-15:45',
+  '3:45 PM - 4:30 PM': '15:45-16:30'
+};
+const MONTH_NUMBERS = {
+  january: '01',
+  february: '02',
+  march: '03',
+  april: '04',
+  may: '05',
+  june: '06',
+  july: '07',
+  august: '08',
+  september: '09',
+  october: '10',
+  november: '11',
+  december: '12'
+};
 
 function doPost(event) {
   const data = JSON.parse(event.postData.contents);
@@ -237,12 +256,13 @@ function getBookedCounts_(ss) {
 
   const headers = values[0];
   const slotKeyIndex = headers.indexOf('slotKey');
+  const slotIndex = headers.indexOf('slot');
   const statusIndex = headers.indexOf('status');
   const counts = {};
 
   values.slice(1).forEach((row) => {
     const status = normalizeStatus_(row[statusIndex]);
-    const slotKey = String(row[slotKeyIndex] || '').trim();
+    const slotKey = getRowSlotKey_(row, slotKeyIndex, slotIndex);
 
     if (slotKey && ['approved', 'auto-approved'].includes(status)) {
       counts[slotKey] = (counts[slotKey] || 0) + 1;
@@ -257,17 +277,23 @@ function getAvailabilityDebug_(ss) {
   const values = sheet.getDataRange().getValues();
   const headers = values[0] || [];
   const slotKeyIndex = headers.indexOf('slotKey');
+  const slotIndex = headers.indexOf('slot');
   const statusIndex = headers.indexOf('status');
   const statusCounts = {};
   const approvedSlotKeys = [];
+  const approvedRowsMissingSlotKey = [];
 
   values.slice(1).forEach((row) => {
     const status = normalizeStatus_(row[statusIndex]);
-    const slotKey = String(row[slotKeyIndex] || '').trim();
+    const rawSlotKey = String(row[slotKeyIndex] || '').trim();
+    const slotKey = getRowSlotKey_(row, slotKeyIndex, slotIndex);
 
     statusCounts[status || 'blank'] = (statusCounts[status || 'blank'] || 0) + 1;
     if (slotKey && ['approved', 'auto-approved'].includes(status) && approvedSlotKeys.length < 10) {
       approvedSlotKeys.push(slotKey);
+    }
+    if (!rawSlotKey && ['approved', 'auto-approved'].includes(status) && approvedRowsMissingSlotKey.length < 10) {
+      approvedRowsMissingSlotKey.push(String(row[slotIndex] || '').trim());
     }
   });
 
@@ -279,8 +305,31 @@ function getAvailabilityDebug_(ss) {
     hasStatusHeader: statusIndex >= 0,
     statusCounts,
     approvedSlotKeys,
+    approvedRowsMissingSlotKey,
     booked: getBookedCounts_(ss)
   };
+}
+
+function getRowSlotKey_(row, slotKeyIndex, slotIndex) {
+  const rawSlotKey = String(row[slotKeyIndex] || '').trim();
+
+  if (rawSlotKey) return rawSlotKey;
+
+  return slotToSlotKey_(String(row[slotIndex] || '').trim());
+}
+
+function slotToSlotKey_(slot) {
+  const match = slot.match(/^[A-Za-z]+,\s+([A-Za-z]+)\s+(\d{1,2}),\s+(.+)$/);
+
+  if (!match) return '';
+
+  const month = MONTH_NUMBERS[match[1].toLowerCase()];
+  const day = String(match[2]).padStart(2, '0');
+  const timeKey = SLOT_TIME_KEYS[match[3].trim()];
+
+  if (!month || !timeKey) return '';
+
+  return `2026-${month}-${day}__${timeKey}`;
 }
 
 function normalizeStatus_(status) {
