@@ -137,6 +137,7 @@ h3 {
 .section-copy,
 .booking-text p,
 .about p,
+.backstory-copy p,
 .booking-box p,
 .steps p,
 .rules-list li,
@@ -258,7 +259,8 @@ h3 {
 .split,
 .booking,
 .request-panel,
-.about {
+.about,
+.backstory {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(2rem, 5vw, 4rem);
@@ -267,7 +269,9 @@ h3 {
 
 .booking {
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 1.05rem;
+  padding-top: 2.6rem;
+  padding-bottom: 2.8rem;
 }
 
 .booking-text {
@@ -276,6 +280,7 @@ h3 {
 
 .booking-box {
   width: 100%;
+  padding: 1rem;
 }
 
 .steps {
@@ -291,14 +296,6 @@ h3 {
   padding: 1.15rem;
 }
 
-.timezone-note {
-  margin: 0.7rem 0 1rem;
-  color: var(--accent-dark);
-  font-size: 0.86rem;
-  font-weight: 800;
-  text-align: center;
-}
-
 .calendar-heading {
   text-align: center;
 }
@@ -307,15 +304,15 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0 1.45rem;
+  min-height: 38px;
+  padding: 0 1.15rem;
   color: #111;
   background: #efe8e1;
   border: 1px solid rgba(158, 73, 98, 0.12);
   border-radius: 20px;
   box-shadow: 0 8px 18px rgba(36, 53, 43, 0.06);
   font-family: Fredoka, Nunito, system-ui, sans-serif;
-  font-size: 1.38rem;
+  font-size: 1.14rem;
   font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -324,15 +321,15 @@ h3 {
 .day-picker {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1.1rem 0 1.1rem;
+  gap: 0.85rem;
+  margin: 0.9rem 0 1rem;
 }
 
 .day-card {
   display: block;
   overflow: hidden;
   position: relative;
-  min-height: 132px;
+  min-height: 122px;
   padding: 0;
   color: inherit;
   background: #efe8e1;
@@ -657,8 +654,13 @@ h3 {
 
 .section-copy,
 .booking-text p,
-.about p {
+.about p,
+.backstory-copy p {
   font-size: 1rem;
+}
+
+.backstory-copy p + p {
+  margin-top: 1rem;
 }
 
 .rules-list {
@@ -703,7 +705,8 @@ h3 {
   .split,
   .booking,
   .request-panel,
-  .about {
+  .about,
+  .backstory {
     grid-template-columns: 1fr;
   }
 
