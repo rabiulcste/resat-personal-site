@@ -16,7 +16,8 @@ const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const calendarStart = { year: 2026, month: 7, day: 1 };
 const scheduleEnd = { year: 2026, month: 7, day: 31 };
-const blockedDates = new Set(['2026-07-06', '2026-07-07']);
+const blockedDates = new Set(['2026-07-06']);
+const blockedSlotKeys = new Set(['2026-07-07__15:45-16:30']);
 const studyDays = [
   { label: 'Monday', index: 1 },
   { label: 'Tuesday', index: 2 },
@@ -155,6 +156,8 @@ function formatLocalDateTime(startDate, endDate) {
 }
 
 function getCapacityLabel(slotKey) {
+  if (blockedSlotKeys.has(slotKey)) return 'closed';
+
   const booked = availabilityBySlot[slotKey] || 0;
   const left = Math.max(maxSeatsPerSlot - booked, 0);
 
@@ -170,9 +173,12 @@ function createSlotItem(dateParts, slot) {
   const netherlandsSlot = `${netherlandsDate}, ${slot.display}`;
   const localSlot = formatLocalDateTime(startDate, endDate);
   const slotKey = getSlotKey(dateParts, slot);
-  const isBooked = getCapacityLabel(slotKey) === 'booked';
+  const capacityLabel = getCapacityLabel(slotKey);
+  const isClosed = blockedSlotKeys.has(slotKey);
+  const isBooked = capacityLabel === 'booked';
+  const isUnavailable = isBooked || isClosed;
   const slotItem = document.createElement('div');
-  slotItem.className = `slot-item${isBooked ? ' is-booked' : ''}`;
+  slotItem.className = `slot-item${isUnavailable ? ' is-booked' : ''}`;
   slotItem.dataset.slot = netherlandsSlot;
   slotItem.dataset.localSlot = localSlot;
   slotItem.dataset.slotKey = slotKey;
@@ -181,9 +187,9 @@ function createSlotItem(dateParts, slot) {
       <span class="slot-time">${slot.display}</span>
       <span class="slot-label">${slot.label}</span>
       <span class="slot-local">Your time: ${localSlot}</span>
-      <span class="slot-capacity">${getCapacityLabel(slotKey)}</span>
+      <span class="slot-capacity">${capacityLabel}</span>
     </div>
-    <button class="slot-request" type="button" ${isBooked ? 'disabled' : ''}>${isBooked ? 'Booked' : 'Request this slot'}</button>
+    <button class="slot-request" type="button" ${isUnavailable ? 'disabled' : ''}>${isClosed ? 'Closed' : isBooked ? 'Booked' : 'Request this slot'}</button>
   `;
   return slotItem;
 }
