@@ -369,6 +369,16 @@ h3 {
   outline: 3px solid rgba(158, 73, 98, 0.16);
 }
 
+.day-card.is-closed {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.day-card.is-closed:hover {
+  transform: none;
+  box-shadow: 0 10px 22px rgba(36, 53, 43, 0.06);
+}
+
 .day-heading {
   margin: 0.45rem;
   min-height: calc(100% - 0.9rem);

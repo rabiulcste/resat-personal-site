@@ -16,6 +16,7 @@ const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const calendarStart = { year: 2026, month: 7, day: 1 };
 const scheduleEnd = { year: 2026, month: 7, day: 31 };
+const blockedDates = new Set(['2026-07-06', '2026-07-07']);
 const studyDays = [
   { label: 'Monday', index: 1 },
   { label: 'Tuesday', index: 2 },
@@ -195,18 +196,19 @@ function getUpcomingSessionDays() {
 
   while (compareDateParts(datePartsFromUtcDate(cursor), scheduleEnd) <= 0) {
     const dateParts = datePartsFromUtcDate(cursor);
+    const key = getDateKey(dateParts);
     const isAvailableDay = studyDays.some((day) => day.index === cursor.getUTCDay());
     const isPast = compareDateParts(dateParts, startDate) < 0;
 
     if (isAvailableDay && !isPast) {
       sessionDays.push({
-        key: getDateKey(dateParts),
+        key,
         dateParts,
         calendar: getCalendarLabel(dateParts),
         heading: formatCalendarHeading(dateParts),
         label: formatNetherlandsDateShort(dateParts),
         fullLabel: formatNetherlandsDate(dateParts),
-        hasSessions: true
+        hasSessions: !blockedDates.has(key)
       });
     }
 
@@ -226,10 +228,11 @@ function renderDayPicker() {
 
   sessionsByDate.forEach((sessionDay) => {
     const dateCard = document.createElement('button');
-    dateCard.className = 'day-card';
+    dateCard.className = `day-card${sessionDay.hasSessions ? '' : ' is-closed'}`;
     dateCard.type = 'button';
+    dateCard.disabled = !sessionDay.hasSessions;
     dateCard.dataset.dateKey = sessionDay.key;
-    dateCard.setAttribute('aria-label', `${sessionDay.fullLabel}, choose time`);
+    dateCard.setAttribute('aria-label', `${sessionDay.fullLabel}, ${sessionDay.hasSessions ? 'choose time' : 'closed for now'}`);
 
     const header = document.createElement('div');
     header.className = 'day-heading';
@@ -237,7 +240,7 @@ function renderDayPicker() {
       <span class="day-weekday">${sessionDay.calendar.weekday}</span>
       <span class="day-date"><span>${sessionDay.calendar.month}</span> ${sessionDay.calendar.day}</span>
       <span class="day-title">${sessionDay.heading}</span>
-      <span class="day-tap">Pick a time</span>
+      <span class="day-tap">${sessionDay.hasSessions ? 'Pick a time' : 'Closed for now'}</span>
     `;
     dateCard.appendChild(header);
 
@@ -290,6 +293,7 @@ dayPicker.addEventListener('click', (event) => {
   const dateCard = event.target.closest('.day-card');
 
   if (!dateCard) return;
+  if (dateCard.disabled) return;
 
   openSlotPopup(dateCard.dataset.dateKey);
 });
