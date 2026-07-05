@@ -145,7 +145,7 @@ function declineRequest_(requestId) {
   MailApp.sendEmail({
     to: request.email,
     subject: 'Study room request',
-    body: `Hi ${request.name || 'there'},\n\nThank you for your note. I cannot add you to this study room session right now.\n\nResat`
+    body: `Hi,\n\nThank you for your interest. It looks like your request may have been declined because some of the questions were not answered clearly or completely.\n\nResat`
   });
 
   return HtmlService.createHtmlOutput(`Declined ${request.name}.`);
