@@ -334,7 +334,7 @@ function adminView_(key) {
       .setTitle('Study room admin');
   }
 
-  const roster = getApprovedRoster_(SpreadsheetApp.getActiveSpreadsheet());
+  const roster = getAdminRoster_(SpreadsheetApp.getActiveSpreadsheet());
   const dates = Object.keys(roster).sort();
   const firstDate = dates[0] || '';
   const rosterJson = JSON.stringify(roster).replace(/</g, '\\u003c');
@@ -393,6 +393,39 @@ function adminView_(key) {
           border: 1px solid #d7e4d6;
           border-radius: 14px;
         }
+        .slot-meta {
+          margin: 6px 0 0;
+          font-size: 13px;
+        }
+        .status-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+          gap: 12px;
+          margin-top: 14px;
+        }
+        .status-box {
+          padding: 12px;
+          background: #f8fbf6;
+          border: 1px solid #d7e4d6;
+          border-radius: 12px;
+        }
+        .status-title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          margin: 0;
+          font-size: 14px;
+          text-transform: capitalize;
+        }
+        .count {
+          min-width: 1.8rem;
+          padding: 2px 7px;
+          color: #ffffff;
+          background: #477652;
+          border-radius: 999px;
+          text-align: center;
+        }
         h2, h3 {
           margin: 0;
         }
@@ -410,6 +443,9 @@ function adminView_(key) {
           display: block;
           color: #607066;
         }
+        .answer {
+          margin-top: 5px;
+        }
         .empty {
           padding: 18px;
           background: #ffffff;
@@ -420,8 +456,8 @@ function adminView_(key) {
     </head>
     <body>
       <main>
-        <h1>Accepted study room list</h1>
-        <p>Click a date to see approved people for that day. This page is private; do not share the link.</p>
+        <h1>Study room admin</h1>
+        <p>Click a date to see approved, pending, declined, and auto-approved requests. This page is private; do not share the link.</p>
         <div class="date-buttons" id="date-buttons"></div>
         <section id="date-panel"></section>
       </main>
@@ -444,10 +480,15 @@ function adminView_(key) {
           }
 
           const slots = day.slots.map((slot) => {
-            const people = slot.people.length
-              ? '<ul>' + slot.people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small></li>').join('') + '</ul>'
-              : '<p>No approved people in this slot yet.</p>';
-            return '<article class="slot"><h3>' + slot.time + '</h3>' + people + '</article>';
+            const statuses = ['pending', 'approved', 'auto-approved', 'declined', 'full'];
+            const groups = statuses.map((status) => {
+              const people = slot.people[status] || [];
+              const rows = people.length
+                ? '<ul>' + people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small><small class="answer">Work: ' + person.work + '</small><small class="answer">Why: ' + person.why + '</small></li>').join('') + '</ul>'
+                : '<p>None</p>';
+              return '<section class="status-box"><h4 class="status-title">' + status.replace('-', ' ') + '<span class="count">' + people.length + '</span></h4>' + rows + '</section>';
+            }).join('');
+            return '<article class="slot"><h3>' + slot.time + '</h3><p class="slot-meta">' + slot.total + ' request(s) for this slot</p><div class="status-grid">' + groups + '</div></article>';
           }).join('');
 
           panel.innerHTML = '<h2>' + day.label + '</h2>' + slots;
@@ -455,7 +496,7 @@ function adminView_(key) {
 
         if (dates.length === 0) {
           buttons.innerHTML = '';
-          panel.innerHTML = '<div class="empty">No approved people yet.</div>';
+          panel.innerHTML = '<div class="empty">No requests yet.</div>';
         } else {
           buttons.innerHTML = dates.map((dateKey) => '<button type="button" data-date="' + dateKey + '">' + roster[dateKey].label + '</button>').join('');
           buttons.addEventListener('click', (event) => {
@@ -472,7 +513,7 @@ function adminView_(key) {
   return HtmlService.createHtmlOutput(html).setTitle('Study room admin');
 }
 
-function getApprovedRoster_(ss) {
+function getAdminRoster_(ss) {
   const sheet = getRequestsSheet_(ss);
   const values = sheet.getDataRange().getValues();
 
@@ -485,12 +526,13 @@ function getApprovedRoster_(ss) {
   const slotKeyIndex = headers.indexOf('slotKey');
   const statusIndex = headers.indexOf('status');
   const frequencyIndex = headers.indexOf('frequency');
+  const workIndex = headers.indexOf('work');
+  const whyIndex = headers.indexOf('why');
   const roster = {};
 
   values.slice(1).forEach((row) => {
     const status = normalizeStatus_(row[statusIndex]);
-
-    if (!['approved', 'auto-approved'].includes(status)) return;
+    const group = status || 'pending';
 
     const slotKey = getRowSlotKey_(row, slotKeyIndex, slotIndex);
     if (!slotKey) return;
@@ -507,14 +549,28 @@ function getApprovedRoster_(ss) {
 
     let slot = roster[dateKey].slots.find((item) => item.time === slotLabel);
     if (!slot) {
-      slot = { time: slotLabel, people: [] };
+      slot = {
+        time: slotLabel,
+        total: 0,
+        people: {
+          pending: [],
+          approved: [],
+          'auto-approved': [],
+          declined: [],
+          full: []
+        }
+      };
       roster[dateKey].slots.push(slot);
     }
 
-    slot.people.push({
+    if (!slot.people[group]) slot.people[group] = [];
+    slot.total += 1;
+    slot.people[group].push({
       name: escape_(row[nameIndex] || 'Unnamed'),
       email: escape_(row[emailIndex] || ''),
-      frequency: escape_(row[frequencyIndex] || '')
+      frequency: escape_(row[frequencyIndex] || ''),
+      work: escape_(row[workIndex] || ''),
+      why: escape_(row[whyIndex] || '')
     });
   });
 
