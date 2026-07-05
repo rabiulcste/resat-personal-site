@@ -35,6 +35,7 @@ let sessionsByDate = [];
 let availabilityBySlot = {};
 let blockedDates = new Set(fallbackBlockedDates);
 let blockedSlotKeys = new Set(fallbackBlockedSlotKeys);
+let availabilityStatus = requestEndpoint ? 'loading' : 'ready';
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
 
@@ -159,6 +160,8 @@ function formatLocalDateTime(startDate, endDate) {
 
 function getCapacityLabel(slotKey) {
   if (blockedSlotKeys.has(slotKey)) return 'closed';
+  if (availabilityStatus === 'loading') return 'checking';
+  if (availabilityStatus === 'error') return 'refresh';
 
   const booked = availabilityBySlot[slotKey] || 0;
   const left = Math.max(maxSeatsPerSlot - booked, 0);
@@ -178,7 +181,8 @@ function createSlotItem(dateParts, slot) {
   const capacityLabel = getCapacityLabel(slotKey);
   const isClosed = blockedSlotKeys.has(slotKey);
   const isBooked = capacityLabel === 'booked';
-  const isUnavailable = isBooked || isClosed;
+  const isPending = ['checking', 'refresh'].includes(capacityLabel);
+  const isUnavailable = isBooked || isClosed || isPending;
   const slotItem = document.createElement('div');
   slotItem.className = `slot-item${isUnavailable ? ' is-booked' : ''}`;
   slotItem.dataset.slot = netherlandsSlot;
@@ -191,7 +195,7 @@ function createSlotItem(dateParts, slot) {
       <span class="slot-local">Your time: ${localSlot}</span>
       <span class="slot-capacity">${capacityLabel}</span>
     </div>
-    <button class="slot-request" type="button" ${isUnavailable ? 'disabled' : ''}>${isClosed ? 'Closed' : isBooked ? 'Booked' : 'Request this slot'}</button>
+    <button class="slot-request" type="button" ${isUnavailable ? 'disabled' : ''}>${isClosed ? 'Closed' : isBooked ? 'Booked' : isPending ? 'Please refresh' : 'Request this slot'}</button>
   `;
   return slotItem;
 }
@@ -278,11 +282,14 @@ function refreshAvailability() {
   };
   timeout = window.setTimeout(() => {
     availabilityBySlot = {};
+    availabilityStatus = 'error';
+    renderDayPicker();
     cleanup();
   }, 8000);
 
   window[callbackName] = (data) => {
     availabilityBySlot = data.booked || {};
+    availabilityStatus = 'ready';
     if (Array.isArray(data.blockedDates)) blockedDates = new Set(data.blockedDates);
     if (Array.isArray(data.blockedSlots)) blockedSlotKeys = new Set(data.blockedSlots);
     renderDayPicker();
@@ -292,6 +299,8 @@ function refreshAvailability() {
   script.src = `${requestEndpoint}?action=availability&callback=${callbackName}`;
   script.onerror = () => {
     availabilityBySlot = {};
+    availabilityStatus = 'error';
+    renderDayPicker();
     cleanup();
   };
   document.head.appendChild(script);
