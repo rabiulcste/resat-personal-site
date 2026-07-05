@@ -316,7 +316,7 @@ function getBlockedAvailability_(ss) {
 
   values.slice(1).forEach((row) => {
     const type = String(row[typeIndex] || '').trim().toLowerCase();
-    const key = String(row[keyIndex] || '').trim();
+    const key = normalizeBlockedKey_(row[keyIndex], type);
     const active = String(row[activeIndex] || '').trim().toLowerCase();
 
     if (!key || ['no', 'false', 'inactive', 'off'].includes(active)) return;
@@ -325,6 +325,14 @@ function getBlockedAvailability_(ss) {
   });
 
   return { dates, slots };
+}
+
+function normalizeBlockedKey_(value, type) {
+  if (type === 'date' && Object.prototype.toString.call(value) === '[object Date]' && !isNaN(value)) {
+    return Utilities.formatDate(value, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+
+  return String(value || '').trim();
 }
 
 function adminView_(key) {

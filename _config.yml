@@ -39,7 +39,7 @@ feed:
 #sass:
 #    style: :compressed
 
-include: ['_pages']
+include: ['_pages', '_redirects']
 
 permalink: /blog/:year/:title
 
