@@ -12,6 +12,7 @@ const slotPopupOptions = document.getElementById('slot-popup-options');
 const slotPopupClose = document.getElementById('slot-popup-close');
 const studyVideo = document.getElementById('study-video');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbygIDz4Q7D47BH3XbFcDnNaKUc7BNzhJFTinYs027wkvHCr7Wrf9AkHewS5jEcrk_v4cA/exec';
+const availabilityEndpoint = '/study-availability';
 const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const calendarStart = { year: 2026, month: 7, day: 1 };
@@ -269,41 +270,89 @@ function renderSchedule() {
 
 renderSchedule();
 
-function refreshAvailability() {
-  if (!requestEndpoint) return;
+function applyAvailabilityData(data) {
+  availabilityBySlot = data.booked || {};
+  availabilityStatus = 'ready';
+  if (Array.isArray(data.blockedDates)) blockedDates = new Set(data.blockedDates);
+  if (Array.isArray(data.blockedSlots)) blockedSlotKeys = new Set(data.blockedSlots);
+  renderDayPicker();
+}
 
+function markAvailabilityError() {
+  availabilityBySlot = {};
+  availabilityStatus = 'error';
+  renderDayPicker();
+}
+
+async function fetchAvailabilityJson(url) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+
+  try {
+    const response = await fetch(`${url}?action=availability&cache=${Date.now()}`, {
+      cache: 'no-store',
+      signal: controller.signal
+    });
+
+    if (!response.ok) throw new Error('Availability request failed');
+    return response.json();
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+function fetchAvailabilityJsonp() {
   const callbackName = `studyAvailability${Date.now()}`;
   const script = document.createElement('script');
   let timeout;
-  const cleanup = () => {
-    window.clearTimeout(timeout);
-    delete window[callbackName];
-    script.remove();
-  };
-  timeout = window.setTimeout(() => {
-    availabilityBySlot = {};
-    availabilityStatus = 'error';
-    renderDayPicker();
-    cleanup();
-  }, 8000);
 
-  window[callbackName] = (data) => {
-    availabilityBySlot = data.booked || {};
-    availabilityStatus = 'ready';
-    if (Array.isArray(data.blockedDates)) blockedDates = new Set(data.blockedDates);
-    if (Array.isArray(data.blockedSlots)) blockedSlotKeys = new Set(data.blockedSlots);
-    renderDayPicker();
-    cleanup();
-  };
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      delete window[callbackName];
+      script.remove();
+    };
+    timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error('Availability timed out'));
+    }, 8000);
 
-  script.src = `${requestEndpoint}?action=availability&callback=${callbackName}`;
-  script.onerror = () => {
-    availabilityBySlot = {};
-    availabilityStatus = 'error';
-    renderDayPicker();
-    cleanup();
-  };
-  document.head.appendChild(script);
+    window[callbackName] = (data) => {
+      cleanup();
+      resolve(data);
+    };
+
+    script.src = `${requestEndpoint}?action=availability&callback=${callbackName}&cache=${Date.now()}`;
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('Availability script failed'));
+    };
+    document.head.appendChild(script);
+  });
+}
+
+async function refreshAvailability() {
+  if (!requestEndpoint) return;
+
+  availabilityStatus = 'loading';
+  renderDayPicker();
+
+  try {
+    applyAvailabilityData(await fetchAvailabilityJson(availabilityEndpoint));
+    return;
+  } catch (error) {
+    try {
+      applyAvailabilityData(await fetchAvailabilityJson(requestEndpoint));
+      return;
+    } catch (fallbackError) {
+      try {
+        applyAvailabilityData(await fetchAvailabilityJsonp());
+        return;
+      } catch (jsonpError) {
+        markAvailabilityError();
+      }
+    }
+  }
 }
 
 refreshAvailability();
