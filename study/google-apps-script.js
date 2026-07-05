@@ -5,6 +5,7 @@ const SCRIPT_VERSION = '2026-07-03-slot-key-fallback';
 
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
+const SHEET_BLOCKED = 'Blocked slots';
 const MAX_SEATS_PER_SLOT = 3;
 const REQUEST_HEADERS = [
   'createdAt',
@@ -26,6 +27,11 @@ const SLOT_TIME_KEYS = {
   '1:00 PM - 3:45 PM': '13:00-15:45',
   '3:45 PM - 4:30 PM': '15:45-16:30'
 };
+const BLOCKED_HEADERS = ['type', 'key', 'label', 'active', 'note'];
+const DEFAULT_BLOCKED_ROWS = [
+  ['date', '2026-07-06', 'Monday, July 6', 'yes', 'Closed for now'],
+  ['slot', '2026-07-07__15:45-16:30', 'Tuesday, July 7, 3:45 PM - 4:30 PM', 'yes', 'Closed for now']
+];
 const MONTH_NUMBERS = {
   january: '01',
   february: '02',
@@ -86,7 +92,14 @@ function doGet(event) {
   const requestId = event.parameter.id;
 
   if (action === 'availability') {
-    const payload = { ok: true, booked: getBookedCounts_(SpreadsheetApp.getActiveSpreadsheet()) };
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const blocked = getBlockedAvailability_(ss);
+    const payload = {
+      ok: true,
+      booked: getBookedCounts_(ss),
+      blockedDates: blocked.dates,
+      blockedSlots: blocked.slots
+    };
     return event.parameter.callback ? javascript_(event.parameter.callback, payload) : json_(payload);
   }
 
@@ -220,6 +233,16 @@ function getRequestsSheet_(ss) {
   return getSheet_(ss, SHEET_REQUESTS, REQUEST_HEADERS);
 }
 
+function getBlockedSheet_(ss) {
+  const sheet = getSheet_(ss, SHEET_BLOCKED, BLOCKED_HEADERS);
+
+  if (sheet.getLastRow() < 2) {
+    DEFAULT_BLOCKED_ROWS.forEach((row) => sheet.appendRow(row));
+  }
+
+  return sheet;
+}
+
 function findRequest_(ss, requestId) {
   const sheet = getRequestsSheet_(ss);
   const values = sheet.getDataRange().getValues();
@@ -276,6 +299,32 @@ function getBookedCounts_(ss) {
   });
 
   return counts;
+}
+
+function getBlockedAvailability_(ss) {
+  const sheet = getBlockedSheet_(ss);
+  const values = sheet.getDataRange().getValues();
+
+  if (values.length < 2) return { dates: [], slots: [] };
+
+  const headers = values[0];
+  const typeIndex = headers.indexOf('type');
+  const keyIndex = headers.indexOf('key');
+  const activeIndex = headers.indexOf('active');
+  const dates = [];
+  const slots = [];
+
+  values.slice(1).forEach((row) => {
+    const type = String(row[typeIndex] || '').trim().toLowerCase();
+    const key = String(row[keyIndex] || '').trim();
+    const active = String(row[activeIndex] || '').trim().toLowerCase();
+
+    if (!key || ['no', 'false', 'inactive', 'off'].includes(active)) return;
+    if (type === 'date') dates.push(key);
+    if (type === 'slot') slots.push(key);
+  });
+
+  return { dates, slots };
 }
 
 function adminView_(key) {
@@ -534,6 +583,7 @@ function getAvailabilityDebug_(ss) {
     statusCounts,
     approvedSlotKeys,
     approvedRowsMissingSlotKey,
+    blocked: getBlockedAvailability_(ss),
     booked: getBookedCounts_(ss)
   };
 }

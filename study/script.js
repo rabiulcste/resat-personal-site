@@ -16,8 +16,8 @@ const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const calendarStart = { year: 2026, month: 7, day: 1 };
 const scheduleEnd = { year: 2026, month: 7, day: 31 };
-const blockedDates = new Set(['2026-07-06']);
-const blockedSlotKeys = new Set(['2026-07-07__15:45-16:30']);
+const fallbackBlockedDates = ['2026-07-06'];
+const fallbackBlockedSlotKeys = ['2026-07-07__15:45-16:30'];
 const studyDays = [
   { label: 'Monday', index: 1 },
   { label: 'Tuesday', index: 2 },
@@ -33,6 +33,8 @@ let selectedLocalSlot = '';
 let selectedSlotKey = '';
 let sessionsByDate = [];
 let availabilityBySlot = {};
+let blockedDates = new Set(fallbackBlockedDates);
+let blockedSlotKeys = new Set(fallbackBlockedSlotKeys);
 
 const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
 
@@ -281,6 +283,8 @@ function refreshAvailability() {
 
   window[callbackName] = (data) => {
     availabilityBySlot = data.booked || {};
+    if (Array.isArray(data.blockedDates)) blockedDates = new Set(data.blockedDates);
+    if (Array.isArray(data.blockedSlots)) blockedSlotKeys = new Set(data.blockedSlots);
     renderDayPicker();
     cleanup();
   };
