@@ -1,5 +1,6 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
+const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
 const SCRIPT_VERSION = '2026-07-03-slot-key-fallback';
 
 const SHEET_REQUESTS = 'Requests';
@@ -92,6 +93,10 @@ function doGet(event) {
   if (action === 'availability-debug') {
     const payload = Object.assign({ ok: true }, getAvailabilityDebug_(SpreadsheetApp.getActiveSpreadsheet()));
     return event.parameter.callback ? javascript_(event.parameter.callback, payload) : json_(payload);
+  }
+
+  if (action === 'admin') {
+    return adminView_(event.parameter.key);
   }
 
   if (action === 'approve') {
@@ -271,6 +276,227 @@ function getBookedCounts_(ss) {
   });
 
   return counts;
+}
+
+function adminView_(key) {
+  if (key !== ADMIN_KEY || ADMIN_KEY === 'CHANGE_THIS_PRIVATE_ADMIN_KEY') {
+    return HtmlService
+      .createHtmlOutput('<h1>Private study room list</h1><p>This admin link is locked. Add your private ADMIN_KEY in the script first.</p>')
+      .setTitle('Study room admin');
+  }
+
+  const roster = getApprovedRoster_(SpreadsheetApp.getActiveSpreadsheet());
+  const dates = Object.keys(roster).sort();
+  const firstDate = dates[0] || '';
+  const rosterJson = JSON.stringify(roster).replace(/</g, '\\u003c');
+  const datesJson = JSON.stringify(dates).replace(/</g, '\\u003c');
+
+  const html = `
+    <!doctype html>
+    <html>
+    <head>
+      <base target="_top">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+        body {
+          margin: 0;
+          padding: 28px;
+          color: #24352b;
+          background: #f8fbf6;
+          font-family: Arial, sans-serif;
+        }
+        main {
+          max-width: 920px;
+          margin: 0 auto;
+        }
+        h1 {
+          margin: 0 0 8px;
+          font-size: 30px;
+        }
+        p {
+          color: #607066;
+        }
+        .date-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin: 24px 0;
+        }
+        button {
+          padding: 10px 14px;
+          color: #24352b;
+          background: #ffffff;
+          border: 1px solid #d7e4d6;
+          border-radius: 999px;
+          cursor: pointer;
+          font: inherit;
+          font-weight: 700;
+        }
+        button[aria-pressed="true"] {
+          color: #ffffff;
+          background: #477652;
+          border-color: #477652;
+        }
+        .slot {
+          margin: 14px 0;
+          padding: 16px;
+          background: #ffffff;
+          border: 1px solid #d7e4d6;
+          border-radius: 14px;
+        }
+        h2, h3 {
+          margin: 0;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        ul {
+          margin: 12px 0 0;
+          padding-left: 20px;
+        }
+        li {
+          margin: 8px 0;
+        }
+        small {
+          display: block;
+          color: #607066;
+        }
+        .empty {
+          padding: 18px;
+          background: #ffffff;
+          border: 1px dashed #b9cab8;
+          border-radius: 14px;
+        }
+      </style>
+    </head>
+    <body>
+      <main>
+        <h1>Accepted study room list</h1>
+        <p>Click a date to see approved people for that day. This page is private; do not share the link.</p>
+        <div class="date-buttons" id="date-buttons"></div>
+        <section id="date-panel"></section>
+      </main>
+      <script>
+        const roster = ${rosterJson};
+        const dates = ${datesJson};
+        const firstDate = ${JSON.stringify(firstDate)};
+        const buttons = document.getElementById('date-buttons');
+        const panel = document.getElementById('date-panel');
+
+        function showDate(dateKey) {
+          buttons.querySelectorAll('button').forEach((button) => {
+            button.setAttribute('aria-pressed', button.dataset.date === dateKey ? 'true' : 'false');
+          });
+
+          const day = roster[dateKey];
+          if (!day) {
+            panel.innerHTML = '<div class="empty">No approved people for this date yet.</div>';
+            return;
+          }
+
+          const slots = day.slots.map((slot) => {
+            const people = slot.people.length
+              ? '<ul>' + slot.people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small></li>').join('') + '</ul>'
+              : '<p>No approved people in this slot yet.</p>';
+            return '<article class="slot"><h3>' + slot.time + '</h3>' + people + '</article>';
+          }).join('');
+
+          panel.innerHTML = '<h2>' + day.label + '</h2>' + slots;
+        }
+
+        if (dates.length === 0) {
+          buttons.innerHTML = '';
+          panel.innerHTML = '<div class="empty">No approved people yet.</div>';
+        } else {
+          buttons.innerHTML = dates.map((dateKey) => '<button type="button" data-date="' + dateKey + '">' + roster[dateKey].label + '</button>').join('');
+          buttons.addEventListener('click', (event) => {
+            const button = event.target.closest('button');
+            if (button) showDate(button.dataset.date);
+          });
+          showDate(firstDate);
+        }
+      </script>
+    </body>
+    </html>
+  `;
+
+  return HtmlService.createHtmlOutput(html).setTitle('Study room admin');
+}
+
+function getApprovedRoster_(ss) {
+  const sheet = getRequestsSheet_(ss);
+  const values = sheet.getDataRange().getValues();
+
+  if (values.length < 2) return {};
+
+  const headers = values[0];
+  const nameIndex = headers.indexOf('name');
+  const emailIndex = headers.indexOf('email');
+  const slotIndex = headers.indexOf('slot');
+  const slotKeyIndex = headers.indexOf('slotKey');
+  const statusIndex = headers.indexOf('status');
+  const frequencyIndex = headers.indexOf('frequency');
+  const roster = {};
+
+  values.slice(1).forEach((row) => {
+    const status = normalizeStatus_(row[statusIndex]);
+
+    if (!['approved', 'auto-approved'].includes(status)) return;
+
+    const slotKey = getRowSlotKey_(row, slotKeyIndex, slotIndex);
+    if (!slotKey) return;
+
+    const dateKey = slotKey.split('__')[0];
+    const slotLabel = getSlotLabel_(slotKey, String(row[slotIndex] || '').trim());
+
+    if (!roster[dateKey]) {
+      roster[dateKey] = {
+        label: getDateLabelFromSlot_(String(row[slotIndex] || '').trim(), dateKey),
+        slots: []
+      };
+    }
+
+    let slot = roster[dateKey].slots.find((item) => item.time === slotLabel);
+    if (!slot) {
+      slot = { time: slotLabel, people: [] };
+      roster[dateKey].slots.push(slot);
+    }
+
+    slot.people.push({
+      name: escape_(row[nameIndex] || 'Unnamed'),
+      email: escape_(row[emailIndex] || ''),
+      frequency: escape_(row[frequencyIndex] || '')
+    });
+  });
+
+  Object.keys(roster).forEach((dateKey) => {
+    roster[dateKey].slots.sort((first, second) => slotSortValue_(first.time) - slotSortValue_(second.time));
+  });
+
+  return roster;
+}
+
+function getDateLabelFromSlot_(slot, dateKey) {
+  const match = slot.match(/^([A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2})/);
+
+  if (match) return match[1];
+
+  return dateKey;
+}
+
+function getSlotLabel_(slotKey, slot) {
+  const match = slot.match(/^[A-Za-z]+,\s+[A-Za-z]+\s+\d{1,2},\s+(.+)$/);
+
+  if (match) return match[1];
+
+  return slotKey.split('__')[1] || slotKey;
+}
+
+function slotSortValue_(time) {
+  if (time.indexOf('11:00') === 0) return 1;
+  if (time.indexOf('1:00') === 0) return 2;
+  if (time.indexOf('3:45') === 0) return 3;
+  return 99;
 }
 
 function getAvailabilityDebug_(ss) {
