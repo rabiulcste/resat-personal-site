@@ -1,7 +1,8 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-03-slot-key-fallback';
+const SCRIPT_VERSION = '2026-07-06-study-reminders';
+const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
@@ -20,7 +21,8 @@ const REQUEST_HEADERS = [
   'frequency',
   'work',
   'why',
-  'approvedAt'
+  'approvedAt',
+  'reminderSentAt'
 ];
 const SLOT_TIME_KEYS = {
   '11:00 AM - 12:45 PM': '11:00-12:45',
@@ -68,6 +70,7 @@ function doPost(event) {
     data.frequency,
     data.work,
     data.why,
+    '',
     ''
   ]);
 
@@ -205,6 +208,90 @@ function sendFullEmail_(email, name, slot, localSlot) {
     subject: 'Study room slot is full',
     body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nPlease choose another slot.\n\nResat`
   });
+}
+
+function setupStudyReminderTrigger() {
+  ScriptApp.getProjectTriggers()
+    .filter((trigger) => trigger.getHandlerFunction() === 'sendStudyReminders')
+    .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
+
+  ScriptApp.newTrigger('sendStudyReminders')
+    .timeBased()
+    .everyMinutes(5)
+    .create();
+}
+
+function sendStudyReminders() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = getRequestsSheet_(ss);
+  const values = sheet.getDataRange().getValues();
+
+  if (values.length < 2) return;
+
+  const headers = values[0];
+  const indexes = {
+    status: headers.indexOf('status'),
+    name: headers.indexOf('name'),
+    email: headers.indexOf('email'),
+    slot: headers.indexOf('slot'),
+    slotKey: headers.indexOf('slotKey'),
+    localSlot: headers.indexOf('localSlot'),
+    reminderSentAt: headers.indexOf('reminderSentAt')
+  };
+
+  if (indexes.reminderSentAt < 0) return;
+
+  const now = new Date();
+
+  values.slice(1).forEach((row, index) => {
+    const status = normalizeStatus_(row[indexes.status]);
+    const reminderSentAt = row[indexes.reminderSentAt];
+    const slotKey = getRowSlotKey_(row, indexes.slotKey, indexes.slot);
+
+    if (!['approved', 'auto-approved'].includes(status)) return;
+    if (reminderSentAt) return;
+    if (!slotKey || !shouldSendReminder_(slotKey, now)) return;
+
+    sendReminderEmail_({
+      email: row[indexes.email],
+      name: row[indexes.name],
+      slot: row[indexes.slot],
+      localSlot: row[indexes.localSlot]
+    });
+
+    sheet.getRange(index + 2, indexes.reminderSentAt + 1).setValue(now);
+  });
+}
+
+function sendReminderEmail_(request) {
+  MailApp.sendEmail({
+    to: request.email,
+    subject: 'Study room reminder',
+    body: `Hi ${request.name || 'there'},\n\nA small reminder that your study room starts in about 30 minutes.\n\nSlot: ${request.slot} Netherlands time\nYour local time: ${request.localSlot || ''}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you soon,\nResat`
+  });
+}
+
+function shouldSendReminder_(slotKey, now) {
+  const slotStart = slotStartFromKey_(slotKey);
+
+  if (!slotStart) return false;
+
+  const minutesUntilStart = (slotStart.getTime() - now.getTime()) / 60000;
+  return minutesUntilStart > 0 && minutesUntilStart <= 30;
+}
+
+function slotStartFromKey_(slotKey) {
+  const match = String(slotKey || '').match(/^(\d{4})-(\d{2})-(\d{2})__(\d{2}):(\d{2})-\d{2}:\d{2}$/);
+
+  if (!match) return null;
+
+  return new Date(
+    Number(match[1]),
+    Number(match[2]) - 1,
+    Number(match[3]),
+    Number(match[4]),
+    Number(match[5])
+  );
 }
 
 function isRegularAccess_(frequency) {
@@ -619,6 +706,7 @@ function getAvailabilityDebug_(ss) {
   const slotKeyIndex = headers.indexOf('slotKey');
   const slotIndex = headers.indexOf('slot');
   const statusIndex = headers.indexOf('status');
+  const reminderSentAtIndex = headers.indexOf('reminderSentAt');
   const statusCounts = {};
   const approvedSlotKeys = [];
   const approvedRowsMissingSlotKey = [];
@@ -644,6 +732,7 @@ function getAvailabilityDebug_(ss) {
     headersPresent: REQUEST_HEADERS.every((header) => headers.includes(header)),
     hasSlotKeyHeader: slotKeyIndex >= 0,
     hasStatusHeader: statusIndex >= 0,
+    hasReminderSentAtHeader: reminderSentAtIndex >= 0,
     statusCounts,
     approvedSlotKeys,
     approvedRowsMissingSlotKey,
