@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-06-study-reminders';
+const SCRIPT_VERSION = '2026-07-06-study-reminders-timezone-fix';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -113,6 +113,14 @@ function doGet(event) {
 
   if (action === 'admin') {
     return adminView_(event.parameter.key);
+  }
+
+  if (action === 'reminder-debug') {
+    if (event.parameter.key !== ADMIN_KEY || ADMIN_KEY === 'CHANGE_THIS_PRIVATE_ADMIN_KEY') {
+      return json_({ ok: false, error: 'locked' });
+    }
+
+    return json_(Object.assign({ ok: true }, getReminderDebug_(SpreadsheetApp.getActiveSpreadsheet())));
   }
 
   if (action === 'approve') {
@@ -285,13 +293,50 @@ function slotStartFromKey_(slotKey) {
 
   if (!match) return null;
 
-  return new Date(
-    Number(match[1]),
-    Number(match[2]) - 1,
-    Number(match[3]),
-    Number(match[4]),
-    Number(match[5])
+  return zonedTimeToDate_({
+    year: Number(match[1]),
+    month: Number(match[2]),
+    day: Number(match[3]),
+    hour: Number(match[4]),
+    minute: Number(match[5])
+  }, STUDY_TIME_ZONE);
+}
+
+function zonedTimeToDate_(dateParts, timeZone) {
+  const wanted = Date.UTC(
+    dateParts.year,
+    dateParts.month - 1,
+    dateParts.day,
+    dateParts.hour,
+    dateParts.minute
   );
+  let utcGuess = wanted;
+
+  for (let index = 0; index < 3; index += 1) {
+    const actual = getZonedParts_(new Date(utcGuess), timeZone);
+    const actualAsUtc = Date.UTC(
+      actual.year,
+      actual.month - 1,
+      actual.day,
+      actual.hour,
+      actual.minute
+    );
+    utcGuess -= actualAsUtc - wanted;
+  }
+
+  return new Date(utcGuess);
+}
+
+function getZonedParts_(date, timeZone) {
+  const parts = Utilities.formatDate(date, timeZone, 'yyyy,MM,dd,HH,mm').split(',').map(Number);
+
+  return {
+    year: parts[0],
+    month: parts[1],
+    day: parts[2],
+    hour: parts[3],
+    minute: parts[4]
+  };
 }
 
 function isRegularAccess_(frequency) {
@@ -738,6 +783,61 @@ function getAvailabilityDebug_(ss) {
     approvedRowsMissingSlotKey,
     blocked: getBlockedAvailability_(ss),
     booked: getBookedCounts_(ss)
+  };
+}
+
+function getReminderDebug_(ss) {
+  const sheet = getRequestsSheet_(ss);
+  const values = sheet.getDataRange().getValues();
+  const headers = values[0] || [];
+  const indexes = {
+    status: headers.indexOf('status'),
+    name: headers.indexOf('name'),
+    email: headers.indexOf('email'),
+    slot: headers.indexOf('slot'),
+    slotKey: headers.indexOf('slotKey'),
+    reminderSentAt: headers.indexOf('reminderSentAt')
+  };
+  const now = new Date();
+  const rows = [];
+  let eligibleCount = 0;
+
+  values.slice(1).forEach((row) => {
+    const status = normalizeStatus_(row[indexes.status]);
+    const reminderSentAt = indexes.reminderSentAt >= 0 ? row[indexes.reminderSentAt] : '';
+    const slotKey = getRowSlotKey_(row, indexes.slotKey, indexes.slot);
+    const slotStart = slotStartFromKey_(slotKey);
+    const minutesUntilStart = slotStart ? Math.round((slotStart.getTime() - now.getTime()) / 60000) : null;
+    const eligible = ['approved', 'auto-approved'].includes(status)
+      && !reminderSentAt
+      && minutesUntilStart !== null
+      && minutesUntilStart > 0
+      && minutesUntilStart <= 30;
+
+    if (eligible) eligibleCount += 1;
+
+    if (['approved', 'auto-approved'].includes(status) && rows.length < 12) {
+      rows.push({
+        name: row[indexes.name],
+        email: row[indexes.email],
+        status,
+        slot: row[indexes.slot],
+        slotKey,
+        minutesUntilStart,
+        reminderSent: Boolean(reminderSentAt),
+        eligible
+      });
+    }
+  });
+
+  return {
+    scriptVersion: SCRIPT_VERSION,
+    now: Utilities.formatDate(now, STUDY_TIME_ZONE, 'yyyy-MM-dd HH:mm z'),
+    scriptTimeZone: Session.getScriptTimeZone(),
+    studyTimeZone: STUDY_TIME_ZONE,
+    hasReminderSentAtHeader: indexes.reminderSentAt >= 0,
+    eligibleCount,
+    rows
   };
 }
 
