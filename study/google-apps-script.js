@@ -161,7 +161,7 @@ function declineRequest_(requestId) {
   MailApp.sendEmail({
     to: request.email,
     subject: 'Study room request',
-    body: `Hi,\n\nThank you for your interest. It looks like your request may have been declined because some of the questions were not answered clearly or completely.\n\nResat`
+    body: `Hi,\n\nThank you for your interest. It looks like your request may have been declined because some of the questions were not answered clearly or completely.\n\nYou may try booking a slot again, but please answer the questions clearly next time.\n\nResat`
   });
 
   return HtmlService.createHtmlOutput(`Declined ${request.name}.`);
@@ -198,7 +198,7 @@ function sendMeetLink_(email, name, slot, localSlot) {
   MailApp.sendEmail({
     to: email,
     subject: 'Your study room link',
-    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you there,\nResat`
+    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nIf you change your plan, please let me know in advance so I can offer the slot to someone else.\n\nSee you there,\nResat`
   });
 }
 
