@@ -1,391 +1,185 @@
 ---
 layout: default
-title: Research Projects
+title: Research
 permalink: "/research/"
 ---
 
-<div class="media-lab-research-page">
-  <header class="research-hero">
-    <h1 class="research-hero-title">Research</h1>
-    <p class="research-hero-subtitle">I study how digital platforms, AI systems, and legal infrastructures shape visibility, identity, and resistance, with a focus on feminist politics and the Global South.</p>
+<div class="research-page">
+  <header class="research-page-hero">
+    <p class="research-kicker">Research</p>
+    <h1>Platforms, power, and feminist publics</h1>
+    <p>
+      I study how digital platforms, AI systems, and legal infrastructures shape who becomes visible, who gets disciplined, and how people push back. My work is grounded in feminist media studies, postcolonial critique, and qualitative research on Bangladesh and the Global South.
+    </p>
   </header>
 
-  <section class="research-agenda-section">
-    <div class="research-agenda-container">
-      <div class="research-agenda-intro">
-        <h2>Research agenda</h2>
+  <section class="research-panel research-agenda-panel" aria-labelledby="agenda-title">
+    <div>
+      <p class="research-kicker">Research agenda</p>
+      <h2 id="agenda-title">The questions I keep returning to</h2>
+    </div>
+    <div class="research-agenda-list">
+      <article>
+        <span>01</span>
+        <h3>Platformed feminism</h3>
+        <p>How feminist activism becomes visible online, how backlash circulates, and how activists use humor, refusal, and counter-speech to stay present.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>AI and representation</h3>
+        <p>How generative AI imagines Global South activists, and how those images reproduce race, gender, class, and colonial hierarchies.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Law, religion, and control</h3>
+        <p>How digital security law, religious sentiment, colonial legal inheritance, and state power shape what people can say online.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="research-section" aria-labelledby="current-work-title">
+    <div class="research-section-heading">
+      <p class="research-kicker">Current work</p>
+      <h2 id="current-work-title">Projects in progress</h2>
+    </div>
+
+    <div class="research-project-stack">
+      <article class="research-project-card">
+        <div class="research-project-meta">
+          <span>Visual analysis</span>
+          <span>AI imagery</span>
+        </div>
+        <h3>AI-generated depictions of Bangladeshi feminist activists</h3>
         <p>
-          My work asks how power moves through platforms: who becomes visible, who is disciplined or mocked, and how activists create room to speak back.
-          I approach these questions through feminist media studies, postcolonial critique, and qualitative analysis of digital discourse.
+          This project examines how AI image generators represent Bangladeshi feminist activists. Prompting systems such as Meta AI, ChatGPT, Gemini, and Grok produced images shaped by familiar visual tropes: moralized femininity, protest stereotypes, and Western assumptions about South Asian political life.
         </p>
-      </div>
-      <div class="research-agenda-grid">
-        <article>
-          <span>01</span>
-          <h3>Platformed feminism</h3>
-          <p>Online feminist activism, anti-feminist backlash, harassment, satire, and the politics of visibility in Bangladesh.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>AI representation</h3>
-          <p>How generative AI reproduces cultural hierarchies in images of activists, especially from the Global South.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Law and control</h3>
-          <p>Digital security laws, colonial legal inheritances, religious sentiment, and the governance of online speech.</p>
-        </article>
-      </div>
-      <p class="research-methods-note">
-        Methods: qualitative content analysis, visual analysis, legal case study, close reading, and discourse analysis.
-      </p>
+        <p>
+          The project asks what kinds of activists AI systems can imagine, which bodies and expressions become legible as feminist, and how training data quietly reproduces cultural hierarchy.
+        </p>
+        <dl class="research-detail-grid">
+          <div>
+            <dt>Methods</dt>
+            <dd>Visual content analysis, close reading, comparative prompting</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>AI representation, Global South feminism, cultural hierarchy</dd>
+          </div>
+          <div>
+            <dt>Advisor</dt>
+            <dd>Yangsook Kim</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="research-project-card">
+        <div class="research-project-meta">
+          <span>Qualitative research</span>
+          <span>Bangladesh</span>
+        </div>
+        <h3>Social media as a battleground</h3>
+        <p>
+          This study analyzes anti-feminist backlash and feminist resistance in Bangladesh through 600 Facebook comments. It traces how activists are represented as morally corrupt, unattractive, unfeminine, or foreign, and how those labels are used to discipline feminist politics.
+        </p>
+        <p>
+          I also examine how activists and supporters respond through satire, exposing hypocrisy, calling out personal attacks, and challenging the association of feminism with Western contamination.
+        </p>
+        <dl class="research-detail-grid">
+          <div>
+            <dt>Methods</dt>
+            <dd>Qualitative content analysis, discourse analysis</dd>
+          </div>
+          <div>
+            <dt>Sample</dt>
+            <dd>600 Facebook comments</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>Presented at MSS 2025 and SSS 2025</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="research-project-card">
+        <div class="research-project-meta">
+          <span>Legal analysis</span>
+          <span>State power</span>
+        </div>
+        <h3>Why does the state need a god?</h3>
+        <p>
+          This project studies religion, politics, and digital speech regulation in Bangladesh, focusing on how laws around religious sentiment are used to govern online expression. Rather than treating the Digital Security Act as only a contemporary problem, I read it through longer colonial legal continuities.
+        </p>
+        <p>
+          The project asks how legal categories become tools of social division, how secular and religious authority are mobilized together, and how colonial legal inheritances remain alive in digital governance.
+        </p>
+        <dl class="research-detail-grid">
+          <div>
+            <dt>Methods</dt>
+            <dd>Legal case study, historical reading, discourse analysis</dd>
+          </div>
+          <div>
+            <dt>Sample</dt>
+            <dd>25 legal cases</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Religious sentiment, colonial law, online speech</dd>
+          </div>
+        </dl>
+      </article>
     </div>
   </section>
 
-  <section class="manuscripts-section">
-    <div class="manuscripts-container">
-      <h2 class="manuscripts-title">Manuscripts in Progress</h2>
-      <ol class="manuscripts-list">
-        <li>
-          <span class="manuscript-title">"Social Media as a Battleground: A Qualitative Analysis of the Representation and Resistance of Feminist Activism in Bangladesh"</span>
-          <span class="manuscript-venue">— Midwest Sociological Society (MSS) 2025 (Poster & Oral); Southern Sociological Society (SSS) 2025 (Oral)</span>
-        </li>
-        <li>
-          <span class="manuscript-title">"Eco-Friendly Housing Trends on Social Media: Identifying Consumer Demographics"</span>
-          <span class="manuscript-venue">— 40th International Narrative Conference, Miami, 2025 (Presented)</span>
-        </li>
-      </ol>
-
-      <h2 class="manuscripts-title manuscripts-follow-title">Public writing</h2>
-      <p class="manuscript-public-item">
-        <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank" rel="noopener">&ldquo;Whose language is rumour?&rdquo;</a>
-        <span class="manuscript-public-meta">Muktiforum · 2024</span>
-      </p>
+  <section class="research-section research-two-column" aria-labelledby="manuscripts-title">
+    <div class="research-section-heading">
+      <p class="research-kicker">Output</p>
+      <h2 id="manuscripts-title">Manuscripts and presentations</h2>
+    </div>
+    <div class="research-output-list">
+      <article>
+        <h3>Social Media as a Battleground: A Qualitative Analysis of the Representation and Resistance of Feminist Activism in Bangladesh</h3>
+        <p>Midwest Sociological Society 2025, poster and oral presentation; Southern Sociological Society 2025, oral presentation.</p>
+      </article>
+      <article>
+        <h3>Eco-Friendly Housing Trends on Social Media: Identifying Consumer Demographics</h3>
+        <p>Presented at the 40th International Narrative Conference, Miami, 2025.</p>
+      </article>
     </div>
   </section>
 
-  <div class="projects-container">
-    <h2 class="selected-projects-title">Selected projects</h2>
-    
-    <article class="media-lab-project" data-project="1">
-      <div class="project-layout">
-        <div class="project-visual-large">
-          <div class="visual-gradient gradient-ai">
-            <div class="visual-number" aria-hidden="true">01</div>
-            <div class="visual-title">AI &<br>Culture</div>
-          </div>
-        </div>
-        
-        <div class="project-info">
-          <div class="project-header">
-            <div class="project-category">Visual Analysis</div>
-            <h2 class="project-title-large">AI-Generated Depictions of Bangladeshi Feminist Activists</h2>
-            <p class="project-subtitle">How AI imagery reinforces global cultural hierarchies and stereotypical narratives</p>
-          </div>
-          
-          <div class="project-body">
-            <p class="project-description-large">
-              As AI image generation technologies become increasingly prevalent, their outputs reflect and potentially reinforce existing 
-              cultural hierarchies and stereotypes. This research examines how AI-generated depictions of Bangladeshi feminist activists 
-              perpetuate global cultural hierarchies and stereotypical narratives, contributing to the marginalization of Global South voices.
-            </p>
-            
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">Method</div>
-                <div class="spec-value">Visual Content Analysis</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Focus</div>
-                <div class="spec-value">AI Imagery & Cultural Representation</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Advisor</div>
-                <div class="spec-value">Yangsook Kim</div>
-              </div>
-            </div>
-            
-            <div class="project-findings">
-              <h3 class="findings-title">Research Questions</h3>
-              <div class="findings-list">
-                <div class="finding-item">How do AI-generated images represent Bangladeshi feminist activists?</div>
-                <div class="finding-item">What cultural hierarchies and stereotypes are reinforced through AI imagery?</div>
-                <div class="finding-item">How do these representations contribute to the marginalization of Global South voices?</div>
-                <div class="finding-item">What are the implications for digital representation and cultural equity?</div>
-              </div>
-            </div>
-            
-            <button class="project-expand-btn" onclick="toggleProjectDetails(this)">
-              <span class="expand-label">Full Description</span>
-              <span class="expand-arrow">→</span>
-            </button>
-            
-            <div class="project-full-description" style="display: none;">
-              <p>
-                This directed independent study investigates how artificial intelligence image generation technologies produce and perpetuate 
-                representations of Bangladeshi feminist activists. I began experimenting with Meta AI, ChatGPT, Gemini, and Grok, prompting them 
-                to generate images of Bangladeshi feminist activists. The results were stark: these models relied on stereotypical imagery and 
-                reproduced global cultural hierarchies, with facial expressions, skin tones, and clothing shaped by Western perspectives on 
-                South Asian contexts.
-              </p>
-              <p>
-                Through visual content analysis of AI-generated imagery, this research explores how these technologies reflect and reinforce 
-                existing global cultural hierarchies and stereotypical narratives. The study examines how AI systems, trained on predominantly 
-                Western datasets, generate images that may misrepresent or stereotype activists from the Global South. By analyzing the visual 
-                tropes, cultural markers, and representational patterns in AI-generated depictions, this research contributes to understanding 
-                how technology mediates cultural representation and potentially reinforces existing power structures. I've learned AI systems can 
-                reproduce existing social hierarchies in ways that are subtle, rapid, and difficult to detect.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="media-lab-project" data-project="2">
-      <div class="project-layout reverse">
-        <div class="project-visual-large">
-          <div class="visual-gradient gradient-feminist">
-            <div class="visual-number" aria-hidden="true">02</div>
-            <div class="visual-title">Feminist<br>Backlash</div>
-          </div>
-        </div>
-        
-        <div class="project-info">
-          <div class="project-header">
-            <div class="project-category">Qualitative Research</div>
-            <h2 class="project-title-large">Social Media as a Battleground</h2>
-            <p class="project-subtitle">A Qualitative Analysis of the Representation and Resistance of Feminist Activism in Bangladesh</p>
-          </div>
-          
-          <div class="project-body">
-            <p class="project-description-large">
-              Existing research highlights the online harassment of women and celebrities, but few studies explore how digital discourse shapes 
-              feminist activism in the Global South. This study analyzes 600 Facebook comments to investigate the anti-feminist backlash against 
-              feminist activists in Bangladesh.
-            </p>
-            
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">Method</div>
-                <div class="spec-value">Qualitative Content Analysis</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Sample</div>
-                <div class="spec-value">600 Facebook Comments</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Focus</div>
-                <div class="spec-value">Anti-feminist Backlash & Resistance</div>
-              </div>
-            </div>
-            
-            <div class="project-findings">
-              <h3 class="findings-title">Key Findings</h3>
-              <div class="findings-list">
-                <div class="finding-item">Feminist activists portrayed as "morally corrupt," "unattractive," and "unfeminine"</div>
-                <div class="finding-item">Feminism linked to perceptions of foreign, Western-driven ideology</div>
-                <div class="finding-item">Four key resistance strategies: satire, exposing hypocrisy, calling out attacks, challenging associations</div>
-                <div class="finding-item">Critique of neoliberal influences on feminist activism</div>
-              </div>
-            </div>
-            
-            <button class="project-expand-btn" onclick="toggleProjectDetails(this)">
-              <span class="expand-label">Full Description</span>
-              <span class="expand-arrow">→</span>
-            </button>
-            
-            <div class="project-full-description" style="display: none;">
-              <p>
-                The analysis reveals how feminist activists are often portrayed as "morally corrupt," "unattractive," and "unfeminine," 
-                with these negative traits linked to perceptions of feminism as a foreign, Western-driven ideology. Such representations 
-                reinforce patriarchal norms, marginalize women, and silence feminist voices. Unlike previous research that focused on 
-                television celebrities and social media influencers' harassment on social media, this study examines the broader societal 
-                implications of these portrayals on perceptions of gender roles.
-              </p>
-              <p>
-                The study identifies four key strategies feminist activists use to counter these stereotypes: satire and humorous 
-                reappropriation, exposing hypocrisy, calling out personal attacks, and challenging right-wing associations. I began to notice 
-                visibility on platforms like Facebook seemed influenced by underlying algorithmic logics. For example, appearance-focused mocking 
-                posts often circulated more widely than posts advocating for gender equity. As influencers profit from visibility, many promote 
-                already-popular narratives, including satirical or derogatory takes on feminism. These dynamics pushed both sides toward more 
-                satirical or derogatory content, escalating social conflict and prioritizing engagement over substance.
-              </p>
-              <p>
-                Spending months coding and analyzing social media content revealed something troubling: feminist representation online often 
-                emphasized appearance and stereotypes, portraying feminists as "ugly" rather than recognizing their social justice work. The study 
-                critiques both anti-feminist and feminist responses for failing to address structural economic inequalities exacerbated by 
-                neoliberal practices. It concludes by advocating for more impactful feminist activism that reclaims its radical roots, separates 
-                itself from neoliberal influences, and prioritizes economic justice.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="media-lab-project" data-project="3">
-      <div class="project-layout">
-        <div class="project-visual-large">
-          <div class="visual-gradient gradient-state">
-            <div class="visual-number" aria-hidden="true">03</div>
-            <div class="visual-title">State &<br>Religion</div>
-          </div>
-        </div>
-        
-        <div class="project-info">
-          <div class="project-header">
-            <div class="project-category">Legal Analysis</div>
-            <h2 class="project-title-large">Why does the state need a god?</h2>
-            <p class="project-subtitle">A case study on Bangladesh in the context of protecting religious sentiment in Social Media</p>
-          </div>
-          
-          <div class="project-body">
-            <p class="project-description-large">
-              The relationship between religion, politics, and the Digital Security Act 2018 (DSA) in Bangladesh has sparked significant debate, 
-              with the DSA widely criticized for enabling authoritarian control. However, the underlying legal framework, rooted in colonial-era 
-              British laws, remains largely unexamined.
-            </p>
-            
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">Method</div>
-                <div class="spec-value">Case Study Analysis</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Sample</div>
-                <div class="spec-value">25 Legal Cases</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Focus</div>
-                <div class="spec-value">Colonial Legal Systems & Governance</div>
-              </div>
-            </div>
-            
-            <div class="project-findings">
-              <h3 class="findings-title">Key Findings</h3>
-              <div class="findings-list">
-                <div class="finding-item">DSA reflects long-term impact of colonial legal systems designed for divide-and-rule policies</div>
-                <div class="finding-item">Beyond religion, secularization and pre-existing oppressive legal structures serve as tools for authoritarian governance</div>
-                <div class="finding-item">Historical continuities reveal how laws are weaponized to maintain control and create societal divides</div>
-                <div class="finding-item">Pattern of legal intervention demonstrates systematic use of legal frameworks for political control</div>
-              </div>
-            </div>
-            
-            <button class="project-expand-btn" onclick="toggleProjectDetails(this)">
-              <span class="expand-label">Full Description</span>
-              <span class="expand-arrow">→</span>
-            </button>
-            
-            <div class="project-full-description" style="display: none;">
-              <p>
-                This study challenges the view that the DSA represents a solely contemporary issue, arguing instead that it reflects the 
-                long-term impact of colonial legal systems designed to implement divide-and-rule policies. By analyzing 25 cases through 
-                the pattern of legal intervention, this research demonstrates that, beyond religion, the use of secularization and 
-                pre-existing oppressive legal structures also serves as tools for authoritarian governance.
-              </p>
-              <p>
-                This study underscores the importance of examining these historical continuities to understand how laws are weaponized 
-                to maintain control and create societal divides. The research reveals how colonial-era legal frameworks continue to shape 
-                contemporary governance strategies, providing insights into the mechanisms of state power and control in post-colonial contexts.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-  <section class="course-research-section course-research-top">
-    <div class="course-research-container">
-      <button class="course-research-toggle" onclick="toggleAdditionalResearch(this)">
-        <h2 class="course-research-title">Earlier research archive</h2>
-        <span class="toggle-arrow">→</span>
-      </button>
-      <div class="research-projects-compact" id="additional-research-content" style="display: none;">
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Emotional Labor in Legal Practice: Navigating the Complexities</span>
-          <span class="research-project-meta-compact">Prof. Lotus Seeley · Spring 2024</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Do predictive policing algorithms pose a risk to individual constitutional rights?</span>
-          <span class="research-project-meta-compact">Prof. Matty Lichtenstein · Spring 2024</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">The Crucial Role of Grassroots Organizations and NGOs in the RMG Labour Movement in Bangladesh</span>
-          <span class="research-project-meta-compact">Prof. Patricia Widener · Fall 2023</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Does gender identity influence the perception of unisex fashion among young adults in Bangladesh?</span>
-          <span class="research-project-meta-compact">Prof. J. Lotus Seeley · Fall 2023</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">'Life' before and after enforcement of Cyber Security Laws and Policies</span>
-          <span class="research-project-meta-compact">Dr. Seuti Sabur · Fall 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">How uncomfortable a prison for women inmates in Bangladesh</span>
-          <span class="research-project-meta-compact">Dr. Saira Rahman Khan · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Why might non-elite women be disinterested in participating in movements?</span>
-          <span class="research-project-meta-compact">Shehzad M Arifeen · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Gender representation in deodorant advertisements</span>
-          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">The Triple A (Availability, Accessibility, and Adaptability)</span>
-          <span class="research-project-meta-compact">Independent research · Spring 2021</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">Challenges of application of Cyber Security Laws and policies regarding Human Rights Laws</span>
-          <span class="research-project-meta-compact">Advocate Mostafa Hossain · Fall 2020</span>
-        </div>
-        <div class="research-project-item-compact">
-          <span class="research-project-title-compact">A Comparative Analysis on the Engagement of urban Middle-Class People in Social Movements: Political Hegemony</span>
-          <span class="research-project-meta-compact">Shahzad M Arifeen · Summer 2020</span>
-        </div>
-      </div>
+  <section class="research-section research-two-column" aria-labelledby="methods-title">
+    <div class="research-section-heading">
+      <p class="research-kicker">Methods</p>
+      <h2 id="methods-title">How I work</h2>
     </div>
+    <div class="research-method-grid">
+      <span>Qualitative content analysis</span>
+      <span>Visual analysis</span>
+      <span>Legal case study</span>
+      <span>Close reading</span>
+      <span>Discourse analysis</span>
+      <span>Platform analysis</span>
+    </div>
+  </section>
+
+  <section class="research-section research-two-column" aria-labelledby="archive-title">
+    <div class="research-section-heading">
+      <p class="research-kicker">Archive</p>
+      <h2 id="archive-title">Earlier research threads</h2>
+    </div>
+    <div class="research-archive-list">
+      <p>Emotional labor in legal practice; predictive policing and constitutional rights; grassroots organizations and the RMG labour movement in Bangladesh; gender identity and unisex fashion; cyber security laws and human rights; prison conditions for women inmates in Bangladesh; non-elite women and social movements; gender representation in deodorant advertisements.</p>
+    </div>
+  </section>
+
+  <section class="research-section research-public-writing" aria-labelledby="public-writing-title">
+    <div>
+      <p class="research-kicker">Public writing</p>
+      <h2 id="public-writing-title">Beyond the academic page</h2>
+    </div>
+    <p>
+      <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank" rel="noopener">"Whose language is rumour?"</a>
+      <span>Muktiforum, 2024</span>
+    </p>
   </section>
 </div>
-
-<script>
-function toggleProjectDetails(btn) {
-  const project = btn.closest('.media-lab-project');
-  const fullDesc = project.querySelector('.project-full-description');
-  const expandLabel = btn.querySelector('.expand-label');
-  const expandArrow = btn.querySelector('.expand-arrow');
-  
-  if (fullDesc.style.display === 'none') {
-    fullDesc.style.display = 'block';
-    expandLabel.textContent = 'Show Less';
-    expandArrow.textContent = '↑';
-    btn.classList.add('expanded');
-  } else {
-    fullDesc.style.display = 'none';
-    expandLabel.textContent = 'Full Description';
-    expandArrow.textContent = '→';
-    btn.classList.remove('expanded');
-  }
-}
-
-function toggleAdditionalResearch(btn) {
-  const content = document.getElementById('additional-research-content');
-  const arrow = btn.querySelector('.toggle-arrow');
-  const isExpanded = btn.classList.contains('expanded');
-
-  if (isExpanded) {
-    content.style.display = 'none';
-    arrow.textContent = '→';
-    btn.classList.remove('expanded');
-  } else {
-    content.style.display = 'grid';
-    arrow.textContent = '↑';
-    btn.classList.add('expanded');
-  }
-}
-</script>
