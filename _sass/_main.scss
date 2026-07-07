@@ -752,27 +752,6 @@ input[type="submit"], button {
   }
 }
 
-.public-engagement-section {
-  .video-materials {
-    margin-top: 1.5rem;
-
-    h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: $complimentary-color;
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-  }
-}
-
-
-.contact-section {
-  p {
-    margin-bottom: 0.5rem;
-  }
-}
-
 // ============================================
 // CONTACT PAGE
 // ============================================
@@ -1662,24 +1641,6 @@ input[type="submit"], button {
     }
   }
   
-  .research-link-inline {
-    display: inline-block;
-    margin-top: 1rem;
-    font-weight: 600;
-    font-family: var(--font-primary);
-    color: $accent-color;
-    text-decoration: none;
-    border-bottom: 1px solid rgba($accent-r, $accent-g, $accent-b, 0.4);
-    padding-bottom: 0.2rem;
-    transition: all var(--transition-base);
-    letter-spacing: -0.01em;
-    
-    &:hover {
-      transform: translateX(4px);
-      color: $complimentary-color;
-      border-bottom-color: $accent-color;
-    }
-  }
 }
 
 .research-cta-section {
@@ -1823,257 +1784,8 @@ input[type="submit"], button {
   z-index: 1;
 }
 
-.section-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  font-family: var(--font-primary);
-  color: $complimentary-color;
-  margin-bottom: var(--spacing-md);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-}
-
-.section-intro {
-  font-size: 1.0625rem;
-  font-family: var(--font-primary);
-  color: $body-font-color;
-  margin-bottom: var(--spacing-md);
-  line-height: 1.75;
-}
-
-.contact-section {
-  margin: 4rem 0;
-  padding: var(--spacing-xl);
-  background: transparent;
-  border-radius: 0;
-  border: none;
-  border-left: 4px solid transparent;
-  
-  &:hover {
-    border-left-color: $accent-color;
-  }
-}
-
-.contact-info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-.contact-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.contact-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  color: rgba($accent-r, $accent-g, $accent-b, 0.8);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.contact-value {
-  font-size: 1.0625rem;
-  font-family: var(--font-primary);
-  color: rgba(229, 231, 235, 0.9);
-  line-height: 1.6;
-  
-  a {
-    color: $accent-color;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all var(--transition-fast);
-    letter-spacing: -0.01em;
-    
-    &:hover {
-      color: $secondary-color;
-    }
-    
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-  }
-}
-
-.contact-socials {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.social-link {
-  color: $secondary-color;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  letter-spacing: -0.01em;
-  
-  &:hover {
-  text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-}
-
-.education-item {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
-  
-  &:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-}
-
-.education-degree {
-  font-size: 1.25rem;
-  font-weight: 700;
-  font-family: var(--font-primary);
-  color: $complimentary-color;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.education-institution {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  color: $secondary-color;
-  margin-bottom: 0.25rem;
-}
-
-.education-period {
-  font-size: 0.9375rem;
-  font-family: var(--font-primary);
-  color: $text-muted;
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-}
-
-.education-details {
-  font-size: 1rem;
-  font-family: var(--font-primary);
-  color: $body-font-color;
-  line-height: 1.7;
-}
-
-.publication-item {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
-  
-  &:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-}
-
-.publication-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  color: $complimentary-color;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-}
-
-.publication-venue {
-  font-size: 0.9375rem;
-  font-family: var(--font-primary);
-  color: $text-muted;
-  margin-bottom: 0.25rem;
-  font-style: italic;
-}
-
-.publication-status {
-  font-size: 0.875rem;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  color: $secondary-color;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.publication-link {
-  margin-top: 0.5rem;
-  
-  a {
-    color: $secondary-color;
-    font-weight: 600;
-    font-family: var(--font-primary);
-    text-decoration: none;
-    border-bottom: 2px solid $secondary-color;
-    padding-bottom: 0.25rem;
-    transition: all var(--transition-base);
-    letter-spacing: -0.01em;
-    
-    &:hover {
-      transform: translateX(4px);
-      color: darken($secondary-color, 8%);
-    }
-  }
-}
-
-.experience-item {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid $border-color;
-  
-  &:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-}
-
-.experience-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  color: $complimentary-color;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.experience-org {
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: var(--font-primary);
-  color: $secondary-color;
-  margin-bottom: 0.25rem;
-}
-
-.experience-period {
-  font-size: 0.9375rem;
-  font-family: var(--font-primary);
-  color: $text-muted;
-  margin-bottom: 0.75rem;
-  font-weight: 500;
-}
-
-.experience-details {
-  font-size: 1rem;
-  font-family: var(--font-primary);
-  color: $body-font-color;
-  line-height: 1.7;
-}
-
 // ============================================
-// MIT MEDIA LAB INSPIRED BLOG PAGE
+// WRITING PAGE
 // ============================================
 
 .media-lab-blog-container {
@@ -2144,27 +1856,6 @@ input[type="submit"], button {
   margin-bottom: 1rem;
   position: relative;
   z-index: 2;
-}
-
-.blog-note {
-  font-size: 1rem;
-  font-family: var(--font-primary);
-  color: rgba(156, 163, 175, 0.8);
-  font-style: italic;
-  position: relative;
-  z-index: 2;
-  
-  a {
-    color: $accent-color;
-    font-weight: 500;
-  text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: color var(--transition-fast);
-    
-    &:hover {
-      color: $secondary-color;
-    }
-  }
 }
 
 .media-lab-blog-grid {
@@ -2425,39 +2116,6 @@ input[type="submit"], button {
   h3 { font-size: 1.75rem; }
   
   .post-content { font-size: 1rem; }
-  
-  
-  // Research projects page responsive
-  .research-projects-page {
-    padding: 1.5rem 0;
-  }
-  
-  .research-page-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-  }
-  
-  .research-projects-grid {
-    gap: 2rem;
-  }
-  
-  .project-visual {
-    height: 250px;
-  }
-  
-  .project-content {
-    padding: 1.5rem;
-  }
-  
-  .project-title {
-    font-size: 1.5rem;
-  }
-  
-  .project-details {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
   // Modern blog page responsive
   .media-lab-blog-container {
     padding: 0;
@@ -2520,14 +2178,13 @@ input[type="submit"], button {
     padding: 2rem 1.5rem;
   }
   
-  .video-section,
-  .contact-section {
+  .video-section {
     padding: 2rem 1.5rem;
   }
 }
 
 // ============================================
-// FINAL COHERENCE PASS: NAV + RESEARCH
+// NAVIGATION AND RESEARCH PAGE
 // ============================================
 
 .menu {
@@ -3187,15 +2844,9 @@ input[type='submit'] {
 }
 
 .about-block,
-.course-research-container,
-.research-project-item,
-.research-project-item-compact,
 .media-lab-blog-card,
-.blog-note,
 .contact-form,
-.contact-fallback-card,
-.video-card-lazy,
-.research-cta-section {
+.video-card-lazy {
   background: rgba(255, 255, 250, 0.72);
   border-color: rgba($accent-r, $accent-g, $accent-b, 0.2);
   box-shadow: 0 18px 42px rgba(93, 119, 101, 0.08);
@@ -3309,7 +2960,7 @@ textarea {
 }
 
 // ============================================
-// COHERENCE PASS
+// MAIN PAGE POLISH
 // ============================================
 
 body {
@@ -3445,15 +3096,9 @@ body {
 }
 
 .about-block,
-.course-research-container,
-.research-project-item,
-.research-project-item-compact,
 .media-lab-blog-card,
-.blog-note,
 .contact-form,
-.contact-fallback-card,
-.video-card-lazy,
-.research-cta-section {
+.video-card-lazy {
   border-radius: 16px;
   box-shadow: none;
   background: rgba(255, 255, 250, 0.62);
@@ -3516,7 +3161,7 @@ body {
 }
 
 // ============================================
-// HEADER / FOOTER ALIGNMENT
+// HEADER AND FOOTER
 // ============================================
 
 .menu,
@@ -3631,7 +3276,7 @@ body {
 }
 
 // ============================================
-// REDUCTION PASS
+// SPACING AND DENSITY
 // ============================================
 
 :root {
@@ -3714,7 +3359,6 @@ p {
 
 .about-block,
 .course-research-container,
-.blog-note,
 .media-lab-blog-card,
 .contact-form,
 .contact-fallback-card,
@@ -3887,7 +3531,7 @@ p {
 }
 
 // ============================================
-// WHITE SPACE TUNING
+// VERTICAL RHYTHM
 // ============================================
 
 .research-hero,
@@ -3952,11 +3596,6 @@ p {
   padding-bottom: 1rem;
 }
 
-.blog-note {
-  margin-top: 1rem;
-  padding: 0.9rem 0 0;
-}
-
 .media-lab-blog-grid {
   padding-top: 1rem;
 }
@@ -3999,7 +3638,7 @@ p {
   }
 }
 
-// Pinterest-style About polish
+// ABOUT PAGE POLISH
 .media-lab-about-page .about-block {
   background: transparent;
   border: 0;
@@ -4080,7 +3719,7 @@ p {
   }
 }
 
-// Pinterest comic scrapbook finish
+// GREEN SCRAPBOOK THEME
 body {
   background:
     radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.045) 1px, transparent 1.35px),
@@ -4131,37 +3770,6 @@ body {
   border: 0;
   border-radius: 28px;
   box-shadow: 0 22px 54px rgba(93, 119, 101, 0.12);
-}
-
-.home-hero::after,
-.about-hero::after,
-.research-hero::after,
-.blog-hero::after {
-  position: absolute;
-  right: clamp(1rem, 4vw, 3rem);
-  bottom: -0.9rem;
-  padding: 0.42rem 0.75rem;
-  color: #24352b;
-  background: #d9efc9;
-  border: 2px solid rgba(36, 53, 43, 0.72);
-  border-radius: 999px;
-  box-shadow: 4px 4px 0 rgba(36, 53, 43, 0.1);
-  font-size: 0.78rem;
-  font-weight: 900;
-  content: "field notes";
-  transform: rotate(-2deg);
-}
-
-.about-hero::after {
-  content: "small talk archive";
-}
-
-.research-hero::after {
-  content: "research board";
-}
-
-.blog-hero::after {
-  content: "clippings";
 }
 
 h1,
@@ -4251,7 +3859,6 @@ input[type='submit'] {
 .research-project-item,
 .research-project-item-compact,
 .media-lab-blog-card,
-.blog-note,
 .contact-form,
 .contact-fallback-card,
 .video-card-lazy,
@@ -4299,7 +3906,6 @@ input[type='submit'] {
   display: none;
 }
 
-.research-link-inline,
 .about-block-content a {
   color: #477652;
   font-weight: 900;
@@ -4317,13 +3923,6 @@ input[type='submit'] {
   .media-lab-blog-card {
     border-radius: 16px;
     box-shadow: 0 12px 28px rgba(93, 119, 101, 0.1);
-  }
-
-  .home-hero::after,
-  .about-hero::after,
-  .research-hero::after,
-  .blog-hero::after {
-    display: none;
   }
 
   h1,
@@ -4455,13 +4054,6 @@ input[type='submit'] {
   box-shadow: 0 18px 42px rgba(93, 119, 101, 0.1);
 }
 
-.home-hero::after,
-.about-hero::after,
-.research-hero::after,
-.blog-hero::after {
-  display: none;
-}
-
 .about-hero {
   background:
     radial-gradient(circle at 16% 18%, rgba(183, 222, 181, 0.42) 0 7rem, transparent 7.2rem),
@@ -4521,17 +4113,6 @@ input[type='submit'] {
 
 .media-lab-about-page .about-block-content::before {
   display: none;
-}
-
-.blog-note {
-  display: inline-block;
-  width: fit-content;
-  margin-top: 1.2rem;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  font-size: 0.96rem;
 }
 
 .contact-page {
@@ -4665,7 +4246,6 @@ input[type='submit'] {
 .research-project-item,
 .research-project-item-compact,
 .research-detail-grid,
-.blog-note,
 .contact-form label,
 .contact-submit,
 .home-hero-link-primary,
@@ -4718,7 +4298,7 @@ input[type='submit'] {
   }
 }
 
-// Section rhythm pass: About and Research should use the same quiet
+// About and Research should use the same quiet
 // "heading, then content" logic instead of switching layouts page by page.
 .research-panel,
 .research-section {
@@ -4756,6 +4336,14 @@ input[type='submit'] {
 
 .media-lab-about-page .about-block.video-section .video-grid-modern {
   margin-top: 1.35rem;
+}
+
+.media-lab-about-page .about-block.video-section .video-card-lazy {
+  border-radius: 8px;
+}
+
+.media-lab-about-page .about-block.video-section .video-placeholder {
+  border-radius: 8px;
 }
 
 @media (max-width: 900px) {

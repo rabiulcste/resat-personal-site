@@ -49,13 +49,10 @@ permalink: "/about/"
 
     <section class="about-block reverse">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-2">Academic home</h2>
+        <h2 class="about-block-title icon-2">Academic work</h2>
         <p>
           My academic work grew out of the same thing that keeps showing up in the rest of my life: curiosity about people, power, speech, and the strange ways public life moves online.
           I came to communication through sociology, law, activism, and a lot of time watching how people argue, organize, joke, punish, and protect each other in digital spaces.
-        </p>
-        <p>
-          <a href="{{ site.github.url }}/research" class="research-link-inline">See the research work →</a>
         </p>
       </div>
     </section>
