@@ -337,17 +337,17 @@ async function refreshAvailability() {
   if (!requestEndpoint) return;
 
   try {
-    applyAvailabilityData(await fetchAvailabilityJson(availabilityEndpoint));
+    applyAvailabilityData(await fetchAvailabilityJsonp());
     return;
   } catch (error) {
     try {
-      applyAvailabilityData(await fetchAvailabilityJson(requestEndpoint));
+      applyAvailabilityData(await fetchAvailabilityJson(availabilityEndpoint));
       return;
     } catch (fallbackError) {
       try {
-        applyAvailabilityData(await fetchAvailabilityJsonp());
+        applyAvailabilityData(await fetchAvailabilityJson(requestEndpoint));
         return;
-      } catch (jsonpError) {
+      } catch (fetchError) {
         markAvailabilityError();
       }
     }
