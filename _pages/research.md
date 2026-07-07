@@ -9,16 +9,15 @@ permalink: "/research/"
     <p class="research-kicker">Research</p>
     <h1>Platforms, power, and feminist publics</h1>
     <p>
-      I study how digital platforms, AI systems, and legal infrastructures shape who becomes visible, who gets disciplined, and how people push back. My work is grounded in feminist media studies, postcolonial critique, and qualitative research on Bangladesh and the Global South.
+      I study how digital platforms, AI systems, and legal infrastructures decide who becomes visible, who gets punished, and how people push back. My work sits in feminist media studies, postcolonial critique, and qualitative research on Bangladesh and the Global South.
     </p>
   </header>
 
   <section class="research-panel research-agenda-panel" aria-labelledby="agenda-title">
-    <div>
-      <p class="research-kicker">Research agenda</p>
-      <h2 id="agenda-title">The questions I keep returning to</h2>
+    <div class="research-section-heading">
+      <h2 id="agenda-title">What I study</h2>
     </div>
-    <div class="research-agenda-list">
+    <div class="research-section-body research-agenda-list">
       <article>
         <span>01</span>
         <h3>Platformed feminism</h3>
@@ -39,11 +38,10 @@ permalink: "/research/"
 
   <section class="research-section" aria-labelledby="current-work-title">
     <div class="research-section-heading">
-      <p class="research-kicker">Current work</p>
-      <h2 id="current-work-title">Projects in progress</h2>
+      <h2 id="current-work-title">Current projects</h2>
     </div>
 
-    <div class="research-project-stack">
+    <div class="research-section-body research-project-stack">
       <article class="research-project-card">
         <div class="research-project-meta">
           <span>Visual analysis</span>
@@ -132,10 +130,9 @@ permalink: "/research/"
 
   <section class="research-section research-two-column" aria-labelledby="manuscripts-title">
     <div class="research-section-heading">
-      <p class="research-kicker">Output</p>
-      <h2 id="manuscripts-title">Manuscripts and presentations</h2>
+      <h2 id="manuscripts-title">Papers and presentations</h2>
     </div>
-    <div class="research-output-list">
+    <div class="research-section-body research-output-list">
       <article>
         <h3>Social Media as a Battleground: A Qualitative Analysis of the Representation and Resistance of Feminist Activism in Bangladesh</h3>
         <p>Midwest Sociological Society 2025, poster and oral presentation; Southern Sociological Society 2025, oral presentation.</p>
@@ -147,39 +144,67 @@ permalink: "/research/"
     </div>
   </section>
 
-  <section class="research-section research-two-column" aria-labelledby="methods-title">
-    <div class="research-section-heading">
-      <p class="research-kicker">Methods</p>
-      <h2 id="methods-title">How I work</h2>
-    </div>
-    <div class="research-method-grid">
-      <span>Qualitative content analysis</span>
-      <span>Visual analysis</span>
-      <span>Legal case study</span>
-      <span>Close reading</span>
-      <span>Discourse analysis</span>
-      <span>Platform analysis</span>
-    </div>
-  </section>
-
   <section class="research-section research-two-column" aria-labelledby="archive-title">
     <div class="research-section-heading">
-      <p class="research-kicker">Archive</p>
-      <h2 id="archive-title">Earlier research threads</h2>
+      <h2 id="archive-title">Earlier threads</h2>
     </div>
-    <div class="research-archive-list">
-      <p>Emotional labor in legal practice; predictive policing and constitutional rights; grassroots organizations and the RMG labour movement in Bangladesh; gender identity and unisex fashion; cyber security laws and human rights; prison conditions for women inmates in Bangladesh; non-elite women and social movements; gender representation in deodorant advertisements.</p>
+    <div class="research-section-body research-archive-list">
+      <article>
+        <h3>Emotional Labor in Legal Practice: Navigating the Complexities</h3>
+        <p>Prof. Lotus Seeley · Spring 2024</p>
+      </article>
+      <article>
+        <h3>Do predictive policing algorithms pose a risk to individual constitutional rights?</h3>
+        <p>Prof. Matty Lichtenstein · Spring 2024</p>
+      </article>
+      <article>
+        <h3>The Crucial Role of Grassroots Organizations and NGOs in the RMG Labour Movement in Bangladesh</h3>
+        <p>Prof. Patricia Widener · Fall 2023</p>
+      </article>
+      <article>
+        <h3>Does gender identity influence the perception of unisex fashion among young adults in Bangladesh?</h3>
+        <p>Prof. J. Lotus Seeley · Fall 2023</p>
+      </article>
+      <article>
+        <h3>'Life' before and after enforcement of Cyber Security Laws and Policies</h3>
+        <p>Dr. Seuti Sabur · Fall 2021</p>
+      </article>
+      <article>
+        <h3>How uncomfortable a prison for women inmates in Bangladesh</h3>
+        <p>Dr. Saira Rahman Khan · Summer 2021</p>
+      </article>
+      <article>
+        <h3>Why might non-elite women be disinterested in participating in movements?</h3>
+        <p>Shehzad M Arifeen · Summer 2021</p>
+      </article>
+      <article>
+        <h3>Gender representation in deodorant advertisements</h3>
+        <p>Shahzad M Arifeen · Summer 2021</p>
+      </article>
+      <article>
+        <h3>The Triple A (Availability, Accessibility, and Adaptability)</h3>
+        <p>Independent research · Spring 2021</p>
+      </article>
+      <article>
+        <h3>Challenges of application of Cyber Security Laws and policies regarding Human Rights Laws</h3>
+        <p>Advocate Mostafa Hossain · Fall 2020</p>
+      </article>
+      <article>
+        <h3>A Comparative Analysis on the Engagement of urban Middle-Class People in Social Movements: Political Hegemony</h3>
+        <p>Shahzad M Arifeen · Summer 2020</p>
+      </article>
     </div>
   </section>
 
   <section class="research-section research-public-writing" aria-labelledby="public-writing-title">
-    <div>
-      <p class="research-kicker">Public writing</p>
-      <h2 id="public-writing-title">Beyond the academic page</h2>
+    <div class="research-section-heading">
+      <h2 id="public-writing-title">Public writing</h2>
     </div>
-    <p>
-      <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank" rel="noopener">"Whose language is rumour?"</a>
-      <span>Muktiforum, 2024</span>
-    </p>
+    <div class="research-section-body">
+      <p>
+        <a href="https://www.muktiforum.com/whose-language-is-rumour" target="_blank" rel="noopener">"Whose language is rumour?"</a>
+        <span>Muktiforum, 2024</span>
+      </p>
+    </div>
   </section>
 </div>

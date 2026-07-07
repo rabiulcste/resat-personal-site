@@ -7,8 +7,7 @@ permalink: "/blog/"
 <div class="media-lab-blog-container">
   <header class="blog-hero">
     <h1 class="blog-hero-title">Writing</h1>
-    <p class="blog-hero-subtitle">Essays and commentary on platforms, power, feminist politics, and technology in the Global South</p>
-    <p class="blog-note">For peer-reviewed work and manuscripts, see <a href="{{ site.github.url }}/research">Research Projects</a>.</p>
+    <p class="blog-hero-subtitle">Notes, essays, and public writing on platforms, power, feminist politics, and the everyday mess of technology.</p>
   </header>
   
   {% if site.posts.size > 0 %}
@@ -40,7 +39,7 @@ permalink: "/blog/"
           {{ post.excerpt | strip_html | truncatewords: 40 }}
         </div>
         <a href="{{ site.github.url }}{{ post.url }}" class="blog-card-link">
-          Read Article →
+          Read →
         </a>
       </div>
     </article>
@@ -48,7 +47,7 @@ permalink: "/blog/"
   </div>
   {% else %}
   <div class="blog-empty">
-    <p>No posts yet. Check back soon!</p>
+    <p>No writing here yet.</p>
   </div>
   {% endif %}
 </div>

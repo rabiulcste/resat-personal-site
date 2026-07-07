@@ -49,16 +49,13 @@ permalink: "/about/"
 
     <section class="about-block reverse">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-2">Research &amp; scholarship</h2>
+        <h2 class="about-block-title icon-2">Academic home</h2>
         <p>
-          I study how platforms and AI mediate power, visibility, and identity—who gets heard, who gets punished, and how people push back.
-          My current work examines how AI image generators reproduce colonial hierarchies in their depictions of Global South activists,
-          and how feminist movements in Bangladesh navigate algorithmic amplification, online harassment, and state surveillance simultaneously.
-          I draw on qualitative content analysis, legal case study methods, and close reading of platform affordances—working at the intersection
-          of feminist media studies, postcolonial critique, and critical algorithm studies.
+          My academic work grew out of the same thing that keeps showing up in the rest of my life: curiosity about people, power, speech, and the strange ways public life moves online.
+          I came to communication through sociology, law, activism, and a lot of time watching how people argue, organize, joke, punish, and protect each other in digital spaces.
         </p>
         <p>
-          <a href="{{ site.github.url }}/research" class="research-link-inline">Research projects &amp; papers →</a>
+          <a href="{{ site.github.url }}/research" class="research-link-inline">See the research work →</a>
         </p>
       </div>
     </section>
@@ -112,49 +109,51 @@ permalink: "/about/"
       </div>
     </section>
 
-    <section class="video-section">
-      <h2 class="section-title">Media &amp; Public Work</h2>
-      <div class="video-grid-modern">
-        <div class="video-card-lazy" data-video-type="tiktok" data-video-id="7068996889735204122" data-video-url="https://www.tiktok.com/@resat_priya/video/7068996889735204122">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">TikTok</div>
-            <div class="video-title">Feminism 101</div>
+    <section class="about-block video-section">
+      <div class="about-block-content">
+        <h2 class="about-block-title">Public work archive</h2>
+        <div class="video-grid-modern">
+          <div class="video-card-lazy" data-video-type="tiktok" data-video-id="7068996889735204122" data-video-url="https://www.tiktok.com/@resat_priya/video/7068996889735204122">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">TikTok</div>
+              <div class="video-title">Feminism 101</div>
+            </div>
           </div>
-        </div>
-        <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&amp;href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F651351388915757%2F&amp;show_text=false&amp;width=476&amp;t=0">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">Facebook</div>
-            <div class="video-title">Project Nirbhik</div>
+          <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&amp;href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F651351388915757%2F&amp;show_text=false&amp;width=476&amp;t=0">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">Facebook</div>
+              <div class="video-title">Project Nirbhik</div>
+            </div>
           </div>
-        </div>
-        <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F349425922757433%2F&amp;show_text=false&amp;width=560&amp;t=0">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">Facebook</div>
-            <div class="video-title">Project Nirbhik</div>
+          <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=314&amp;href=https%3A%2F%2Fwww.facebook.com%2FProjectNirbhik%2Fvideos%2F349425922757433%2F&amp;show_text=false&amp;width=560&amp;t=0">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">Facebook</div>
+              <div class="video-title">Project Nirbhik</div>
+            </div>
           </div>
-        </div>
-        <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&amp;href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F536960813850054%2F&amp;show_text=false&amp;width=476&amp;t=0">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">Facebook</div>
-            <div class="video-title">Feminist Activism</div>
+          <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&amp;href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F536960813850054%2F&amp;show_text=false&amp;width=476&amp;t=0">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">Facebook</div>
+              <div class="video-title">Feminist Activism</div>
+            </div>
           </div>
-        </div>
-        <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F504250997121036%2F&show_text=false&width=267&t=0">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">Facebook</div>
-            <div class="video-title">Digital Organizing</div>
+          <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Fanario.apri.9%2Fvideos%2F504250997121036%2F&show_text=false&width=267&t=0">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">Facebook</div>
+              <div class="video-title">Digital Organizing</div>
+            </div>
           </div>
-        </div>
-        <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Froyboxproductions%2Fvideos%2F225219102435754%2F&show_text=false&width=560&t=0">
-          <div class="video-placeholder">
-            <div class="video-play-icon">▶</div>
-            <div class="video-label">Facebook</div>
-            <div class="video-title">Roybox Productions</div>
+          <div class="video-card-lazy" data-video-type="facebook" data-video-url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Froyboxproductions%2Fvideos%2F225219102435754%2F&show_text=false&width=560&t=0">
+            <div class="video-placeholder">
+              <div class="video-play-icon">▶</div>
+              <div class="video-label">Facebook</div>
+              <div class="video-title">Roybox Productions</div>
+            </div>
           </div>
         </div>
       </div>

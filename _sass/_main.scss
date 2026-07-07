@@ -2635,6 +2635,10 @@ input[type="submit"], button {
   gap: 1rem;
 }
 
+.research-archive-list {
+  gap: 0;
+}
+
 .research-agenda-list {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -2648,6 +2652,15 @@ input[type="submit"], button {
   border-radius: 12px;
 }
 
+.research-archive-list article {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(71, 118, 82, 0.13);
+}
+
+.research-archive-list article:first-child {
+  padding-top: 0;
+}
+
 .research-agenda-list span {
   display: inline-block;
   margin-bottom: 0.65rem;
@@ -2658,7 +2671,8 @@ input[type="submit"], button {
 
 .research-agenda-list h3,
 .research-project-card h3,
-.research-output-list h3 {
+.research-output-list h3,
+.research-archive-list h3 {
   margin-bottom: 0.55rem;
   font-size: clamp(1.15rem, 2vw, 1.45rem);
 }
@@ -2672,6 +2686,22 @@ input[type="submit"], button {
   line-height: 1.68;
 }
 
+.research-archive-list h3 {
+  margin-bottom: 0.2rem;
+  font-family: var(--font-editorial);
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.research-archive-list p {
+  margin-bottom: 0;
+  color: #6b7d71;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .research-project-meta {
   display: flex;
   flex-wrap: wrap;
@@ -2679,8 +2709,7 @@ input[type="submit"], button {
   margin-bottom: 0.85rem;
 }
 
-.research-project-meta span,
-.research-method-grid span {
+.research-project-meta span {
   display: inline-flex;
   width: fit-content;
   padding: 0.35rem 0.65rem;
@@ -2717,13 +2746,6 @@ input[type="submit"], button {
   margin: 0;
   color: #31453a;
   line-height: 1.45;
-}
-
-.research-method-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  align-content: start;
 }
 
 .research-public-writing a {
@@ -4397,5 +4419,352 @@ input[type='submit'] {
   .research-section {
     padding: 1.25rem;
     border-radius: 14px;
+  }
+}
+
+// Main site coherence pass. Keep the personal green scrapbook feeling, but
+// make each Jekyll page feel like part of the same visual system.
+.dynamic-homepage,
+.media-lab-about-page,
+.research-page,
+.media-lab-blog-container,
+.contact-page {
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.about-content-modern,
+.media-lab-blog-grid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.home-hero,
+.about-hero,
+.research-page-hero,
+.blog-hero,
+.contact-header {
+  overflow: hidden;
+  padding: clamp(2rem, 5vw, 4rem);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(183, 222, 181, 0.42) 0 7rem, transparent 7.2rem),
+    radial-gradient(circle at 88% 22%, rgba(112, 154, 120, 0.16) 0 8rem, transparent 8.2rem),
+    rgba(222, 242, 221, 0.86);
+  border: 1px solid rgba(71, 118, 82, 0.11);
+  border-radius: 24px;
+  box-shadow: 0 18px 42px rgba(93, 119, 101, 0.1);
+}
+
+.home-hero::after,
+.about-hero::after,
+.research-hero::after,
+.blog-hero::after {
+  display: none;
+}
+
+.about-hero {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(183, 222, 181, 0.42) 0 7rem, transparent 7.2rem),
+    radial-gradient(circle at 88% 22%, rgba(112, 154, 120, 0.16) 0 8rem, transparent 8.2rem),
+    rgba(222, 242, 221, 0.86);
+}
+
+.home-hero-title,
+.about-hero-text .about-name,
+.research-page-hero h1,
+.blog-hero-title,
+.contact-header h1 {
+  color: #18271e;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.home-hero-description,
+.about-hero-text .about-location,
+.research-page-hero p:last-child,
+.blog-hero-subtitle,
+.contact-subtitle {
+  color: #34493d;
+  font-family: var(--font-editorial);
+  line-height: 1.65;
+}
+
+.about-block,
+.research-panel,
+.research-section,
+.media-lab-blog-card,
+.contact-form-container,
+.video-card-lazy {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.035) 1px, transparent 1.35px),
+    rgba(246, 251, 244, 0.78);
+  background-size: 18px 18px, auto;
+  border: 1px solid rgba(71, 118, 82, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 14px 32px rgba(93, 119, 101, 0.08);
+}
+
+.media-lab-about-page .about-block,
+.media-lab-about-page .about-block:nth-of-type(2n) {
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.035) 1px, transparent 1.35px),
+    rgba(246, 251, 244, 0.78);
+  background-size: 18px 18px, auto;
+  border: 1px solid rgba(71, 118, 82, 0.14);
+  box-shadow: 0 14px 32px rgba(93, 119, 101, 0.08);
+}
+
+.media-lab-about-page .about-block-content {
+  padding-left: 0;
+}
+
+.media-lab-about-page .about-block-content::before {
+  display: none;
+}
+
+.blog-note {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 1.2rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  font-size: 0.96rem;
+}
+
+.contact-page {
+  max-width: 1120px;
+}
+
+.contact-header {
+  margin-bottom: 1.4rem;
+  text-align: left;
+}
+
+.contact-subtitle {
+  max-width: 680px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.contact-form-container {
+  max-width: none;
+  padding: clamp(1.4rem, 4vw, 2.4rem);
+}
+
+.contact-fallback,
+.contact-form,
+.contact-info {
+  max-width: 680px;
+}
+
+.media-lab-about-page .about-block-content p {
+  max-width: 860px;
+}
+
+.media-lab-blog-card {
+  width: 100%;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+@media (max-width: 900px) {
+  .home-hero,
+  .about-hero,
+  .research-page-hero,
+  .blog-hero,
+  .contact-header {
+    border-radius: 18px;
+  }
+
+  .about-content-modern,
+  .media-lab-blog-grid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Typography coherence pass. Serif carries the personal/editorial voice;
+// Space Grotesk stays on navigation, UI, labels, and compact lists.
+.menu-items a,
+.footer-nav a,
+.footer-copy {
+  font-family: var(--font-primary);
+  font-size: clamp(0.82rem, 0.86vw, 0.88rem);
+  line-height: 1.2;
+}
+
+.menu-items a,
+.footer-nav a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.menu-items a.site-title-nav {
+  font-family: var(--font-editorial);
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+.menu-items a.active {
+  font-weight: 650;
+}
+
+.home-hero-title,
+.research-page-hero h1,
+.blog-hero-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.65rem, 4.7vw, 4rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.about-hero-text .about-name,
+.contact-header h1 {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.55rem, 4.4vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.home-hero-description,
+.about-hero-text .about-location,
+.media-lab-about-page .about-block-content p,
+.research-page p,
+.research-page dd,
+.blog-hero-subtitle,
+.blog-card-excerpt,
+.contact-subtitle,
+.contact-fallback-lead,
+.contact-fallback-text {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.03rem, 1.2vw, 1.13rem);
+  line-height: 1.72;
+}
+
+.about-block-content .about-block-title,
+.research-panel h2,
+.research-section h2,
+.research-public-writing h2,
+.blog-card-title,
+.contact-form h2,
+.contact-info h2 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: 0;
+}
+
+.about-flow-list li,
+.research-project-card,
+.research-project-item,
+.research-project-item-compact,
+.research-detail-grid,
+.blog-note,
+.contact-form label,
+.contact-submit,
+.home-hero-link-primary,
+.home-hero-link-secondary {
+  font-family: var(--font-primary);
+}
+
+.research-kicker,
+.research-agenda-list span,
+.research-detail-grid dt,
+.blog-card-date,
+.research-project-date,
+.research-project-advisor,
+.about-flow-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 900px) {
+  .menu-items a.site-title-nav {
+    font-size: 1.04rem;
+  }
+
+  .menu-items a:not(.site-title-nav) {
+    font-size: 0.84rem;
+  }
+
+  .home-hero-visual {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .home-portrait-card,
+  .home-topic-notes {
+    max-width: 100%;
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero-title,
+  .about-hero-text .about-name,
+  .research-page-hero h1,
+  .blog-hero-title,
+  .contact-header h1 {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+}
+
+// Section rhythm pass: About and Research should use the same quiet
+// "heading, then content" logic instead of switching layouts page by page.
+.research-panel,
+.research-section {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.2rem, 4vw, 2.6rem);
+  align-items: start;
+}
+
+.research-section-heading {
+  max-width: 18rem;
+}
+
+.research-section-heading h2 {
+  margin-bottom: 0;
+}
+
+.research-section-body {
+  min-width: 0;
+}
+
+.research-agenda-list {
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.research-public-writing p {
+  margin-bottom: 0;
+}
+
+.media-lab-about-page .about-block.video-section {
+  margin-top: 1.4rem;
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+  border-top: 1px solid rgba(71, 118, 82, 0.14);
+}
+
+.media-lab-about-page .about-block.video-section .video-grid-modern {
+  margin-top: 1.35rem;
+}
+
+@media (max-width: 900px) {
+  .research-panel,
+  .research-section {
+    grid-template-columns: 1fr;
+  }
+
+  .research-section-heading {
+    max-width: none;
   }
 }

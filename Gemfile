@@ -16,6 +16,7 @@ gem "rake", "~> 12.3"
 gem "base64"
 gem "logger"
 gem "bigdecimal"
+gem "ffi", "~> 1.15.5"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
@@ -26,4 +27,3 @@ end
 
 # Performance and security
 gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
-

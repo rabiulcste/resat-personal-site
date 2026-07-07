@@ -4,8 +4,8 @@ layout: default
 {% assign form_endpoint = page.contact_form | default: site.contact_form %}
 <div class="contact-page">
   <header class="contact-header">
-    <h1>Get in Touch</h1>
-    <p class="contact-subtitle">I'm always glad to hear from researchers, journalists, activists, and students working on related questions. Feel free to reach out.</p>
+    <h1>Say hello</h1>
+    <p class="contact-subtitle">I’m always glad to hear from researchers, journalists, activists, students, and people thinking through similar questions.</p>
   </header>
 
   <div class="contact-form-container">
@@ -28,7 +28,7 @@ layout: default
 
       <div class="form-group form-group-full">
         <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell me more about your inquiry..." required></textarea>
+        <textarea id="message" name="message" placeholder="Write a little context..." required></textarea>
       </div>
 
       <div class="form-actions">
@@ -39,18 +39,16 @@ layout: default
     </form>
     {% else %}
     <div class="contact-fallback">
-      <p class="contact-fallback-lead">Email is the best way to reach me. I'm happy to discuss research, speaking invitations, or collaboration.</p>
+      <p class="contact-fallback-lead">Email is the best way to reach me. I’m happy to talk about research, writing, speaking invitations, or possible collaboration.</p>
       <p class="contact-fallback-action">
         <a class="btn btn-primary" href="mailto:{{ site.email }}">{{ site.email }}</a>
       </p>
-      <p class="contact-fallback-meta">Social profiles are linked in the site footer.</p>
     </div>
     {% endif %}
 
     {% if form_endpoint != nil and form_endpoint != '' %}
     <div class="contact-info">
       <p><strong>Prefer email?</strong> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-      <p>You can also use the social links in the footer.</p>
     </div>
     {% endif %}
   </div>
