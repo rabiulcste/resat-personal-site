@@ -142,11 +142,17 @@ function getSlotKey(dateParts, slot) {
   return `${getDateKey(dateParts)}__${slot.start}-${slot.end}`;
 }
 
+function getFriendlyTimeZoneLabel(timeZone) {
+  if (!timeZone) return '';
+
+  const city = timeZone.split('/').pop().replace(/_/g, ' ');
+  return city && city !== 'UTC' ? `${city} time, ${timeZone}` : timeZone;
+}
+
 function formatSlotTime(startDate, endDate) {
   const timeFormatter = new Intl.DateTimeFormat([], {
     hour: 'numeric',
-    minute: '2-digit',
-    timeZoneName: 'short'
+    minute: '2-digit'
   });
   return `${timeFormatter.format(startDate)} - ${timeFormatter.format(endDate)}`;
 }
@@ -157,7 +163,8 @@ function formatLocalDateTime(startDate, endDate) {
     month: 'short',
     day: 'numeric'
   });
-  return `${dateFormatter.format(startDate)}, ${formatSlotTime(startDate, endDate)}`;
+  const zoneLabel = visitorTimeZone ? ` (${getFriendlyTimeZoneLabel(visitorTimeZone)})` : '';
+  return `${dateFormatter.format(startDate)}, ${formatSlotTime(startDate, endDate)}${zoneLabel}`;
 }
 
 function getCapacityLabel(slotKey) {
@@ -452,7 +459,7 @@ requestForm.addEventListener('submit', (event) => {
       'I would like to request a seat in the study room.',
       '',
       `Slot: ${payload.slot} Netherlands time`,
-      payload.localSlot ? `Visitor local time: ${payload.localSlot}${visitorTimeZone ? ` (${visitorTimeZone})` : ''}` : '',
+      payload.localSlot ? `Visitor local time: ${payload.localSlot}` : '',
       `Name: ${payload.name}`,
       `Email: ${payload.email}`,
       `How often they want to join: ${payload.frequency}`,

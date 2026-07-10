@@ -4021,8 +4021,7 @@ input[type='submit'] {
   }
 }
 
-// Main site coherence pass. Keep the personal green scrapbook feeling, but
-// make each Jekyll page feel like part of the same visual system.
+// MAIN SITE SHARED SURFACES
 .dynamic-homepage,
 .media-lab-about-page,
 .research-page,
@@ -4050,15 +4049,8 @@ input[type='submit'] {
     radial-gradient(circle at 88% 22%, rgba(112, 154, 120, 0.16) 0 8rem, transparent 8.2rem),
     rgba(222, 242, 221, 0.86);
   border: 1px solid rgba(71, 118, 82, 0.11);
-  border-radius: 24px;
-  box-shadow: 0 18px 42px rgba(93, 119, 101, 0.1);
-}
-
-.about-hero {
-  background:
-    radial-gradient(circle at 16% 18%, rgba(183, 222, 181, 0.42) 0 7rem, transparent 7.2rem),
-    radial-gradient(circle at 88% 22%, rgba(112, 154, 120, 0.16) 0 8rem, transparent 8.2rem),
-    rgba(222, 242, 221, 0.86);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(93, 119, 101, 0.08);
 }
 
 .home-hero-title,
@@ -4088,23 +4080,23 @@ input[type='submit'] {
 .contact-form-container,
 .video-card-lazy {
   background:
-    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.035) 1px, transparent 1.35px),
-    rgba(246, 251, 244, 0.78);
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.026) 1px, transparent 1.35px),
+    rgba(248, 252, 246, 0.82);
   background-size: 18px 18px, auto;
-  border: 1px solid rgba(71, 118, 82, 0.14);
-  border-radius: 16px;
-  box-shadow: 0 14px 32px rgba(93, 119, 101, 0.08);
+  border: 1px solid rgba(71, 118, 82, 0.13);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(93, 119, 101, 0.065);
 }
 
 .media-lab-about-page .about-block,
 .media-lab-about-page .about-block:nth-of-type(2n) {
   padding: clamp(1.4rem, 4vw, 2.2rem);
   background:
-    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.035) 1px, transparent 1.35px),
-    rgba(246, 251, 244, 0.78);
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.026) 1px, transparent 1.35px),
+    rgba(248, 252, 246, 0.82);
   background-size: 18px 18px, auto;
-  border: 1px solid rgba(71, 118, 82, 0.14);
-  box-shadow: 0 14px 32px rgba(93, 119, 101, 0.08);
+  border: 1px solid rgba(71, 118, 82, 0.13);
+  box-shadow: 0 10px 24px rgba(93, 119, 101, 0.065);
 }
 
 .media-lab-about-page .about-block-content {
@@ -4156,7 +4148,7 @@ input[type='submit'] {
   .research-page-hero,
   .blog-hero,
   .contact-header {
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
   .about-content-modern,
@@ -4166,8 +4158,7 @@ input[type='submit'] {
   }
 }
 
-// Typography coherence pass. Serif carries the personal/editorial voice;
-// Space Grotesk stays on navigation, UI, labels, and compact lists.
+// TYPOGRAPHY SYSTEM
 .menu-items a,
 .footer-nav a,
 .footer-copy {
@@ -4346,7 +4337,23 @@ input[type='submit'] {
   border-radius: 8px;
 }
 
+.research-project-card,
+.research-output-list article,
+.research-agenda-list article {
+  background: rgba(255, 255, 252, 0.66);
+  border-color: rgba(71, 118, 82, 0.12);
+  border-radius: 10px;
+}
+
 @media (max-width: 900px) {
+  .about-block,
+  .research-panel,
+  .research-section,
+  .media-lab-blog-card,
+  .contact-form-container {
+    border-radius: 12px;
+  }
+
   .research-panel,
   .research-section {
     grid-template-columns: 1fr;

@@ -7,7 +7,8 @@
   --accent: #6f9a78;
   --accent-dark: #477652;
   --wine: #9e4962;
-  --card: rgba(255, 255, 250, 0.72);
+  --card: rgba(248, 252, 246, 0.82);
+  --surface-shadow: 0 10px 24px rgba(93, 119, 101, 0.065);
 }
 
 * { box-sizing: border-box; }
@@ -19,7 +20,10 @@ body {
   color: var(--ink);
   font-family: Nunito, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.68;
-  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(36, 53, 43, 0.032) 1px, transparent 1.35px),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+  background-size: 19px 19px, auto;
   min-height: 100vh;
 }
 
@@ -39,7 +43,8 @@ a {
   align-items: center;
   gap: 1rem;
   min-height: 64px;
-  padding: 0 7vw;
+  padding-right: max(1.25rem, calc((100vw - 1080px) / 2 + 1.5rem));
+  padding-left: max(1.25rem, calc((100vw - 1080px) / 2 + 1.5rem));
   background: rgba(255, 253, 247, 0.82);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(111, 154, 120, 0.16);
@@ -51,8 +56,6 @@ a {
   font-weight: 700;
   color: var(--ink);
 }
-
-.logo-badge { display: none; }
 
 .nav {
   display: flex;
@@ -74,8 +77,8 @@ a {
 .section {
   width: min(100%, 1120px);
   margin: 0 auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .hero {
@@ -193,14 +196,14 @@ h3 {
 }
 
 .hero-visual,
-.sticker-board,
 .booking-box,
 .request-form,
 .steps article,
 .rules-list li {
   background: var(--card);
-  border: 1px solid rgba(111, 154, 120, 0.18);
-  border-radius: 16px;
+  border: 1px solid rgba(71, 118, 82, 0.13);
+  border-radius: 14px;
+  box-shadow: var(--surface-shadow);
 }
 
 .hero-visual {
@@ -211,8 +214,7 @@ h3 {
 }
 
 .hero-visual img,
-.hero-visual video,
-.sticker-board img {
+.hero-visual video {
   display: block;
   width: 100%;
   border-radius: 12px;
@@ -222,31 +224,6 @@ h3 {
   aspect-ratio: 4 / 3;
   height: auto;
   object-fit: cover;
-}
-
-.mini-tags,
-.sticker {
-  display: none;
-}
-
-.soft-note {
-  display: inline-flex;
-  width: fit-content;
-  padding: 0.42rem 0.68rem;
-  color: var(--accent-dark);
-  background: rgba(232, 244, 234, 0.78);
-  border: 1px solid rgba(111, 154, 120, 0.18);
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.soft-note-top {
-  position: absolute;
-  left: 1.35rem;
-  top: 1.35rem;
-  transform: rotate(-2deg);
 }
 
 .section {
@@ -278,7 +255,7 @@ h3 {
 
 .booking-box {
   width: 100%;
-  padding: 1rem;
+  padding: clamp(1.15rem, 3vw, 1.5rem);
 }
 
 .steps {
@@ -307,8 +284,8 @@ h3 {
   color: #111;
   background: #efe8e1;
   border: 1px solid rgba(158, 73, 98, 0.12);
-  border-radius: 20px;
-  box-shadow: 0 8px 18px rgba(36, 53, 43, 0.06);
+  border-radius: 14px;
+  box-shadow: none;
   font-family: Fredoka, Nunito, system-ui, sans-serif;
   font-size: 1.14rem;
   font-weight: 700;
@@ -332,10 +309,10 @@ h3 {
   color: inherit;
   background: #efe8e1;
   border: 1px solid rgba(36, 53, 43, 0.08);
-  border-radius: 14px;
+  border-radius: 12px;
   font: inherit;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(36, 53, 43, 0.06);
+  box-shadow: none;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
@@ -362,7 +339,7 @@ h3 {
 .day-card:hover,
 .day-card[aria-pressed="true"] {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(36, 53, 43, 0.1);
+  box-shadow: 0 10px 22px rgba(36, 53, 43, 0.08);
 }
 
 .day-card[aria-pressed="true"] {
@@ -446,8 +423,8 @@ h3 {
   padding: 0.9rem;
   background: #efe8e1;
   border: 1px solid rgba(36, 53, 43, 0.08);
-  border-radius: 14px;
-  box-shadow: 0 14px 28px rgba(36, 53, 43, 0.08);
+  border-radius: 12px;
+  box-shadow: var(--surface-shadow);
 }
 
 .slot-popup-header {
@@ -486,12 +463,6 @@ h3 {
 .slot-popup-options {
   display: grid;
   gap: 0.75rem;
-}
-
-.date-slots {
-  display: grid;
-  gap: 0.68rem;
-  padding: 0.9rem 1.2rem 1.1rem;
 }
 
 .slot-item {
@@ -753,8 +724,7 @@ h3 {
     align-items: center;
   }
 
-  .slot-list,
-  .date-slots {
+  .slot-list {
     grid-template-columns: 1fr;
   }
 

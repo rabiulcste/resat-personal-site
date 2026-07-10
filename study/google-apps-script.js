@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-06-study-reminders-timezone-fix';
+const SCRIPT_VERSION = '2026-07-09-local-timezone-label';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -76,13 +76,13 @@ function doPost(event) {
 
   if (isSlotFull_(ss, data.slotKey)) {
     markRequest_(ss, requestId, 'full');
-    sendFullEmail_(email, data.name, data.slot, data.localSlot);
+    sendFullEmail_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone);
     return json_({ ok: true, status: 'full' });
   }
 
   if (isApprovedRegular_(ss, email)) {
     markRequest_(ss, requestId, 'auto-approved');
-    sendMeetLink_(email, data.name, data.slot, data.localSlot);
+    sendMeetLink_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone);
     return json_({ ok: true, status: 'auto-approved' });
   }
 
@@ -148,7 +148,7 @@ function approveRequest_(requestId) {
   }
 
   markRequest_(ss, requestId, 'approved');
-  sendMeetLink_(request.email, request.name, request.slot, request.localSlot);
+  sendMeetLink_(request.email, request.name, request.slot, request.localSlot, request.visitorTimeZone);
 
   if (isRegularAccess_(request.frequency)) {
     addApprovedRegular_(ss, request.email, request.name);
@@ -179,11 +179,12 @@ function sendApprovalEmail_(requestId, data) {
   const baseUrl = ScriptApp.getService().getUrl();
   const approveUrl = `${baseUrl}?action=approve&id=${encodeURIComponent(requestId)}`;
   const declineUrl = `${baseUrl}?action=decline&id=${encodeURIComponent(requestId)}`;
+  const localTime = formatLocalTimeForEmail_(data.localSlot, data.visitorTimeZone);
   const htmlBody = `
     <p><strong>${escape_(data.name)}</strong> requested a study room seat.</p>
     <p><strong>Slot:</strong> ${escape_(data.slot)} Netherlands time<br>
     <strong>Seats left:</strong> ${escape_(getSeatsLeft_(SpreadsheetApp.getActiveSpreadsheet(), data.slotKey))}<br>
-    <strong>Their local time:</strong> ${escape_(data.localSlot || '')}<br>
+    <strong>Their local time:</strong> ${escape_(localTime)}<br>
     <strong>Email:</strong> ${escape_(data.email)}<br>
     <strong>Frequency:</strong> ${escape_(data.frequency)}</p>
     <p><strong>Work:</strong><br>${escape_(data.work)}</p>
@@ -198,24 +199,42 @@ function sendApprovalEmail_(requestId, data) {
     to: OWNER_EMAIL,
     subject: `Study room request: ${data.slot}`,
     htmlBody,
-    body: `Study room request from ${data.name} (${data.email})\n\nSlot: ${data.slot}\nLocal time: ${data.localSlot}\nFrequency: ${data.frequency}\n\nWork:\n${data.work}\n\nWhy:\n${data.why}\n\nApprove: ${approveUrl}\nDecline: ${declineUrl}`
+    body: `Study room request from ${data.name} (${data.email})\n\nSlot: ${data.slot}\nLocal time: ${localTime}\nFrequency: ${data.frequency}\n\nWork:\n${data.work}\n\nWhy:\n${data.why}\n\nApprove: ${approveUrl}\nDecline: ${declineUrl}`
   });
 }
 
-function sendMeetLink_(email, name, slot, localSlot) {
+function sendMeetLink_(email, name, slot, localSlot, visitorTimeZone) {
+  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone);
   MailApp.sendEmail({
     to: email,
     subject: 'Your study room link',
-    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nIf you change your plan, please let me know in advance so I can offer the slot to someone else.\n\nSee you there,\nResat`
+    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Netherlands time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nIf you change your plan, please let me know in advance so I can offer the slot to someone else.\n\nSee you there,\nResat`
   });
 }
 
-function sendFullEmail_(email, name, slot, localSlot) {
+function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone) {
+  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone);
   MailApp.sendEmail({
     to: email,
     subject: 'Study room slot is full',
-    body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Netherlands time\nYour local time: ${localSlot || ''}\n\nPlease choose another slot.\n\nResat`
+    body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Netherlands time\nYour local time: ${localTime}\n\nPlease choose another slot.\n\nResat`
   });
+}
+
+function formatLocalTimeForEmail_(localSlot, visitorTimeZone) {
+  const cleanLocalSlot = String(localSlot || '').trim();
+  const cleanTimeZone = String(visitorTimeZone || '').trim();
+  const looksLikeSlotKey = /^\d{4}-\d{2}-\d{2}__\d{2}:\d{2}-\d{2}:\d{2}$/.test(cleanLocalSlot);
+
+  if (!cleanLocalSlot || looksLikeSlotKey) {
+    return cleanTimeZone ? `Timezone: ${cleanTimeZone}` : 'Not provided by browser';
+  }
+
+  if (cleanTimeZone && !cleanLocalSlot.includes(cleanTimeZone)) {
+    return `${cleanLocalSlot} (${cleanTimeZone})`;
+  }
+
+  return cleanLocalSlot;
 }
 
 function setupStudyReminderTrigger() {
@@ -244,6 +263,7 @@ function sendStudyReminders() {
     slot: headers.indexOf('slot'),
     slotKey: headers.indexOf('slotKey'),
     localSlot: headers.indexOf('localSlot'),
+    visitorTimeZone: headers.indexOf('visitorTimeZone'),
     reminderSentAt: headers.indexOf('reminderSentAt')
   };
 
@@ -264,7 +284,8 @@ function sendStudyReminders() {
       email: row[indexes.email],
       name: row[indexes.name],
       slot: row[indexes.slot],
-      localSlot: row[indexes.localSlot]
+      localSlot: row[indexes.localSlot],
+      visitorTimeZone: indexes.visitorTimeZone >= 0 ? row[indexes.visitorTimeZone] : ''
     });
 
     sheet.getRange(index + 2, indexes.reminderSentAt + 1).setValue(now);
@@ -272,10 +293,11 @@ function sendStudyReminders() {
 }
 
 function sendReminderEmail_(request) {
+  const localTime = formatLocalTimeForEmail_(request.localSlot, request.visitorTimeZone);
   MailApp.sendEmail({
     to: request.email,
     subject: 'Study room reminder',
-    body: `Hi ${request.name || 'there'},\n\nA small reminder that your study room starts in about 30 minutes.\n\nSlot: ${request.slot} Netherlands time\nYour local time: ${request.localSlot || ''}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you soon,\nResat`
+    body: `Hi ${request.name || 'there'},\n\nA small reminder that your study room starts in about 30 minutes.\n\nSlot: ${request.slot} Netherlands time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you soon,\nResat`
   });
 }
 
