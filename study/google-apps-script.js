@@ -892,9 +892,7 @@ function adminView_(key, notice) {
             const groups = statuses.map((status) => {
               const people = slot.people[status] || [];
               if (people.length === 0) return '';
-              const rows = people.length
-                ? '<ul>' + people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small><small class="answer">Work: ' + person.work + '</small><small class="answer">Why: ' + person.why + '</small></li>').join('') + '</ul>'
-                : '<p>None</p>';
+              const rows = '<ul>' + people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small><small class="answer">Work: ' + person.work + '</small><small class="answer">Why: ' + person.why + '</small></li>').join('') + '</ul>';
               return '<section class="status-box"><h4 class="status-title">' + status.replace('-', ' ') + '<span class="count">' + people.length + '</span></h4>' + rows + '</section>';
             }).join('');
             return '<article class="slot"><h3>' + slot.time + '</h3><p class="slot-meta">' + slot.total + ' request(s) for this slot</p><div class="status-grid">' + groups + '</div></article>';

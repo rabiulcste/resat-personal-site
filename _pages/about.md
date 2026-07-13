@@ -25,7 +25,7 @@ permalink: "/about/"
   <div class="about-content-modern">
     <section class="about-block">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-1">Hi!</h2>
+        <h2 class="about-block-title">Hi!</h2>
         <p>
           I love to talk. I love small observations, big feelings, and the strange little details people casually reveal about themselves.
         </p>
@@ -49,7 +49,7 @@ permalink: "/about/"
 
     <section class="about-block reverse">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-2">Academic work</h2>
+        <h2 class="about-block-title">Academic work</h2>
         <p>
           My academic work grew out of the same thing that keeps showing up in the rest of my life: curiosity about people, power, speech, and the strange ways public life moves online.
           I came to communication through sociology, law, activism, and a lot of time watching how people argue, organize, joke, punish, and protect each other in digital spaces.
@@ -59,7 +59,7 @@ permalink: "/about/"
 
     <section class="about-block about-block--edu-exp">
       <div class="about-block-content">
-        <h2 class="about-block-title icon-3">Education &amp; experience</h2>
+        <h2 class="about-block-title">Education &amp; experience</h2>
         <div class="about-training-flow">
           <div class="about-flow-group">
             <h3 class="about-flow-sub">Education</h3>

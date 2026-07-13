@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Resat Amin">
+  <rect width="64" height="64" rx="14" fill="#f8fbf6"/>
+  <path d="M18 45V18h13c7 0 11 4 11 10 0 4-2 7-6 9l8 8h-9l-7-7h-3v7h-7Zm7-13h6c3 0 5-2 5-4s-2-4-5-4h-6v8Z" fill="#24352b"/>
+  <circle cx="47" cy="18" r="5" fill="#9e4962"/>
+</svg>

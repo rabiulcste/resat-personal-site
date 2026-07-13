@@ -2487,12 +2487,6 @@ input[type="submit"], button {
   }
 }
 
-@media (max-width: 1024px) {
-  [class^="icon-"], [class*=" icon-"] {
-    padding: 0 1px;
-  }
-}
-
 @media (max-width: 768px) and (orientation: portrait) {
   .hide-for-ipad {
     display: none !important;
