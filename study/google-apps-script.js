@@ -32,6 +32,7 @@ const SLOT_TIME_KEYS = {
 const BLOCKED_HEADERS = ['type', 'key', 'label', 'active', 'note'];
 const DEFAULT_BLOCKED_ROWS = [
   ['date', '2026-07-06', 'Monday, July 6', 'yes', 'Closed for now'],
+  ['date', '2026-07-27', 'Monday, July 27', 'yes', 'Closed for now'],
   ['slot', '2026-07-07__15:45-16:30', 'Tuesday, July 7, 3:45 PM - 4:30 PM', 'yes', 'Closed for now']
 ];
 const MONTH_NUMBERS = {
