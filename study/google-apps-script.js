@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-13-admin-date-blocking';
+const SCRIPT_VERSION = '2026-07-13-header-safe-requests';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -57,22 +57,22 @@ function doPost(event) {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const requests = getRequestsSheet_(ss);
 
-  requests.appendRow([
+  appendRequestRow_(requests, {
     createdAt,
     requestId,
-    'pending',
-    data.name,
+    status: 'pending',
+    name: data.name,
     email,
-    data.slot,
-    data.slotKey,
-    data.localSlot,
-    data.visitorTimeZone,
-    data.frequency,
-    data.work,
-    data.why,
-    '',
-    ''
-  ]);
+    slot: data.slot,
+    slotKey: data.slotKey,
+    localSlot: data.localSlot,
+    visitorTimeZone: data.visitorTimeZone,
+    frequency: data.frequency,
+    work: data.work,
+    why: data.why,
+    approvedAt: '',
+    reminderSentAt: ''
+  });
 
   if (isSlotFull_(ss, data.slotKey)) {
     markRequest_(ss, requestId, 'full');
@@ -440,6 +440,15 @@ function getSheet_(ss, name, headers) {
 
 function getRequestsSheet_(ss) {
   return getSheet_(ss, SHEET_REQUESTS, REQUEST_HEADERS);
+}
+
+function appendRequestRow_(sheet, valuesByHeader) {
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const row = headers.map((header) => (
+    Object.prototype.hasOwnProperty.call(valuesByHeader, header) ? valuesByHeader[header] : ''
+  ));
+
+  sheet.appendRow(row);
 }
 
 function getBlockedSheet_(ss) {
@@ -882,6 +891,7 @@ function adminView_(key, notice) {
             const statuses = ['pending', 'approved', 'auto-approved', 'declined', 'full'];
             const groups = statuses.map((status) => {
               const people = slot.people[status] || [];
+              if (people.length === 0) return '';
               const rows = people.length
                 ? '<ul>' + people.map((person) => '<li><strong>' + person.name + '</strong><small>' + person.email + '</small><small>' + person.frequency + '</small><small class="answer">Work: ' + person.work + '</small><small class="answer">Why: ' + person.why + '</small></li>').join('') + '</ul>'
                 : '<p>None</p>';
@@ -1036,6 +1046,8 @@ function getAvailabilityDebug_(ss) {
     scriptVersion: SCRIPT_VERSION,
     sheetName: sheet.getName(),
     rows: Math.max(values.length - 1, 0),
+    requestHeaders: headers,
+    expectedRequestHeaders: REQUEST_HEADERS,
     headersPresent: REQUEST_HEADERS.every((header) => headers.includes(header)),
     hasSlotKeyHeader: slotKeyIndex >= 0,
     hasStatusHeader: statusIndex >= 0,
