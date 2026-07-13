@@ -281,8 +281,12 @@ renderSchedule();
 function applyAvailabilityData(data) {
   availabilityBySlot = data.booked || {};
   availabilityStatus = 'ready';
-  if (Array.isArray(data.blockedDates)) blockedDates = new Set(data.blockedDates);
-  if (Array.isArray(data.blockedSlots)) blockedSlotKeys = new Set(data.blockedSlots);
+  if (Array.isArray(data.blockedDates)) {
+    blockedDates = new Set([...fallbackBlockedDates, ...data.blockedDates]);
+  }
+  if (Array.isArray(data.blockedSlots)) {
+    blockedSlotKeys = new Set([...fallbackBlockedSlotKeys, ...data.blockedSlots]);
+  }
   renderSchedule();
   refreshOpenSlotPopup();
 }
