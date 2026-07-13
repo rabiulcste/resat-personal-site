@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-13-readable-local-time-fallback';
+const SCRIPT_VERSION = '2026-07-13-admin-date-blocking';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -114,6 +114,14 @@ function doGet(event) {
 
   if (action === 'admin') {
     return adminView_(event.parameter.key);
+  }
+
+  if (action === 'admin-block-date') {
+    return updateAdminBlockedDate_(event.parameter.key, event.parameter.date, true);
+  }
+
+  if (action === 'admin-open-date') {
+    return updateAdminBlockedDate_(event.parameter.key, event.parameter.date, false);
   }
 
   if (action === 'reminder-debug') {
@@ -537,18 +545,101 @@ function normalizeBlockedKey_(value, type) {
   return String(value || '').trim();
 }
 
-function adminView_(key) {
+function updateAdminBlockedDate_(key, dateKey, shouldBlock) {
+  if (key !== ADMIN_KEY || ADMIN_KEY === 'CHANGE_THIS_PRIVATE_ADMIN_KEY') {
+    return adminView_(key);
+  }
+
+  const cleanDateKey = String(dateKey || '').trim();
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(cleanDateKey)) {
+    return adminView_(key, 'I could not read that date. Please use the date picker.');
+  }
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const label = setBlockedDate_(ss, cleanDateKey, shouldBlock);
+  const notice = shouldBlock
+    ? `${label} is closed now.`
+    : `${label} is open again.`;
+
+  return adminView_(key, notice);
+}
+
+function setBlockedDate_(ss, dateKey, shouldBlock) {
+  const sheet = getBlockedSheet_(ss);
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const indexes = {
+    type: headers.indexOf('type'),
+    key: headers.indexOf('key'),
+    label: headers.indexOf('label'),
+    active: headers.indexOf('active'),
+    note: headers.indexOf('note')
+  };
+  const label = formatDateLabelFromKey_(dateKey);
+  const active = shouldBlock ? 'yes' : 'no';
+  const note = shouldBlock ? 'Closed from admin page' : 'Opened from admin page';
+  const values = sheet.getDataRange().getValues();
+
+  for (let rowIndex = 1; rowIndex < values.length; rowIndex += 1) {
+    const row = values[rowIndex];
+    const type = String(row[indexes.type] || '').trim().toLowerCase();
+    const key = normalizeBlockedKey_(row[indexes.key], type);
+
+    if (type === 'date' && key === dateKey) {
+      sheet.getRange(rowIndex + 1, indexes.label + 1).setValue(label);
+      sheet.getRange(rowIndex + 1, indexes.active + 1).setValue(active);
+      sheet.getRange(rowIndex + 1, indexes.note + 1).setValue(note);
+      return label;
+    }
+  }
+
+  sheet.appendRow(['date', dateKey, label, active, note]);
+  return label;
+}
+
+function formatDateLabelFromKey_(dateKey) {
+  const match = String(dateKey || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+  if (!match) return dateKey;
+
+  const date = zonedTimeToDate_({
+    year: Number(match[1]),
+    month: Number(match[2]),
+    day: Number(match[3]),
+    hour: 12,
+    minute: 0
+  }, STUDY_TIME_ZONE);
+
+  return Utilities.formatDate(date, STUDY_TIME_ZONE, 'EEEE, MMMM d');
+}
+
+function adminView_(key, notice) {
   if (key !== ADMIN_KEY || ADMIN_KEY === 'CHANGE_THIS_PRIVATE_ADMIN_KEY') {
     return HtmlService
       .createHtmlOutput('<h1>Private study room list</h1><p>This admin link is locked. Add your private ADMIN_KEY in the script first.</p>')
       .setTitle('Study room admin');
   }
 
-  const roster = getAdminRoster_(SpreadsheetApp.getActiveSpreadsheet());
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const roster = getAdminRoster_(ss);
+  const blocked = getBlockedAvailability_(ss);
   const dates = Object.keys(roster).sort();
   const firstDate = dates[0] || '';
   const rosterJson = JSON.stringify(roster).replace(/</g, '\\u003c');
   const datesJson = JSON.stringify(dates).replace(/</g, '\\u003c');
+  const blockedDatesJson = JSON.stringify(blocked.dates).replace(/</g, '\\u003c');
+  const baseUrl = ScriptApp.getService().getUrl();
+  const closedDateControls = blocked.dates.length
+    ? blocked.dates.sort().map((dateKey) => `
+        <form method="get" action="${baseUrl}" class="pill-form">
+          <input type="hidden" name="action" value="admin-open-date">
+          <input type="hidden" name="key" value="${escape_(key)}">
+          <input type="hidden" name="date" value="${escape_(dateKey)}">
+          <span>${escape_(formatDateLabelFromKey_(dateKey))}</span>
+          <button type="submit">Open</button>
+        </form>
+      `).join('')
+    : '<p class="muted">No closed dates right now.</p>';
 
   const html = `
     <!doctype html>
@@ -565,7 +656,7 @@ function adminView_(key) {
           font-family: Arial, sans-serif;
         }
         main {
-          max-width: 920px;
+          max-width: 980px;
           margin: 0 auto;
         }
         h1 {
@@ -573,6 +664,69 @@ function adminView_(key) {
           font-size: 30px;
         }
         p {
+          color: #607066;
+        }
+        .admin-card {
+          margin: 18px 0;
+          padding: 18px;
+          background: #ffffff;
+          border: 1px solid #d7e4d6;
+          border-radius: 16px;
+        }
+        .admin-card h2 {
+          margin: 0 0 10px;
+          font-size: 20px;
+        }
+        .closure-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 14px;
+        }
+        .date-form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+        }
+        input[type="date"] {
+          min-height: 40px;
+          padding: 8px 10px;
+          color: #24352b;
+          background: #f8fbf6;
+          border: 1px solid #d7e4d6;
+          border-radius: 10px;
+          font: inherit;
+        }
+        .pill-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .pill-form {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 7px 8px 7px 12px;
+          background: #f8fbf6;
+          border: 1px solid #d7e4d6;
+          border-radius: 999px;
+          font-weight: 700;
+        }
+        .pill-form button {
+          padding: 7px 10px;
+          font-size: 13px;
+        }
+        .notice {
+          margin: 16px 0 0;
+          padding: 12px 14px;
+          color: #24352b;
+          background: #e6f1e6;
+          border: 1px solid #bfd5bf;
+          border-radius: 12px;
+          font-weight: 700;
+        }
+        .muted {
+          margin: 0;
           color: #607066;
         }
         .date-buttons {
@@ -595,6 +749,15 @@ function adminView_(key) {
           color: #ffffff;
           background: #477652;
           border-color: #477652;
+        }
+        .date-buttons button.is-closed {
+          border-color: #9e4962;
+        }
+        .date-buttons button.is-closed::after {
+          content: " closed";
+          font-size: 12px;
+          color: inherit;
+          opacity: 0.78;
         }
         .slot {
           margin: 14px 0;
@@ -662,18 +825,45 @@ function adminView_(key) {
           border: 1px dashed #b9cab8;
           border-radius: 14px;
         }
+        @media (max-width: 720px) {
+          body {
+            padding: 18px;
+          }
+          .closure-grid {
+            grid-template-columns: 1fr;
+          }
+        }
       </style>
     </head>
     <body>
       <main>
         <h1>Study room admin</h1>
         <p>Click a date to see approved, pending, declined, and auto-approved requests. This page is private; do not share the link.</p>
+        ${notice ? `<div class="notice">${escape_(notice)}</div>` : ''}
+        <section class="admin-card">
+          <div class="closure-grid">
+            <div>
+              <h2>Close a date</h2>
+              <form method="get" action="${baseUrl}" class="date-form">
+                <input type="hidden" name="action" value="admin-block-date">
+                <input type="hidden" name="key" value="${escape_(key)}">
+                <input type="date" name="date" required>
+                <button type="submit">Close date</button>
+              </form>
+            </div>
+            <div>
+              <h2>Closed dates</h2>
+              <div class="pill-list">${closedDateControls}</div>
+            </div>
+          </div>
+        </section>
         <div class="date-buttons" id="date-buttons"></div>
         <section id="date-panel"></section>
       </main>
       <script>
         const roster = ${rosterJson};
         const dates = ${datesJson};
+        const blockedDates = new Set(${blockedDatesJson});
         const firstDate = ${JSON.stringify(firstDate)};
         const buttons = document.getElementById('date-buttons');
         const panel = document.getElementById('date-panel');
@@ -708,7 +898,10 @@ function adminView_(key) {
           buttons.innerHTML = '';
           panel.innerHTML = '<div class="empty">No requests yet.</div>';
         } else {
-          buttons.innerHTML = dates.map((dateKey) => '<button type="button" data-date="' + dateKey + '">' + roster[dateKey].label + '</button>').join('');
+          buttons.innerHTML = dates.map((dateKey) => {
+            const closedClass = blockedDates.has(dateKey) ? ' class="is-closed"' : '';
+            return '<button type="button" data-date="' + dateKey + '"' + closedClass + '>' + roster[dateKey].label + '</button>';
+          }).join('');
           buttons.addEventListener('click', (event) => {
             const button = event.target.closest('button');
             if (button) showDate(button.dataset.date);
