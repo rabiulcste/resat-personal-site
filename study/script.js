@@ -17,7 +17,7 @@ const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
 const calendarStart = { year: 2026, month: 7, day: 1 };
 const scheduleEnd = { year: 2026, month: 7, day: 31 };
-const fallbackBlockedDates = ['2026-07-06', '2026-07-27'];
+const fallbackBlockedDates = ['2026-07-06'];
 const fallbackBlockedSlotKeys = ['2026-07-07__15:45-16:30'];
 const studyDays = [
   { label: 'Monday', index: 1 },
