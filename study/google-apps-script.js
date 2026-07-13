@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-09-local-timezone-label';
+const SCRIPT_VERSION = '2026-07-13-readable-local-time-fallback';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -77,13 +77,13 @@ function doPost(event) {
 
   if (isSlotFull_(ss, data.slotKey)) {
     markRequest_(ss, requestId, 'full');
-    sendFullEmail_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone);
+    sendFullEmail_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone, data.slotKey);
     return json_({ ok: true, status: 'full' });
   }
 
   if (isApprovedRegular_(ss, email)) {
     markRequest_(ss, requestId, 'auto-approved');
-    sendMeetLink_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone);
+    sendMeetLink_(email, data.name, data.slot, data.localSlot, data.visitorTimeZone, data.slotKey);
     return json_({ ok: true, status: 'auto-approved' });
   }
 
@@ -149,7 +149,7 @@ function approveRequest_(requestId) {
   }
 
   markRequest_(ss, requestId, 'approved');
-  sendMeetLink_(request.email, request.name, request.slot, request.localSlot, request.visitorTimeZone);
+  sendMeetLink_(request.email, request.name, request.slot, request.localSlot, request.visitorTimeZone, request.slotKey);
 
   if (isRegularAccess_(request.frequency)) {
     addApprovedRegular_(ss, request.email, request.name);
@@ -180,7 +180,7 @@ function sendApprovalEmail_(requestId, data) {
   const baseUrl = ScriptApp.getService().getUrl();
   const approveUrl = `${baseUrl}?action=approve&id=${encodeURIComponent(requestId)}`;
   const declineUrl = `${baseUrl}?action=decline&id=${encodeURIComponent(requestId)}`;
-  const localTime = formatLocalTimeForEmail_(data.localSlot, data.visitorTimeZone);
+  const localTime = formatLocalTimeForEmail_(data.localSlot, data.visitorTimeZone, data.slotKey);
   const htmlBody = `
     <p><strong>${escape_(data.name)}</strong> requested a study room seat.</p>
     <p><strong>Slot:</strong> ${escape_(data.slot)} Netherlands time<br>
@@ -204,8 +204,8 @@ function sendApprovalEmail_(requestId, data) {
   });
 }
 
-function sendMeetLink_(email, name, slot, localSlot, visitorTimeZone) {
-  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone);
+function sendMeetLink_(email, name, slot, localSlot, visitorTimeZone, slotKey) {
+  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone, slotKey);
   MailApp.sendEmail({
     to: email,
     subject: 'Your study room link',
@@ -213,8 +213,8 @@ function sendMeetLink_(email, name, slot, localSlot, visitorTimeZone) {
   });
 }
 
-function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone) {
-  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone);
+function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone, slotKey) {
+  const localTime = formatLocalTimeForEmail_(localSlot, visitorTimeZone, slotKey);
   MailApp.sendEmail({
     to: email,
     subject: 'Study room slot is full',
@@ -222,20 +222,50 @@ function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone) {
   });
 }
 
-function formatLocalTimeForEmail_(localSlot, visitorTimeZone) {
+function formatLocalTimeForEmail_(localSlot, visitorTimeZone, slotKey) {
   const cleanLocalSlot = String(localSlot || '').trim();
   const cleanTimeZone = String(visitorTimeZone || '').trim();
   const looksLikeSlotKey = /^\d{4}-\d{2}-\d{2}__\d{2}:\d{2}-\d{2}:\d{2}$/.test(cleanLocalSlot);
+  const safeSlotKey = String(slotKey || '').trim() || (looksLikeSlotKey ? cleanLocalSlot : '');
 
-  if (!cleanLocalSlot || looksLikeSlotKey) {
-    return cleanTimeZone ? `Timezone: ${cleanTimeZone}` : 'Not provided by browser';
+  if (cleanLocalSlot && !looksLikeSlotKey) {
+    if (cleanTimeZone && !cleanLocalSlot.includes(cleanTimeZone)) {
+      return `${cleanLocalSlot} (${cleanTimeZone})`;
+    }
+
+    return cleanLocalSlot;
   }
 
-  if (cleanTimeZone && !cleanLocalSlot.includes(cleanTimeZone)) {
-    return `${cleanLocalSlot} (${cleanTimeZone})`;
+  if (safeSlotKey && cleanTimeZone) {
+    return formatSlotKeyForTimeZone_(safeSlotKey, cleanTimeZone);
   }
 
-  return cleanLocalSlot;
+  if (safeSlotKey) {
+    return `Could not read visitor timezone; ${formatSlotKeyForTimeZone_(safeSlotKey, STUDY_TIME_ZONE)}`;
+  }
+
+  return cleanTimeZone ? `Timezone: ${cleanTimeZone}` : 'Not provided by browser';
+}
+
+function formatSlotKeyForTimeZone_(slotKey, timeZone) {
+  const range = slotRangeFromKey_(slotKey);
+
+  if (!range) return `Timezone: ${timeZone}`;
+
+  const date = Utilities.formatDate(range.start, timeZone, 'EEEE, MMMM d');
+  const start = Utilities.formatDate(range.start, timeZone, 'h:mm a');
+  const end = Utilities.formatDate(range.end, timeZone, 'h:mm a');
+  const zoneLabel = friendlyTimeZoneLabel_(timeZone);
+
+  return `${date}, ${start} - ${end} (${zoneLabel})`;
+}
+
+function friendlyTimeZoneLabel_(timeZone) {
+  const city = String(timeZone || '').split('/').pop().replace(/_/g, ' ');
+
+  if (!city || city === 'UTC') return timeZone;
+
+  return `${city} time, ${timeZone}`;
 }
 
 function setupStudyReminderTrigger() {
@@ -286,7 +316,8 @@ function sendStudyReminders() {
       name: row[indexes.name],
       slot: row[indexes.slot],
       localSlot: row[indexes.localSlot],
-      visitorTimeZone: indexes.visitorTimeZone >= 0 ? row[indexes.visitorTimeZone] : ''
+      visitorTimeZone: indexes.visitorTimeZone >= 0 ? row[indexes.visitorTimeZone] : '',
+      slotKey
     });
 
     sheet.getRange(index + 2, indexes.reminderSentAt + 1).setValue(now);
@@ -294,7 +325,7 @@ function sendStudyReminders() {
 }
 
 function sendReminderEmail_(request) {
-  const localTime = formatLocalTimeForEmail_(request.localSlot, request.visitorTimeZone);
+  const localTime = formatLocalTimeForEmail_(request.localSlot, request.visitorTimeZone, request.slotKey);
   MailApp.sendEmail({
     to: request.email,
     subject: 'Study room reminder',
@@ -312,17 +343,33 @@ function shouldSendReminder_(slotKey, now) {
 }
 
 function slotStartFromKey_(slotKey) {
+  const range = slotRangeFromKey_(slotKey);
+
+  return range ? range.start : null;
+}
+
+function slotRangeFromKey_(slotKey) {
   const match = String(slotKey || '').match(/^(\d{4})-(\d{2})-(\d{2})__(\d{2}):(\d{2})-\d{2}:\d{2}$/);
 
   if (!match) return null;
 
-  return zonedTimeToDate_({
+  const endMatch = String(slotKey || '').match(/-(\d{2}):(\d{2})$/);
+  const dateParts = {
     year: Number(match[1]),
     month: Number(match[2]),
-    day: Number(match[3]),
+    day: Number(match[3])
+  };
+
+  return {
+    start: zonedTimeToDate_(Object.assign({}, dateParts, {
     hour: Number(match[4]),
     minute: Number(match[5])
-  }, STUDY_TIME_ZONE);
+    }), STUDY_TIME_ZONE),
+    end: zonedTimeToDate_(Object.assign({}, dateParts, {
+      hour: Number(endMatch[1]),
+      minute: Number(endMatch[2])
+    }), STUDY_TIME_ZONE)
+  };
 }
 
 function zonedTimeToDate_(dateParts, timeZone) {
