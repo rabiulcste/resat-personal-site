@@ -1,7 +1,7 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-13-header-safe-requests';
+const SCRIPT_VERSION = '2026-07-15-stable-local-time-email';
 const STUDY_TIME_ZONE = 'Europe/Amsterdam';
 
 const SHEET_REQUESTS = 'Requests';
@@ -231,20 +231,16 @@ function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone, slotKey) 
 
 function formatLocalTimeForEmail_(localSlot, visitorTimeZone, slotKey) {
   const cleanLocalSlot = String(localSlot || '').trim();
-  const cleanTimeZone = String(visitorTimeZone || '').trim();
   const looksLikeSlotKey = /^\d{4}-\d{2}-\d{2}__\d{2}:\d{2}-\d{2}:\d{2}$/.test(cleanLocalSlot);
   const safeSlotKey = String(slotKey || '').trim() || (looksLikeSlotKey ? cleanLocalSlot : '');
-
-  if (cleanLocalSlot && !looksLikeSlotKey) {
-    if (cleanTimeZone && !cleanLocalSlot.includes(cleanTimeZone)) {
-      return `${cleanLocalSlot} (${cleanTimeZone})`;
-    }
-
-    return cleanLocalSlot;
-  }
+  const cleanTimeZone = extractTimeZone_(visitorTimeZone, localSlot);
 
   if (safeSlotKey && cleanTimeZone) {
     return formatSlotKeyForTimeZone_(safeSlotKey, cleanTimeZone);
+  }
+
+  if (cleanLocalSlot && !looksLikeSlotKey) {
+    return cleanLocalSlot;
   }
 
   if (safeSlotKey) {
@@ -252,6 +248,17 @@ function formatLocalTimeForEmail_(localSlot, visitorTimeZone, slotKey) {
   }
 
   return cleanTimeZone ? `Timezone: ${cleanTimeZone}` : 'Not provided by browser';
+}
+
+function extractTimeZone_() {
+  for (let index = 0; index < arguments.length; index += 1) {
+    const value = String(arguments[index] || '').trim();
+    const match = value.match(/\b(?:UTC|[A-Za-z_]+\/[A-Za-z_]+(?:\/[A-Za-z_]+)?)\b/);
+
+    if (match) return match[0];
+  }
+
+  return '';
 }
 
 function formatSlotKeyForTimeZone_(slotKey, timeZone) {
