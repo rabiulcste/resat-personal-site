@@ -275,6 +275,13 @@ h3 {
   text-align: center;
 }
 
+.calendar-note {
+  max-width: 46rem;
+  margin: 0.9rem auto 1.2rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 .calendar-badge {
   display: inline-flex;
   align-items: center;

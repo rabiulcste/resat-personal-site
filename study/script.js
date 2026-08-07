@@ -15,19 +15,16 @@ const requestEndpoint = 'https://script.google.com/macros/s/AKfycbygIDz4Q7D47BH3
 const availabilityEndpoint = '/study-availability';
 const maxSeatsPerSlot = 3;
 const netherlandsTimeZone = 'Europe/Amsterdam';
-const calendarStart = { year: 2026, month: 7, day: 1 };
-const scheduleEnd = { year: 2026, month: 7, day: 31 };
+const calendarStart = { year: 2026, month: 8, day: 1 };
+const scheduleEnd = { year: 2026, month: 8, day: 31 };
 const fallbackBlockedDates = ['2026-07-06'];
 const fallbackBlockedSlotKeys = ['2026-07-07__15:45-16:30'];
 const studyDays = [
-  { label: 'Monday', index: 1 },
   { label: 'Tuesday', index: 2 },
   { label: 'Wednesday', index: 3 }
 ];
 const studySlots = [
-  { label: 'morning room', start: '11:00', end: '12:45', display: '11:00 AM - 12:45 PM' },
-  { label: 'afternoon room', start: '13:00', end: '15:45', display: '1:00 PM - 3:45 PM' },
-  { label: 'short room', start: '15:45', end: '16:30', display: '3:45 PM - 4:30 PM' }
+  { label: 'two-hour study room', start: '12:00', end: '14:00', display: '12:00 PM - 2:00 PM' }
 ];
 let selectedSlot = '';
 let selectedLocalSlot = '';
