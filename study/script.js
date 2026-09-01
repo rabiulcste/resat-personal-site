@@ -14,17 +14,24 @@ const studyVideo = document.getElementById('study-video');
 const requestEndpoint = 'https://script.google.com/macros/s/AKfycbygIDz4Q7D47BH3XbFcDnNaKUc7BNzhJFTinYs027wkvHCr7Wrf9AkHewS5jEcrk_v4cA/exec';
 const availabilityEndpoint = '/study-availability';
 const maxSeatsPerSlot = 3;
-const netherlandsTimeZone = 'Europe/Amsterdam';
-const calendarStart = { year: 2026, month: 8, day: 1 };
-const scheduleEnd = { year: 2026, month: 8, day: 31 };
-const fallbackBlockedDates = ['2026-07-06'];
-const fallbackBlockedSlotKeys = ['2026-07-07__15:45-16:30'];
+const studyTimeZone = 'America/New_York';
+const studyTimeZoneLabel = 'Massachusetts time';
+const calendarStart = { year: 2026, month: 9, day: 1 };
+const scheduleEnd = { year: 2026, month: 10, day: 31 };
+const fallbackBlockedDates = [];
+const fallbackBlockedSlotKeys = [];
 const studyDays = [
-  { label: 'Tuesday', index: 2 },
-  { label: 'Wednesday', index: 3 }
+  { label: 'Wednesday', index: 3 },
+  { label: 'Saturday', index: 6 },
+  { label: 'Sunday', index: 0 }
 ];
-const studySlots = [
-  { label: 'two-hour study room', start: '12:00', end: '14:00', display: '12:00 PM - 2:00 PM' }
+const weekdayStudySlots = [
+  { label: 'morning study room', start: '10:00', end: '11:30', display: '10:00 AM - 11:30 AM' },
+  { label: 'afternoon study room', start: '12:00', end: '14:00', display: '12:00 PM - 2:00 PM' }
+];
+const weekendStudySlots = [
+  { label: 'midday study room', start: '11:00', end: '13:00', display: '11:00 AM - 1:00 PM' },
+  { label: 'afternoon study room', start: '13:30', end: '15:00', display: '1:30 PM - 3:00 PM' }
 ];
 let selectedSlot = '';
 let selectedLocalSlot = '';
@@ -75,13 +82,13 @@ function datePartsFromUtcDate(date) {
   };
 }
 
-function netherlandsTimeToDate(dateParts, time) {
+function studyTimeToDate(dateParts, time) {
   const [hour, minute] = time.split(':').map(Number);
   const wanted = Date.UTC(dateParts.year, dateParts.month - 1, dateParts.day, hour, minute);
   let utcGuess = wanted;
 
   for (let i = 0; i < 3; i += 1) {
-    const actual = getZonedParts(new Date(utcGuess), netherlandsTimeZone);
+    const actual = getZonedParts(new Date(utcGuess), studyTimeZone);
     const actualAsUtc = Date.UTC(actual.year, actual.month - 1, actual.day, actual.hour, actual.minute);
     utcGuess -= actualAsUtc - wanted;
   }
@@ -89,7 +96,7 @@ function netherlandsTimeToDate(dateParts, time) {
   return new Date(utcGuess);
 }
 
-function formatNetherlandsDate(dateParts) {
+function formatStudyDate(dateParts) {
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     month: 'long',
@@ -113,7 +120,7 @@ function formatCalendarHeading(dateParts) {
   return `${monthDay} -- ${weekday}`;
 }
 
-function formatNetherlandsDateShort(dateParts) {
+function formatStudyDateShort(dateParts) {
   return new Intl.DateTimeFormat('en-US', {
     weekday: 'short',
     month: 'short',
@@ -137,6 +144,10 @@ function getDateKey(dateParts) {
 
 function getSlotKey(dateParts, slot) {
   return `${getDateKey(dateParts)}__${slot.start}-${slot.end}`;
+}
+
+function getStudySlotsForWeekday(weekdayIndex) {
+  return weekdayIndex === 3 ? weekdayStudySlots : weekendStudySlots;
 }
 
 function getFriendlyTimeZoneLabel(timeZone) {
@@ -178,10 +189,10 @@ function getCapacityLabel(slotKey) {
 }
 
 function createSlotItem(dateParts, slot) {
-  const startDate = netherlandsTimeToDate(dateParts, slot.start);
-  const endDate = netherlandsTimeToDate(dateParts, slot.end);
-  const netherlandsDate = formatNetherlandsDate(dateParts);
-  const netherlandsSlot = `${netherlandsDate}, ${slot.display}`;
+  const startDate = studyTimeToDate(dateParts, slot.start);
+  const endDate = studyTimeToDate(dateParts, slot.end);
+  const studyDate = formatStudyDate(dateParts);
+  const studySlot = `${studyDate}, ${slot.display}`;
   const localSlot = formatLocalDateTime(startDate, endDate);
   const slotKey = getSlotKey(dateParts, slot);
   const capacityLabel = getCapacityLabel(slotKey);
@@ -191,7 +202,7 @@ function createSlotItem(dateParts, slot) {
   const isUnavailable = isBooked || isClosed || isPending;
   const slotItem = document.createElement('div');
   slotItem.className = `slot-item${isUnavailable ? ' is-booked' : ''}`;
-  slotItem.dataset.slot = netherlandsSlot;
+  slotItem.dataset.slot = studySlot;
   slotItem.dataset.localSlot = localSlot;
   slotItem.dataset.slotKey = slotKey;
   slotItem.innerHTML = `
@@ -207,7 +218,7 @@ function createSlotItem(dateParts, slot) {
 }
 
 function getUpcomingSessionDays() {
-  const today = getZonedParts(new Date(), netherlandsTimeZone);
+  const today = getZonedParts(new Date(), studyTimeZone);
   const startDate = compareDateParts(today, calendarStart) > 0 ? today : calendarStart;
   const cursor = new Date(Date.UTC(calendarStart.year, calendarStart.month - 1, calendarStart.day, 12));
   const sessionDays = [];
@@ -222,10 +233,11 @@ function getUpcomingSessionDays() {
       sessionDays.push({
         key,
         dateParts,
+        slots: getStudySlotsForWeekday(cursor.getUTCDay()),
         calendar: getCalendarLabel(dateParts),
         heading: formatCalendarHeading(dateParts),
-        label: formatNetherlandsDateShort(dateParts),
-        fullLabel: formatNetherlandsDate(dateParts),
+        label: formatStudyDateShort(dateParts),
+        fullLabel: formatStudyDate(dateParts),
         hasSessions: !blockedDates.has(key)
       });
     }
@@ -392,7 +404,7 @@ function openSlotPopup(dateKey, shouldScroll = true) {
   });
 
   slotPopupTitle.textContent = sessionDay.heading;
-  slotPopupOptions.replaceChildren(...studySlots.map((slot) => createSlotItem(sessionDay.dateParts, slot)));
+  slotPopupOptions.replaceChildren(...sessionDay.slots.map((slot) => createSlotItem(sessionDay.dateParts, slot)));
   slotList.hidden = false;
   activeDateKey = dateKey;
   if (shouldScroll) slotList.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -413,7 +425,7 @@ function handleSlotClick(event) {
     selectedLocalSlot = slotItem.dataset.localSlot || '';
     selectedSlotKey = slotItem.dataset.slotKey || '';
     selectedSlotText.textContent = selectedLocalSlot
-      ? `${selectedSlot} Netherlands time · ${selectedLocalSlot} your time`
+      ? `${selectedSlot} ${studyTimeZoneLabel} · ${selectedLocalSlot} your time`
       : selectedSlot;
     requestPanel.hidden = false;
     requestPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -459,7 +471,7 @@ requestForm.addEventListener('submit', (event) => {
       '',
       'I would like to request a seat in the study room.',
       '',
-      `Slot: ${payload.slot} Netherlands time`,
+      `Slot: ${payload.slot} ${studyTimeZoneLabel}`,
       payload.localSlot ? `Visitor local time: ${payload.localSlot}` : '',
       `Name: ${payload.name}`,
       `Email: ${payload.email}`,

@@ -1,8 +1,8 @@
 const OWNER_EMAIL = 'resat.amin@gmail.com';
 const GOOGLE_MEET_LINK = 'PASTE_YOUR_GOOGLE_MEET_LINK_HERE';
 const ADMIN_KEY = 'CHANGE_THIS_PRIVATE_ADMIN_KEY';
-const SCRIPT_VERSION = '2026-07-15-stable-local-time-email';
-const STUDY_TIME_ZONE = 'Europe/Amsterdam';
+const SCRIPT_VERSION = '2026-09-01-massachusetts-fall-schedule';
+const STUDY_TIME_ZONE = 'America/New_York';
 
 const SHEET_REQUESTS = 'Requests';
 const SHEET_APPROVED = 'Approved regulars';
@@ -25,16 +25,16 @@ const REQUEST_HEADERS = [
   'reminderSentAt'
 ];
 const SLOT_TIME_KEYS = {
-  '11:00 AM - 12:45 PM': '11:00-12:45',
+  '10:00 AM - 11:30 AM': '10:00-11:30',
+  '11:00 AM - 1:00 PM': '11:00-13:00',
   '12:00 PM - 2:00 PM': '12:00-14:00',
+  '1:30 PM - 3:00 PM': '13:30-15:00',
+  '11:00 AM - 12:45 PM': '11:00-12:45',
   '1:00 PM - 3:45 PM': '13:00-15:45',
   '3:45 PM - 4:30 PM': '15:45-16:30'
 };
 const BLOCKED_HEADERS = ['type', 'key', 'label', 'active', 'note'];
-const DEFAULT_BLOCKED_ROWS = [
-  ['date', '2026-07-06', 'Monday, July 6', 'yes', 'Closed for now'],
-  ['slot', '2026-07-07__15:45-16:30', 'Tuesday, July 7, 3:45 PM - 4:30 PM', 'yes', 'Closed for now']
-];
+const DEFAULT_BLOCKED_ROWS = [];
 const MONTH_NUMBERS = {
   january: '01',
   february: '02',
@@ -191,7 +191,7 @@ function sendApprovalEmail_(requestId, data) {
   const localTime = formatLocalTimeForEmail_(data.localSlot, data.visitorTimeZone, data.slotKey);
   const htmlBody = `
     <p><strong>${escape_(data.name)}</strong> requested a study room seat.</p>
-    <p><strong>Slot:</strong> ${escape_(data.slot)} Netherlands time<br>
+    <p><strong>Slot:</strong> ${escape_(data.slot)} Massachusetts time<br>
     <strong>Seats left:</strong> ${escape_(getSeatsLeft_(SpreadsheetApp.getActiveSpreadsheet(), data.slotKey))}<br>
     <strong>Their local time:</strong> ${escape_(localTime)}<br>
     <strong>Email:</strong> ${escape_(data.email)}<br>
@@ -217,7 +217,7 @@ function sendMeetLink_(email, name, slot, localSlot, visitorTimeZone, slotKey) {
   MailApp.sendEmail({
     to: email,
     subject: 'Your study room link',
-    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Netherlands time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nIf you change your plan, please let me know in advance so I can offer the slot to someone else.\n\nSee you there,\nResat`
+    body: `Hi ${name || 'there'},\n\nYou are approved for the study room.\n\nSlot: ${slot} Massachusetts time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nIf you change your plan, please let me know in advance so I can offer the slot to someone else.\n\nSee you there,\nResat`
   });
 }
 
@@ -226,7 +226,7 @@ function sendFullEmail_(email, name, slot, localSlot, visitorTimeZone, slotKey) 
   MailApp.sendEmail({
     to: email,
     subject: 'Study room slot is full',
-    body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Netherlands time\nYour local time: ${localTime}\n\nPlease choose another slot.\n\nResat`
+    body: `Hi ${name || 'there'},\n\nThanks for requesting the study room.\n\nThis slot is already full:\n${slot} Massachusetts time\nYour local time: ${localTime}\n\nPlease choose another slot.\n\nResat`
   });
 }
 
@@ -344,7 +344,7 @@ function sendReminderEmail_(request) {
   MailApp.sendEmail({
     to: request.email,
     subject: 'Study room reminder',
-    body: `Hi ${request.name || 'there'},\n\nA small reminder that your study room starts in about 30 minutes.\n\nSlot: ${request.slot} Netherlands time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you soon,\nResat`
+    body: `Hi ${request.name || 'there'},\n\nA small reminder that your study room starts in about 30 minutes.\n\nSlot: ${request.slot} Massachusetts time\nYour local time: ${localTime}\n\nGoogle Meet link:\n${GOOGLE_MEET_LINK}\n\nSee you soon,\nResat`
   });
 }
 
